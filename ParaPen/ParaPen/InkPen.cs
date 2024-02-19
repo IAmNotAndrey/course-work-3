@@ -18,7 +18,21 @@ public class InkPen : IInkPen
 	public event EventHandler<PositionEventArgs> PenPositionChanged;
 	public event EventHandler OnDispose;
 
-	public System.Windows.Point CurCords { get; set; } = new(0, 0);
+
+	private System.Windows.Point curCords = new(0, 0);
+	public System.Windows.Point CurCords 
+	{
+		get => curCords;
+		set 
+		{
+			if (curCords != value)
+			{
+				PenPositionChanged?.Invoke(this, new PositionEventArgs(curCords, value));
+				curCords = value;
+			}
+		}
+	}
+
 	public DrawingAttributes DrawingAttributes { get; init; }
 
 	private readonly InkCanvas _inkCanvas;
@@ -47,8 +61,6 @@ public class InkPen : IInkPen
 		Stroke line = GetStrokeLine(CurCords, toPoint, DrawingAttributes);
 		CurCords = toPoint;
 		_inkCanvas.Strokes.Add(line);
-
-		PenPositionChanged?.Invoke(this, new PositionEventArgs(CurCords-relativeOffset, CurCords));
 	}
 
 	/// <summary>
@@ -57,8 +69,5 @@ public class InkPen : IInkPen
 	private void MovePen(object? sender, OffsetEventArgs e)
 	{
 		CurCords += e.Offset;
-		PenPositionChanged?.Invoke(this, new PositionEventArgs(CurCords-e.Offset, CurCords));
 	}
-
-	
 }

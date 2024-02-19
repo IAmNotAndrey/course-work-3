@@ -37,7 +37,7 @@ public class InkPenImageDrawer
 		// removeme
 
 		_canvas = canvas;
-		_ellipse = new() { Width=20, Height=20, Stroke= new SolidColorBrush(inkPen.DrawingAttributes.Color) };
+		_ellipse = new() { Width=20, Height=20, Stroke=new SolidColorBrush(inkPen.DrawingAttributes.Color) };
 		canvas.Children.Add(_ellipse);
 		Canvas.SetZIndex(_ellipse, 100);
 
@@ -51,6 +51,7 @@ public class InkPenImageDrawer
 	{
 		// todo : логика удаления элемента на `canvas`
 		_canvas.Children.Remove(_ellipse);
+
 		//throw new NotImplementedException();
 	}
 
