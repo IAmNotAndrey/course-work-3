@@ -9,8 +9,8 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Ink;
 using System.Windows.Media.Imaging;
-using ParaPen.Interfaces;
 using System.Diagnostics.CodeAnalysis;
+using ParaPen.Models.Interfaces;
 
 namespace ParaPen;
 

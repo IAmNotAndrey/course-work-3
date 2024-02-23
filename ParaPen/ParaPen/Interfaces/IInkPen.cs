@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Ink;
 
-namespace ParaPen.Interfaces;
+namespace ParaPen.Models.Interfaces;
 
 public interface IInkPen : IDisposable
 {
-	event EventHandler<PositionEventArgs> PenPositionChanged;
-	event EventHandler OnDispose;
+    event EventHandler<PositionEventArgs> PenPositionChanged;
+    event EventHandler OnDispose;
 
-	System.Windows.Point CurCords { get; set; }
-	DrawingAttributes DrawingAttributes { get; init; }
+    Point CurCords { get; set; }
+    DrawingAttributes DrawingAttributes { get; init; }
 
 }

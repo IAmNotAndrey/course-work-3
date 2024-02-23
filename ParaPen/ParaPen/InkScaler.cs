@@ -1,4 +1,4 @@
-﻿using ParaPen.Interfaces;
+﻿using ParaPen.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;

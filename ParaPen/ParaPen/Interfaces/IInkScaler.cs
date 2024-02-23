@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParaPen.Interfaces;
+namespace ParaPen.Models.Interfaces;
 
 public interface IInkScaler
 {
-	double ZoomFactor { get; set; }
-	double CurrentScale { get; }
+    double ZoomFactor { get; set; }
+    double CurrentScale { get; }
 
 }

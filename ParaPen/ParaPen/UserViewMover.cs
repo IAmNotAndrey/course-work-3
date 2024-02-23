@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
-using ParaPen.Interfaces;
 using System.Diagnostics.CodeAnalysis;
+using ParaPen.Models.Interfaces;
 
 namespace ParaPen;
 
