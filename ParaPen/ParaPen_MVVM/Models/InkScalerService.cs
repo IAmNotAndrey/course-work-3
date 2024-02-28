@@ -1,9 +1,7 @@
-﻿using ParaPen_MVVM.Models.Interfaces;
-using System;
+﻿using ParaPen.Models.Interfaces;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
-namespace ParaPen_MVVM.Models;
+namespace ParaPen.Models;
 
 public class InkScalerService : IInkScalerService
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace ParaPen_MVVM.Commands;
+namespace ParaPen.Commands;
 
 public abstract class CommandBase : ICommand
 {

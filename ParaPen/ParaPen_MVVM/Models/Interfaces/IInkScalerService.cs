@@ -1,4 +1,4 @@
-﻿namespace ParaPen_MVVM.Models.Interfaces;
+﻿namespace ParaPen.Models.Interfaces;
 
 public interface IInkScalerService
 {

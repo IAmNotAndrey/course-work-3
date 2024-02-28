@@ -1,9 +1,8 @@
-﻿using ParaPen_MVVM.Models;
-using ParaPen_MVVM.Models.Interfaces;
+﻿using ParaPen.Models.Interfaces;
 using System.Windows;
 using System.Windows.Media;
 
-namespace ParaPen_MVVM.Commands;
+namespace ParaPen.Commands;
 
 public class ZoomInCommand : CommandBase
 {

@@ -1,11 +1,11 @@
 ﻿using ParaPen.Models.EventArgs;
-using ParaPen_MVVM.Models.Interfaces;
+using ParaPen.Models.Interfaces;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Ink;
 
-namespace ParaPen_MVVM.Models;
+namespace ParaPen.Models;
 
 public class InkPen : INotifyPropertyChanged
 {
@@ -28,12 +28,12 @@ public class InkPen : INotifyPropertyChanged
 	}
 
 	public DrawingAttributes DrawingAttributes { get; }
-    public InkPenMode Mode { get; }
+    //public InkPenMode Mode { get; }
 
-    public InkPen(Point startCords, DrawingAttributes drawingAttributes, InkPenMode mode=InkPenMode.Move)
+    public InkPen(Point startCords, DrawingAttributes drawingAttributes)
     {
         CurCords = startCords;
         DrawingAttributes = drawingAttributes;
-        Mode = mode;
+        //Mode = mode;
     }
 }

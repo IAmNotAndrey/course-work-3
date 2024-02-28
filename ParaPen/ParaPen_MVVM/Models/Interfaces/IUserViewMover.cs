@@ -1,8 +1,8 @@
-﻿using ParaPen_MVVM.Models.EventArgs;
+﻿using ParaPen.Models.EventArgs;
 using System;
 using System.Windows;
 
-namespace ParaPen_MVVM.Models.Interfaces;
+namespace ParaPen.Models.Interfaces;
 
 public interface IUserViewMover
 {

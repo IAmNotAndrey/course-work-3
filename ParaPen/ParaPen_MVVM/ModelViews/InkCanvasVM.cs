@@ -1,12 +1,12 @@
-﻿using ParaPen_MVVM.Commands;
-using ParaPen_MVVM.Models;
-using ParaPen_MVVM.Models.Interfaces;
+﻿using ParaPen.Commands;
+using ParaPen.Models;
+using ParaPen.Models.Interfaces;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace ParaPen_MVVM.ModelViews;
+namespace ParaPen.ModelViews;
 
 public class InkCanvasVM : ViewModelBase
 {

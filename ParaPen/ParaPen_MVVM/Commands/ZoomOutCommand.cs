@@ -1,13 +1,8 @@
-﻿using ParaPen_MVVM.Models.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ParaPen.Models.Interfaces;
 using System.Windows;
 using System.Windows.Media;
 
-namespace ParaPen_MVVM.Commands;
+namespace ParaPen.Commands;
 
 public class ZoomOutCommand : CommandBase
 {

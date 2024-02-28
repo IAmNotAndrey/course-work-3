@@ -2,7 +2,7 @@
 using System.Windows.Ink;
 using System.Windows.Input;
 
-namespace ParaPen_MVVM.Models;
+namespace ParaPen.Models;
 
 public class InkCanvasMethods
 {

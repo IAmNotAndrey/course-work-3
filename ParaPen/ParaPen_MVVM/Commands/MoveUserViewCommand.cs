@@ -1,8 +1,8 @@
 ﻿using ParaPen.Models.EventArgs;
-using ParaPen_MVVM.Models.Interfaces;
+using ParaPen.Models.Interfaces;
 using System;
 
-namespace ParaPen_MVVM.Commands;
+namespace ParaPen.Commands;
 
 public class MoveUserViewCommand : CommandBase
 {

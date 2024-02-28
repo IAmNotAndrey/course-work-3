@@ -1,4 +1,4 @@
-﻿using ParaPen_MVVM.Models.Interfaces;
+﻿using ParaPen.Models.Interfaces;
 
 namespace ParaPen_MVVM.Models;
 

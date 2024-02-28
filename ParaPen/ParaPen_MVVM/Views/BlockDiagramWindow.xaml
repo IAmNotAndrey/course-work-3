@@ -1,0 +1,29 @@
+﻿<Window x:Class="ParaPen.Views.BlockDiagramWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ParaPen.Views"
+        xmlns:gc="clr-namespace:GraphSharp.Controls;assembly=GraphSharp.Controls"
+        mc:Ignorable="d"
+        Title="BlockDiagramWindow" Height="450" Width="800"
+        x:Name="root">
+	<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<!--<ResourceDictionary  />-->
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Window.Resources>
+
+	<Grid>
+		<gc:GraphLayout x:Name="graphLayout" 
+                        Graph="{Binding ElementName=root, Path=Graph1}" 
+                        LayoutAlgorithmType="Tree"
+                        OverlapRemovalAlgorithmType="FSA"
+                        HighlightAlgorithmType="Simple" />
+
+		<Button Content="Button" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="40" Margin="160,319,0,0" Click="Button_Click" />
+		<Button Content="Button" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="40" Margin="367,354,0,0" Click="Button_Click_1" />
+	</Grid>
+</Window>

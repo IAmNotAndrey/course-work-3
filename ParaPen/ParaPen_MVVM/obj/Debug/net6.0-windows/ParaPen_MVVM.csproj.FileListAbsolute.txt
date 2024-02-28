@@ -19,3 +19,5 @@ D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\ParaPen_MV
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\ref\ParaPen_MVVM.dll
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\MainWindow.g.cs
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\MainWindow.baml
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\BlockDiagramWindow.g.cs
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\BlockDiagramWindow.baml

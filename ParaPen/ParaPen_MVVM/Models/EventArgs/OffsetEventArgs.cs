@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace ParaPen_MVVM.Models.EventArgs;
+namespace ParaPen.Models.EventArgs;
 
 public class OffsetEventArgs
 {
