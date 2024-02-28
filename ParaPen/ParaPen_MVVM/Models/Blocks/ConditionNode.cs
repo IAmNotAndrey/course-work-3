@@ -2,7 +2,7 @@
 
 namespace ParaPen.Models.Blocks;
 
-public class ConditionNode : BlockNode<bool>
+public class ConditionNode : BlockNode
 {
 	private readonly Func<bool> _condition;
 

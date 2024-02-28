@@ -2,7 +2,7 @@
 
 namespace ParaPen.Models.Blocks;
 
-public class ActionNode : BlockNode<object?>
+public class ActionNode : BlockNode
 {
     private readonly Action _action;
 
@@ -12,10 +12,10 @@ public class ActionNode : BlockNode<object?>
         _action = action;
     }
 
-	/// <returns><see langword="null"/></returns>
-	public override object? Execute()
+	/// <returns><see langword="true"/></returns>
+	public override bool Execute()
 	{
 		_action.Invoke();
-        return null;
+        return true;
 	}
 }

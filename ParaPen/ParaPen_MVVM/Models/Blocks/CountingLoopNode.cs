@@ -1,6 +1,6 @@
 ﻿namespace ParaPen.Models.Blocks;
 
-public class CountingLoopNode : BlockNode<bool>
+public class CountingLoopNode : BlockNode
 {
 	private uint _count;
 
