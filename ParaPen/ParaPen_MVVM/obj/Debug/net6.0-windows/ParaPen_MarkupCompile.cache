@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\App.xaml
-3-835197712
+3-1586231095
 
-25-1011748923
+291936360814
 201-747309058
-Views\BlockDiagramWindow.xaml;Views\MainWindow.xaml;Views\VertexTemplates.xaml;
+Views\BlockDiagramUC.xaml;Views\BlockDiagramWindow.xaml;Views\MainWindow.xaml;
 
 False
 

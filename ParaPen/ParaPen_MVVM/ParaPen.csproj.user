@@ -10,15 +10,18 @@
     <Compile Update="Views\BlockDiagramWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\BlockDiagramUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\BlockDiagramUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\BlockDiagramWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\VertexTemplates.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -29,4 +29,6 @@ D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\QuickGraph
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\QuickGraph.Serialization.dll
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\QuickGraph.dll
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\WPFExtensions.dll
-D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\VertexTemplates.baml
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\BlockDiagramUC.g.cs
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\BlockDiagramUC.baml
