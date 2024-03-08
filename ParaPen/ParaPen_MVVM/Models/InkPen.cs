@@ -2,6 +2,7 @@
 using ParaPen.Models.Interfaces;
 using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Ink;
 
@@ -20,8 +21,7 @@ public class InkPen : INotifyPropertyChanged
 		{
 			if (curCords != value)
 			{
-				//PenPositionChanged?.Invoke(this, new PositionEventArgs(curCords, value));
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurCords)));
+				OnPropertyChanged(nameof(CurCords));
 				curCords = value;
 			}
 		}
@@ -36,4 +36,16 @@ public class InkPen : INotifyPropertyChanged
         DrawingAttributes = drawingAttributes;
         //Mode = mode;
     }
+
+	/// <returns>CurCords+offset</returns>
+	public Point MoveOffset(Vector offset)
+	{
+		CurCords += offset;
+		return CurCords;
+	}
+
+	protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+	{
+		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+	}
 }

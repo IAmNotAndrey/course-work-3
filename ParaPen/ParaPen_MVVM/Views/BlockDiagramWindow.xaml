@@ -12,6 +12,6 @@
         x:Name="root">
 
 	<Grid>
-		<local:BlockDiagramUC />
+		<local:BlockDiagramUC x:Name="blockDiagramUC"/>
 	</Grid>
 </Window>

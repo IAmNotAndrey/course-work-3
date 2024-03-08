@@ -12,16 +12,16 @@ public class InkCanvasVM : ViewModelBase
 {
 	private readonly IInkScalerService _inkScalerService;
 	private readonly InkCanvas _inkCanvas;
-	private readonly IUserViewMover _userViewMover;
-	
+	//private readonly IUserViewMover _userViewMover;
+	public IUserViewMover UserViewMover { get; init; }
 
 	public InkCanvasVM(InkCanvas inkCanvas)
 	{
 		_inkScalerService = new InkScalerService(1.1);
 		_inkCanvas = inkCanvas;
-		_userViewMover = new UserViewMover();
+		UserViewMover = new UserViewMover();
 
-		_userViewMover.UserViewOffsetChanged += OnUserViewOffsetChanged;
+		UserViewMover.UserViewOffsetChanged += OnUserViewOffsetChanged;
 	}
 
 	//public double ZoomFactor => _inkScalerService.ZoomFactor;
@@ -29,7 +29,7 @@ public class InkCanvasVM : ViewModelBase
 
 	public ICommand ZoomInCommand => new ZoomInCommand(_inkCanvas, _inkScalerService);
 	public ICommand ZoomOutCommand => new ZoomOutCommand(_inkCanvas, _inkScalerService);
-	public ICommand MoveUserViewCommand => new MoveUserViewCommand(_userViewMover);
+	public ICommand MoveUserViewCommand => new MoveUserViewCommand(UserViewMover);
 
 
 	private void OnUserViewOffsetChanged(object? sender, Models.EventArgs.OffsetEventArgs e)

@@ -6,7 +6,7 @@ public class ActionNode : BlockNode
 {
     private readonly Action _action;
 
-    public ActionNode(string id, string label, Action action) : base(id, label)
+    public ActionNode(string label, Action action) : base(label)
     {
         _action = action;
     }

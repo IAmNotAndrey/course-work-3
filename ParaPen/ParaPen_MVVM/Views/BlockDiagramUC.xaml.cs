@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParaPen.Models.CustomGraph;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ParaPen.Views
+namespace ParaPen.Views;
+
+/// <summary>
+/// Логика взаимодействия для BlockDiagramUC.xaml
+/// </summary>
+public partial class BlockDiagramUC : UserControl
 {
-	/// <summary>
-	/// Логика взаимодействия для BlockDiagramUC.xaml
-	/// </summary>
-	public partial class BlockDiagramUC : UserControl
+	public BlockDiagramUC()
 	{
-		public BlockDiagramUC()
-		{
-			InitializeComponent();
-		}
+		InitializeComponent();
 	}
 }

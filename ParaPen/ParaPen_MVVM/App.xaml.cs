@@ -1,4 +1,5 @@
-﻿using ParaPen.Views;
+﻿using ParaPen.ModelViews;
+using ParaPen.Views;
 using System.Windows;
 
 namespace ParaPen;
@@ -10,9 +11,13 @@ public partial class App : Application
 {
 	protected override void OnStartup(StartupEventArgs e)
 	{
+		MainWindow mainWindow = new();
+		mainWindow.Show();
+		
 		BlockDiagramWindow blockDiagramWindow = new();
+		blockDiagramWindow.blockDiagramUC.DataContext = new BlockDiagramVM(mainWindow.inkCanvas, ((InkCanvasVM)mainWindow.DataContext).UserViewMover);
 		blockDiagramWindow.Show();
 
-		base.OnStartup(e);
+		//base.OnStartup(e);
 	}
 }

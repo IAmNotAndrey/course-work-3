@@ -4,7 +4,7 @@ public class CountingLoopNode : BlockNode
 {
 	private uint _count;
 
-	public CountingLoopNode(string id, string label, uint count) : base(id, label)
+	public CountingLoopNode(string label, uint count) : base(label)
 	{
 		_count = count;
 	}
