@@ -1,5 +1,5 @@
 ﻿using ParaPen.Commands;
-using ParaPen.Models.CustomGraph;
+using ParaPen.Models.CustomGraph.BlockNodes;
 using System;
 
 namespace ParaPen.ModelViews;

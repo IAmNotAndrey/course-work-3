@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ParaPen.Models.CustomGraph;
+namespace ParaPen.Models.CustomGraph.BlockNodes;
 
 public class ActionNode : BlockNode
 {
@@ -11,10 +11,10 @@ public class ActionNode : BlockNode
         _action = action;
     }
 
-	/// <returns><see langword="true"/></returns>
-	public override bool Execute()
-	{
-		_action.Invoke();
+    /// <returns><see langword="true"/></returns>
+    public override bool Execute()
+    {
+        _action.Invoke();
         return true;
-	}
+    }
 }

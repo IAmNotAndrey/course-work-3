@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata;
 using System;
 using System.Linq;
+using ParaPen.Models.CustomGraph.BlockNodes;
 
 namespace ParaPen.Helpers;
 public static class NodeHelper

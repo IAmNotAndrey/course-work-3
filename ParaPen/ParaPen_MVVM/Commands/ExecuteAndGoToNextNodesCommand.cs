@@ -1,5 +1,6 @@
 ﻿using ParaPen.Helpers;
 using ParaPen.Models.CustomGraph;
+using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.ModelViews;
 using System.Collections.Generic;
 using System.Linq;

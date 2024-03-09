@@ -1,15 +1,15 @@
 ﻿using ParaPen.Commands;
 using ParaPen.Models;
 using ParaPen.Models.CustomGraph;
-using System;
+using ParaPen.Models.CustomGraph.BlockNodes;
+using ParaPen.Models.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Ink;
+using System.Windows.Input;
 using System.Windows.Media;
-using System.Linq;
-using ParaPen.Models.Interfaces;
 
 namespace ParaPen.ModelViews;
 
