@@ -1,21 +1,18 @@
 ﻿using ParaPen.Commands;
 using ParaPen.Models;
 using ParaPen.Models.CustomGraph;
-using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.Models.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Ink;
 using System.Windows.Input;
-using System.Windows.Media;
+using static ParaPen.Models.StaticResources.StaticResources;
 
 namespace ParaPen.ModelViews;
 
 public class BlockDiagramVM : ViewModelBase
 {
-	private BlockDiagramGraph _blockDiagram;
+	private BlockDiagramGraph _blockDiagram = new();
 	public BlockDiagramGraph BlockDiagram
 	{
 		get => _blockDiagram;
@@ -26,24 +23,28 @@ public class BlockDiagramVM : ViewModelBase
 		}
 	}
 
+	public ObservableCollection<BlockPenContainer> BlockPenContainers { get; } = new();
+
+
 	private readonly InkCanvas _inkCanvas;
 	private readonly IUserViewMover _userViewMover;
 
-	//private List<BlockNode> _activeNodes = new();
-	private List<BlockPenContainer> _blockPenContainers = new();
 
+	public ICommand AddBlockPenContainer => new AddBlockPenContainerCommand(BlockPenContainers, BlockDiagram, _userViewMover, _inkCanvas, BLOCK_DIAGRAM_LIMIT);
+	public ICommand DeleteBlockPenContainer => new DeleteBlockPenContainerCommand(BlockPenContainers, BlockDiagram);
+	//public ICommand ResetBlockPenContainers => ResetBlockPenContainersCommand();
 
-	//public ICommand ExecuteAndGoToNextNodesCommand => new ExecuteAndGoToNextNodesCommand(_activeNodes, _blockDiagram);
-	public ICommand ExecuteAndGoToNextNodesCommand => new ExecuteAndGoToNextNodesCommand(_blockPenContainers.Select(sc => sc.ActiveNode), _blockDiagram);
-	//public ICommand ExecuteAllNodesCommands => new ExecuteAllNodesCommand(_activeNodes, _blockDiagram);
-	public ICommand ExecuteAllNodesCommands => new ExecuteAllNodesCommand(_blockPenContainers.Select(sc => sc.ActiveNode), _blockDiagram);
-
+	public ICommand ExecuteAndGoToNextNodesCommand => new ExecuteAndGoToNextNodesCommand(BlockPenContainers, BlockDiagram);
+	//public ICommand ExecuteAllNodesCommands => new ExecuteAllNodesCommand(_blockPenContainers, BlockDiagram);
+	
 
 	public BlockDiagramVM(InkCanvas inkCanvas, IUserViewMover userViewMover)
 	{
 		_inkCanvas = inkCanvas;
 		_userViewMover = userViewMover;
 
+
+		/*
 		BlockDiagramGraph blockDiagram = new();
 
 
@@ -53,16 +54,21 @@ public class BlockDiagramVM : ViewModelBase
 		BlockPenContainer blockPenContainer = new(_userViewMover)
 		{
 			ActiveNode = startNode,
-			Pen = new InkPen(new Point(0, 0), new DrawingAttributes { Color = Colors.Red, Width = 4, Height = 4 }),
+			InkPen = new InkPen(new Point(0, 0), new DrawingAttributes { Color = Colors.Red, Width = 4, Height = 4 }),
 			InkCanvas = _inkCanvas,
+			BlockDiagramGraph = blockDiagram,
 		};
 
-		bool isBusy() => _blockPenContainers.All(bc => bc.Pen.CurCords != blockPenContainer.Pen.CurCords);
+		bool isBusy() => true;
 		List<BlockNode> existingNodes = new()
 		{
-			new ActionNode("Action 1", () => blockPenContainer.DrawLine(new Vector(100,0))),
-			new ActionNode("Action 2", () => blockPenContainer.DrawLine(new Vector(1,100))),
-			new ActionNode("Action 3", () => blockPenContainer.DrawLine(new Vector(0,100))),
+			//new ActionNode("Action 1", () => blockPenContainer.InkPen.DrawLine(new Vector(100,0), blockPenContainer.InkCanvas)),
+			//new ActionNode("Action 2", () => blockPenContainer.InkPen.DrawLine(new Vector(1,100), blockPenContainer.InkCanvas)),
+			//new ActionNode("Action 3", () => blockPenContainer.InkPen.DrawLine(new Vector(0,100), blockPenContainer.InkCanvas)),
+			new InkPenActionNode("Draw Right", 100, PenActions.Draw, Directions.Right),
+			new InkPenActionNode("Draw UpRight", 100, PenActions.Draw, Directions.UpRight),
+			new InkPenActionNode("Draw Down", 100, PenActions.Draw, Directions.Down),
+
 			new ConditionNode("Condition 1", isBusy),
 			new CountingLoopNode("CountingLoop 1", 1),
 			startNode,
@@ -83,6 +89,7 @@ public class BlockDiagramVM : ViewModelBase
 		blockDiagram.AddEdge(new BlockEdge(existingNodes[4], existingNodes[6], false));
 		blockDiagram.AddEdge(new BlockEdge(existingNodes[5], existingNodes[0]));
 
+
 		//removeme
 		// 2
 		List<BlockNode> existingNodes2 = new()
@@ -96,8 +103,9 @@ public class BlockDiagramVM : ViewModelBase
 		_blockPenContainers.Add(new BlockPenContainer(_userViewMover)
 		{
 			ActiveNode = existingNodes2[0],
-			Pen = new InkPen(new Point(0, 0), new DrawingAttributes { Color = Colors.Green, Width = 4, Height = 4 }),
+			InkPen = new InkPen(new Point(0, 0), new DrawingAttributes { Color = Colors.Green, Width = 4, Height = 4 }),
 			InkCanvas = _inkCanvas,
+			BlockDiagramGraph = blockDiagram
 		});
 
 		blockDiagram.AddVertexRange(existingNodes2);
@@ -110,15 +118,7 @@ public class BlockDiagramVM : ViewModelBase
 
 		// Устанавливаем для всех активных вершин
 		//_activeNodes.ForEach(b => b.IsHighlighted = true);
-		_blockPenContainers.ForEach(b => b.ActiveNode.IsHighlighted = true);
+		//_blockPenContainers.ForEach(b => b.ActiveNode.IsHighlighted = true);
+		*/
 	}
-
-	//	private static BlockEdge GetNewGraphEdge(BlockNode from, BlockNode to)
-	//	{
-	//		string edgeString = $"{from.Id}-{to.Id} Connected";
-
-	//		BlockEdge newEdge = new(edgeString, null, from, to);
-
-	//		return newEdge;
-	//	}
 }

@@ -7,11 +7,91 @@
         xmlns:local="clr-namespace:ParaPen.Views" 
 		xmlns:mv="clr-namespace:ParaPen.ModelViews"
 		xmlns:cg="clr-namespace:ParaPen.Models.CustomGraph"
+		xmlns:bn="clr-namespace:ParaPen.Models.CustomGraph.BlockNodes"
+
 		mc:Ignorable="d"
         Title="BlockDiagramWindow" Height="450" Width="800"
         x:Name="root">
 
+
+	<Window.Resources>
+		<DataTemplate DataType="{x:Type bn:BlockNode}">
+			<Border BorderThickness="1">
+				<Border.Style>
+					<Style TargetType="Border">
+						<!--<Setter Property="BorderBrush" Value="Black"/>
+						<Setter Property="BorderThickness" Value="1"/>-->
+						<Style.Triggers>
+							<!-- Поведение при IsHighlighted = true -->
+							<DataTrigger Binding="{Binding IsHighlighted}" Value="True">
+								<Setter Property="BorderBrush" Value="Orange"/>
+								<!-- FIXME: Утолщение рамки не происходит -->
+								<Setter Property="BorderThickness" Value="4"/>
+							</DataTrigger>
+							<!-- Поведение при IsHighlighted = false -->
+							<DataTrigger Binding="{Binding IsHighlighted}" Value="False">
+								<Setter Property="BorderBrush" Value="Black"/>
+								<!-- FIXME: Утолщение рамки не происходит -->
+								<Setter Property="BorderThickness" Value="2"/>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Border.Style>
+				<TextBlock Text="{Binding Label}" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"/>
+			</Border>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type bn:TerminalBlock}">
+			<Border BorderThickness="1" CornerRadius="5">
+				<Border.Style>
+					<Style TargetType="Border">
+						<!--<Setter Property="BorderBrush" Value="Black"/>
+						<Setter Property="BorderThickness" Value="1"/>-->
+						<Style.Triggers>
+							<!-- Поведение при IsHighlighted = true -->
+							<DataTrigger Binding="{Binding IsHighlighted}" Value="True">
+								<Setter Property="BorderBrush" Value="Orange"/>
+								<!-- FIXME: Утолщение рамки не происходит -->
+								<Setter Property="BorderThickness" Value="4"/>
+							</DataTrigger>
+							<!-- Поведение при IsHighlighted = false -->
+							<DataTrigger Binding="{Binding IsHighlighted}" Value="False">
+								<Setter Property="BorderBrush" Value="Black"/>
+								<!-- FIXME: Утолщение рамки не происходит -->
+								<Setter Property="BorderThickness" Value="2"/>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Border.Style>
+				<TextBlock Text="{Binding Label}" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"/>
+			</Border>
+		</DataTemplate>
+
+		<!-- Для рёбер -->
+		<Style TargetType="gc:EdgeControl">
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Foreground" Value="Red" />
+					<Setter Property="Cursor" Value="Hand" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+
+	</Window.Resources>
+
 	<Grid>
-		<local:BlockDiagramUC x:Name="blockDiagramUC"/>
+		<gc:GraphLayout x:Name="graphLayout" 
+						Graph="{Binding BlockDiagram}"
+						LayoutAlgorithmType="EfficientSugiyama"
+						OverlapRemovalAlgorithmType="FSA"
+						>
+		</gc:GraphLayout>
+
+		<local:BlockPenContainersRemoveUC DataContext="{Binding}" Height="100" Width="100" HorizontalAlignment="Right"/>
+		<Button Content="Add" HorizontalAlignment="Left" Margin="485,364,0,0" VerticalAlignment="Top" Command="{Binding AddBlockPenContainer}" />
 	</Grid>
 </Window>

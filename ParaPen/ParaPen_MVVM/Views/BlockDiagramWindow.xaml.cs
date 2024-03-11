@@ -13,4 +13,9 @@ public partial class BlockDiagramWindow : Window
 		InitializeComponent();
 		//DataContext = new BlockDiagramVM();
 	}
+
+	private void graphLayout_GiveFeedback(object sender, GiveFeedbackEventArgs e)
+	{
+
+    }
 }

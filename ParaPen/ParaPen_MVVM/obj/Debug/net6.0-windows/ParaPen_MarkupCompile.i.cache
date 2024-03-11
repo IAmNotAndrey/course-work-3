@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\App.xaml
-3-1586231095
+4601306211
 
-39-1197029084
+47-1085052387
 201-747309058
-Views\BlockDiagramUC.xaml;Views\BlockDiagramWindow.xaml;Views\MainWindow.xaml;
+Views\BlockDiagramUC.xaml;Views\BlockDiagramWindow.xaml;Views\BlockPenContainerRemoveUC.xaml;Views\MainWindow.xaml;
 
 False
 

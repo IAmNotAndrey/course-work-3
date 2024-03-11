@@ -1,10 +1,14 @@
-﻿using ParaPen.Models.CustomGraph;
-using ParaPen.ModelViews;
-using System.Collections.Generic;
-using System.Reflection.Metadata;
-using System;
-using System.Linq;
+﻿using ParaPen.Models;
+using ParaPen.Models.CustomGraph;
 using ParaPen.Models.CustomGraph.BlockNodes;
+using ParaPen.Models.Enums;
+using QuickGraph;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using static ParaPen.Models.StaticResources.StaticResources;
 
 namespace ParaPen.Helpers;
 public static class NodeHelper
@@ -53,5 +57,56 @@ public static class NodeHelper
 		{
 			node.IsHighlighted = !node.IsHighlighted;
 		}
+	}
+
+	public static Action GetActionOutOfPenActions(double stepMultiplier, PenActions penAction, Directions direction, InkPen inkPen, InkCanvas inkCanvas)
+	{
+		Vector vectorStep = DirectionVectorDict[direction] * stepMultiplier;
+
+		Action action = penAction switch
+		{
+			PenActions.Move => () => inkPen.MoveOffset(vectorStep),
+			PenActions.Draw => () => inkPen.DrawLine(vectorStep, inkCanvas),
+			_ => throw new ArgumentException(null, nameof(penAction)),
+		};
+
+		return action;
+	}
+
+	/// <summary>
+	/// Заменяет вершину на графе сохраняя рёбра
+	/// </summary>
+	[Obsolete]
+	public static void ReplaceNode(BlockNode oldNode, BlockNode newNode, BlockDiagramGraph graph)
+	{
+		// Добавляем новую вершину на граф
+		graph.AddVertex(newNode);
+
+		List<BlockEdge> edgesToAdd = new();	
+
+		// Дублируем все входящие рёбра в `oldNode` для `newNode`
+		foreach (var edge in graph.InEdges(oldNode).Cast<BlockEdge>())
+		{
+			var neighbor = edge.Source;
+			// Добавить ребро между новой вершиной и соседней вершиной
+			//graph.AddEdge(new BlockEdge(neighbor, newNode, edge.Value));
+			edgesToAdd.Add(new BlockEdge(neighbor, newNode, edge.Value));
+		}
+
+		// Дублируем все выходящие рёбра в `oldNode` для `newNode`
+		foreach (var edge in graph.OutEdges(oldNode).Cast<BlockEdge>())
+		{
+			var neighbor = edge.Target;
+			// Добавить ребро между новой вершиной и соседней вершиной
+			//newGraph.AddEdge(new BlockEdge(newNode, neighbor, edge.Value));
+			edgesToAdd.Add(new BlockEdge(newNode, neighbor, edge.Value));
+		}
+
+		// Удаляем `oldNode` и все связанные с ней рёбра из графа
+		graph.RemoveVertex(oldNode);
+
+		graph.AddEdgeRange(edgesToAdd);
+
+		// fixme ? ссылка не изменяется? должна изменяться - не слушай IDE
 	}
 }

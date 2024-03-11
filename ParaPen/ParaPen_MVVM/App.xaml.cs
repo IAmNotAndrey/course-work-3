@@ -15,7 +15,8 @@ public partial class App : Application
 		mainWindow.Show();
 		
 		BlockDiagramWindow blockDiagramWindow = new();
-		blockDiagramWindow.blockDiagramUC.DataContext = new BlockDiagramVM(mainWindow.inkCanvas, ((InkCanvasVM)mainWindow.DataContext).UserViewMover);
+		//blockDiagramWindow.blockDiagramUC.DataContext = new BlockDiagramUC_VM(mainWindow.inkCanvas, ((InkCanvasVM)mainWindow.DataContext).UserViewMover);
+		blockDiagramWindow.DataContext = new BlockDiagramVM(mainWindow.inkCanvas, ((InkCanvasVM)mainWindow.DataContext).UserViewMover);
 		blockDiagramWindow.Show();
 
 		//base.OnStartup(e);

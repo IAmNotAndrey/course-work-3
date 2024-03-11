@@ -1,5 +1,6 @@
 ﻿using ParaPen.Models.CustomGraph;
 using ParaPen.Models.CustomGraph.BlockNodes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,15 +17,16 @@ public class ExecuteAllNodesCommand : CommandBase
 		_blockDiagram = blockDiagram;
 	}
 
-    public override void Execute(object? parameter)
+	public override void Execute(object? parameter)
 	{
-		while (_activeNodes.All(n => n is not null))
-		{
-		// FIXME : не происходит обновление _actionNodes
-			IEnumerable<BlockNode?> newActiveNodes = _activeNodes.ToList();
-			ExecuteAndGoToNextNodesCommand command = new(newActiveNodes, _blockDiagram);
-			command.Execute(null);
-			_activeNodes = newActiveNodes;
-		}
+		//while (_activeNodes.All(n => n is not null))
+		//{
+		//	// FIXME : не происходит обновление _actionNodes
+		//	IEnumerable<BlockNode?> newActiveNodes = _activeNodes.ToList();
+		//	ExecuteAndGoToNextNodesCommand command = new(newActiveNodes, _blockDiagram);
+		//	command.Execute(null);
+		//	_activeNodes = newActiveNodes;
+		//}
+		throw new NotImplementedException();
 	}
 }

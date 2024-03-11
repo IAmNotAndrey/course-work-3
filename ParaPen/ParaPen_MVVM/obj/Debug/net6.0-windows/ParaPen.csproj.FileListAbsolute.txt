@@ -32,3 +32,5 @@ D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\WPFExtensi
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\BlockDiagramUC.g.cs
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\BlockDiagramUC.baml
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\BlockPenContainerRemoveUC.g.cs
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\BlockPenContainerRemoveUC.baml
