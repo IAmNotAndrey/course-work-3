@@ -16,6 +16,15 @@
     <Compile Update="Views\BlockPenContainerRemoveUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\CountingLoopDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\InkPenActionDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\NodeTypeChoosingDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\BlockDiagramUC.xaml">
@@ -24,10 +33,22 @@
     <Page Update="Views\BlockPenContainerRemoveUC.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\ControlTemplates\_LoopEdgeCT.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\CountingLoopDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\InkPenActionDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\BlockDiagramWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\NodeTypeChoosingDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

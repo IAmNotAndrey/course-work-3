@@ -19,6 +19,11 @@ public partial class App : Application
 		blockDiagramWindow.DataContext = new BlockDiagramVM(mainWindow.inkCanvas, ((InkCanvasVM)mainWindow.DataContext).UserViewMover);
 		blockDiagramWindow.Show();
 
+		//NodeChoosingDialog d2 = new();
+		//d2.ShowDialog();
+		//InkPenActionDialog d = new();
+		//d.ShowDialog();
+
 		//base.OnStartup(e);
 	}
 }

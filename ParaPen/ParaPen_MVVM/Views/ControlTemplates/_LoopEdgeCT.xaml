@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:gc="clr-namespace:GraphSharp.Controls;assembly=GraphSharp.Controls"
+					xmlns:cg="clr-namespace:ParaPen.Models.CustomGraph"
+					>
+	<ControlTemplate x:Key="LoopEdgeTemplate" TargetType="{x:Type gc:EdgeControl}">
+		<Grid>
+			<!-- Линия для петли -->
+			<Path Stroke="Black" StrokeThickness="2">
+				<Path.Data>
+					<PathGeometry>
+						<PathFigure StartPoint="10,10">
+							<QuadraticBezierSegment Point1="60,60" Point2="10,110"/>
+						</PathFigure>
+					</PathGeometry>
+				</Path.Data>
+			</Path>
+		</Grid>
+	</ControlTemplate>
+
+	<Style TargetType="gc:EdgeControl">
+		<Style.Triggers>
+			<DataTrigger Binding="{Binding IsLooped}" Value="True">
+				<Setter Property="Template" Value="{StaticResource LoopEdgeTemplate}" />
+			</DataTrigger>
+		</Style.Triggers>
+	</Style>
+</ResourceDictionary>

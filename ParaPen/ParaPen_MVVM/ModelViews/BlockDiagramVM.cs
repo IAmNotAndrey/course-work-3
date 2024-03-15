@@ -1,7 +1,10 @@
 ﻿using ParaPen.Commands;
+using ParaPen.Commands.Nodes;
 using ParaPen.Models;
 using ParaPen.Models.CustomGraph;
+using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.Models.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
@@ -12,6 +15,9 @@ namespace ParaPen.ModelViews;
 
 public class BlockDiagramVM : ViewModelBase
 {
+	private readonly InkCanvas _inkCanvas;
+	private readonly IUserViewMover _userViewMover;
+
 	private BlockDiagramGraph _blockDiagram = new();
 	public BlockDiagramGraph BlockDiagram
 	{
@@ -26,23 +32,39 @@ public class BlockDiagramVM : ViewModelBase
 	public ObservableCollection<BlockPenContainer> BlockPenContainers { get; } = new();
 
 
-	private readonly InkCanvas _inkCanvas;
-	private readonly IUserViewMover _userViewMover;
-
+	public ICommand InsertNodeCommand => new InsertNodeCommand(BlockDiagram);
 
 	public ICommand AddBlockPenContainer => new AddBlockPenContainerCommand(BlockPenContainers, BlockDiagram, _userViewMover, _inkCanvas, BLOCK_DIAGRAM_LIMIT);
 	public ICommand DeleteBlockPenContainer => new DeleteBlockPenContainerCommand(BlockPenContainers, BlockDiagram);
 	//public ICommand ResetBlockPenContainers => ResetBlockPenContainersCommand();
 
+	public ICommand AddActionNodeCommand => new AddActionNodeCommand(BlockDiagram);
+
 	public ICommand ExecuteAndGoToNextNodesCommand => new ExecuteAndGoToNextNodesCommand(BlockPenContainers, BlockDiagram);
 	//public ICommand ExecuteAllNodesCommands => new ExecuteAllNodesCommand(_blockPenContainers, BlockDiagram);
-	
+
+	//removeme
+	public ICommand TestCommand => new TestCommand();
 
 	public BlockDiagramVM(InkCanvas inkCanvas, IUserViewMover userViewMover)
 	{
 		_inkCanvas = inkCanvas;
 		_userViewMover = userViewMover;
+		
+		//removeme
+		var a = new ActionNode(() => Console.WriteLine(1));
+		var b = new ActionNode(() => Console.WriteLine(2));
+		var c = new ActionNode(() => Console.WriteLine(3));
 
+		BlockDiagram.AddVertex(a);
+		BlockDiagram.AddVertex(b);
+		BlockDiagram.AddVertex(c);
+		BlockDiagram.AddEdge(new BlockEdge(a, b));
+		BlockDiagram.AddEdge(new BlockEdge(b, c));
+
+
+		// fixme : сделать возможным отображение ребра ссылающегося на самого себя
+		BlockDiagram.AddEdge(new BlockEdge(a, a));
 
 		/*
 		BlockDiagramGraph blockDiagram = new();

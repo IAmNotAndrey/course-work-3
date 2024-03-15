@@ -7,7 +7,11 @@ public class SubprogramNode : BlockNode
 {
 	private readonly Action<BlockPenContainer> _subprogramAction;
 
-	public SubprogramNode(string label, Action<BlockPenContainer> subprogramAction) : base(label)
+	//public SubprogramNode(string label, Action<BlockPenContainer> subprogramAction) : base(label)
+	//{
+	//	_subprogramAction = subprogramAction;
+	//}
+	public SubprogramNode(Action<BlockPenContainer> subprogramAction)
 	{
 		_subprogramAction = subprogramAction;
 	}

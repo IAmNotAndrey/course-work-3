@@ -1,0 +1,64 @@
+﻿<Window x:Class="ParaPen.Views.InkPenActionDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+
+        xmlns:local="clr-namespace:ParaPen.Views"
+		xmlns:vmd="clr-namespace:ParaPen.ModelViews.Dialogs"
+        xmlns:en="clr-namespace:ParaPen.Models.Enums"
+        xmlns:conv="clr-namespace:ParaPen.Converters"
+		mc:Ignorable="d"
+		WindowStyle="None"
+        Title="InkPenActionDialog" 
+		Height="150" Width="250"
+		x:Name="this"
+		>
+	<Window.DataContext>
+		<vmd:InkPenActionDialogVM />
+	</Window.DataContext>
+
+	<Window.Resources>
+		<conv:MultiValueConverter x:Key="MultiValueConverter" />
+	</Window.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<TextBlock Text="Pen Actions" Grid.Row="0" />
+		<ComboBox x:Name="penActionsCB" ItemsSource="{Binding PenActionsValues}" Grid.Row="1"/>
+
+		<TextBlock Text="Direction" Grid.Row="2" />
+		<ComboBox x:Name="directionsCB" ItemsSource="{Binding DirectionsValues}" Grid.Row="3" />
+
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="4" Margin="0,5,5,5" >
+			<Button Content="OK"
+					Margin="0,0,10,0" >
+			
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+						<i:InvokeCommandAction Command="{Binding OkCommand}">
+							<i:InvokeCommandAction.CommandParameter>
+								<MultiBinding Converter="{StaticResource MultiValueConverter}">
+									<Binding ElementName="penActionsCB" Path="SelectedItem" />
+									<Binding ElementName="directionsCB" Path="SelectedItem" />
+								</MultiBinding>
+							</i:InvokeCommandAction.CommandParameter>
+						</i:InvokeCommandAction>
+						<i:InvokeCommandAction Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=this}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Button>
+
+			<Button Content="Cancel" 
+					Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=this}" />
+		</StackPanel>
+	</Grid>
+</Window>

@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "a1huzufR7HbQP2dxky07uLaPbsZ/Ma5SZUsjEbKpyN+alM0PiT2b0vYqmX13asMXQO59u6GtBPfA+gP85e1+MA==",
+  "dgSpecHash": "mw/FofGTVpam6eTbQTSN60rDJNU0DyMjI/zUBiTDV9g2TLlA62r6mSp1mZolKZljQ2jBDpLIdYvIyYjanki3EQ==",
   "success": true,
   "projectFilePath": "D:\\GitHub\\course-work-3\\ParaPen\\ParaPen_MVVM\\ParaPen.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\perma\\.nuget\\packages\\expression.blend.sdk\\1.0.2\\expression.blend.sdk.1.0.2.nupkg.sha512",
+    "C:\\Users\\perma\\.nuget\\packages\\extended.wpf.toolkit\\4.6.0\\extended.wpf.toolkit.4.6.0.nupkg.sha512",
     "C:\\Users\\perma\\.nuget\\packages\\graphsharp\\1.1.0\\graphsharp.1.1.0.nupkg.sha512",
+    "C:\\Users\\perma\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.77\\microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512",
     "C:\\Users\\perma\\.nuget\\packages\\quickgraph\\3.6.61119.7\\quickgraph.3.6.61119.7.nupkg.sha512",
     "C:\\Users\\perma\\.nuget\\packages\\wpfextensions\\1.0.0\\wpfextensions.1.0.0.nupkg.sha512"
   ],
@@ -15,6 +18,16 @@
       "warningLevel": 1,
       "message": "GraphSharp 1.1.0 не задает включенную нижнюю границу для зависимости WPFExtensions. Использовано наилучшее приближенное соответствие WPFExtensions 1.0.0.",
       "libraryId": "WPFExtensions",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"Expression.Blend.Sdk 1.0.2\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net6.0-windows7.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "Expression.Blend.Sdk",
       "targetGraphs": [
         "net6.0-windows7.0"
       ]

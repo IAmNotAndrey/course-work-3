@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\App.xaml
-4601306211
+8-61092697
 
-451349557398
-201-747309058
-Views\BlockDiagramUC.xaml;Views\BlockDiagramWindow.xaml;Views\BlockPenContainerRemoveUC.xaml;Views\MainWindow.xaml;
+66-149052132
+208369209481
+Views\BlockDiagramUC.xaml;Views\BlockDiagramWindow.xaml;Views\BlockPenContainerRemoveUC.xaml;Views\ControlTemplates\_LoopEdgeCT.xaml;Views\CountingLoopDialog.xaml;Views\InkPenActionDialog.xaml;Views\MainWindow.xaml;Views\NodeTypeChoosingDialog.xaml;
 
 False
 

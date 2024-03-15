@@ -1,0 +1,67 @@
+﻿<Window x:Class="ParaPen.Views.CountingLoopDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ParaPen.Views"
+		xmlns:vmd="clr-namespace:ParaPen.ModelViews.Dialogs"
+		xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+		xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+
+        mc:Ignorable="d"
+        Title="CountingLoopDialog"
+		Height="150" Width="250"
+		x:Name="this">
+	<Window.DataContext>
+		<vmd:CountingLoopDialogVM />
+	</Window.DataContext>
+
+	<Window.Resources>
+		<Style x:Key="IntegerUpDownStyle" TargetType="xctk:IntegerUpDown">
+			<Setter Property="Validation.ErrorTemplate">
+				<Setter.Value>
+					<ControlTemplate>
+						<Border BorderBrush="Red" BorderThickness="1">
+							<AdornedElementPlaceholder x:Name="placeholder"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Style.Triggers>
+				<Trigger Property="Validation.HasError" Value="True">
+					<Setter Property="ToolTip" Value="{Binding ElementName=placeholder, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+	</Window.Resources>
+
+	<Grid>
+		<xctk:IntegerUpDown x:Name="countField" 
+							Minimum="0" 
+							Maximum="{x:Static sys:Int32.MaxValue}"
+							Value="0"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center" />
+
+
+		<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="4" Margin="0,5,5,5" >
+			<Button Content="OK"
+					Margin="0,0,10,0" >
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+						<i:InvokeCommandAction 
+							Command="{Binding OkCommand}" 
+							CommandParameter="{Binding Value, ElementName=countField}" />
+						<i:InvokeCommandAction 
+							Command="{Binding CancelCommand}"
+							CommandParameter="{Binding ElementName=this}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Button>
+
+			<Button Content="Cancel" 
+					Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=this}" />
+		</StackPanel>
+	</Grid>
+</Window>

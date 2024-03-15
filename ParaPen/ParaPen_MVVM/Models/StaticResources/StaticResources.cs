@@ -23,4 +23,5 @@ public static class StaticResources
 	}.ToImmutableDictionary();
 
 	public const uint BLOCK_DIAGRAM_LIMIT = 3;
+	public const double STEP_VALUE = 100;
 }

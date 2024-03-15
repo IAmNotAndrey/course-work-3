@@ -59,6 +59,8 @@ public static class NodeHelper
 		}
 	}
 
+	#region ActionGetters
+
 	public static Action GetActionOutOfPenActions(double stepMultiplier, PenActions penAction, Directions direction, InkPen inkPen, InkCanvas inkCanvas)
 	{
 		Vector vectorStep = DirectionVectorDict[direction] * stepMultiplier;
@@ -72,6 +74,14 @@ public static class NodeHelper
 
 		return action;
 	}
+
+	//todo
+	public static Func<bool> GetBoolActionOutOf___()
+	{
+		throw new NotImplementedException();
+	}
+
+	#endregion
 
 	/// <summary>
 	/// Заменяет вершину на графе сохраняя рёбра

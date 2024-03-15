@@ -8,18 +8,18 @@ namespace ParaPen.Models;
 
 public class BlockPenContainer
 {
-	private BlockNode? _activeNode;
-	public BlockNode? ActiveNode
+	private BlockNode? _selectedNode;
+	public BlockNode? SelectedNode
 	{
-		get => _activeNode;
+		get => _selectedNode;
 		set
 		{
 			// FIXME : упростить по возможности
 			if (value is InkPenActionNode inkPenActionNode)
 			{
-				inkPenActionNode.Action = GetActionOutOfPenActions(inkPenActionNode.StepMultiplier, inkPenActionNode.PenAction, inkPenActionNode.Direction, InkPen, InkCanvas);
+				inkPenActionNode.Action ??= inkPenActionNode.ToActionNode(InkPen, InkCanvas).Action;
 			}
-			_activeNode = value;
+			_selectedNode = value;
 		}
 	}
 
@@ -38,7 +38,7 @@ public class BlockPenContainer
 
 	public void Reset()
 	{
-		ActiveNode = StartNode;
+		SelectedNode = StartNode;
 	}
 
 	// FIXME : Для вызова `подпрограммы` стоит сделать HashMap : Action's на данный момент сохраняются только для конкретного `BlockPenContainer`, тогда как должны только указывать действия "обезличенного" карандаша
@@ -65,6 +65,6 @@ public class BlockPenContainer
 
 	public override string ToString()
 	{
-		return $"{nameof(BlockPenContainer)} - {InkPen.DrawingAttributes.Color}";
+		return $"Container - {InkPen.DrawingAttributes.Color}";
 	}
 }

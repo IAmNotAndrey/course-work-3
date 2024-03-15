@@ -2,6 +2,70 @@
   "version": 3,
   "targets": {
     "net6.0-windows7.0": {
+      "Expression.Blend.Sdk/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net45/System.Windows.Interactivity.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Windows.Interactivity.dll": {}
+        }
+      },
+      "Extended.Wpf.Toolkit/4.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/Xceed.Wpf.AvalonDock.NET5.dll": {},
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.Aero.NET5.dll": {},
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.Metro.NET5.dll": {},
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.VS2010.NET5.dll": {},
+          "lib/net5.0/Xceed.Wpf.Toolkit.NET5.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Xceed.Wpf.AvalonDock.NET5.dll": {},
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.Aero.NET5.dll": {},
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.Metro.NET5.dll": {},
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.VS2010.NET5.dll": {},
+          "lib/net5.0/Xceed.Wpf.Toolkit.NET5.dll": {}
+        },
+        "resource": {
+          "lib/net5.0/cs-CZ/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "cs-CZ"
+          },
+          "lib/net5.0/de/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net5.0/es/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net5.0/fr/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net5.0/hu/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "hu"
+          },
+          "lib/net5.0/it/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net5.0/ja-JP/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "ja-JP"
+          },
+          "lib/net5.0/pt-BR/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net5.0/ro/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "ro"
+          },
+          "lib/net5.0/ru/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net5.0/sv/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "sv"
+          },
+          "lib/net5.0/zh-Hans/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "zh-Hans"
+          }
+        }
+      },
       "GraphSharp/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -16,6 +80,22 @@
           "lib/net40/GraphSharp.Controls.dll": {},
           "lib/net40/GraphSharp.dll": {}
         }
+      },
+      "Microsoft.Xaml.Behaviors.Wpf/1.1.77": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       },
       "QuickGraph/3.6.61119.7": {
         "type": "package",
@@ -60,6 +140,79 @@
     }
   },
   "libraries": {
+    "Expression.Blend.Sdk/1.0.2": {
+      "sha512": "2rOHxr7HsJ4gVc75JymaFDS80VvhT/1rpm50LHUKRmsykE1cdM4n2rmcntcTSG08/S1ZedLuSWQpb3yBY3xfUQ==",
+      "type": "package",
+      "path": "expression.blend.sdk/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "expression.blend.sdk.1.0.2.nupkg.sha512",
+        "expression.blend.sdk.nuspec",
+        "lib/net40-client/System.Windows.Interactivity.dll",
+        "lib/net45/System.Windows.Interactivity.dll",
+        "lib/netcore45/Windows.UI.Interactivity.dll",
+        "lib/netcore45/Windows.UI.Interactivity.pri",
+        "lib/netcore45/Windows.UI.Interactivity.xml",
+        "lib/netcore451/Windows.UI.Interactivity.dll",
+        "lib/netcore451/Windows.UI.Interactivity.pri",
+        "lib/netcore451/Windows.UI.Interactivity.xml",
+        "lib/sl4-wp71/System.Windows.Interactivity.dll",
+        "lib/sl40/System.Windows.Interactivity.dll",
+        "lib/sl50/System.Windows.Interactivity.dll",
+        "lib/wp8/System.Windows.Interactivity.dll"
+      ]
+    },
+    "Extended.Wpf.Toolkit/4.6.0": {
+      "sha512": "W67USjczMau4R5g8aU9/knYpCqnFurZ/kmzXnSvqxhC9YR3KaUTT2L+95WWoL1u9qlQ48U6ORP9s6I6x9/yW4Q==",
+      "type": "package",
+      "path": "extended.wpf.toolkit/4.6.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "Xceed_Logo_Retina-400x400.png",
+        "extended.wpf.toolkit.4.6.0.nupkg.sha512",
+        "extended.wpf.toolkit.nuspec",
+        "lib/net40/Xceed.Wpf.AvalonDock.Themes.Aero.dll",
+        "lib/net40/Xceed.Wpf.AvalonDock.Themes.Metro.dll",
+        "lib/net40/Xceed.Wpf.AvalonDock.Themes.VS2010.dll",
+        "lib/net40/Xceed.Wpf.AvalonDock.dll",
+        "lib/net40/Xceed.Wpf.Toolkit.dll",
+        "lib/net40/cs-CZ/Xceed.Wpf.AvalonDock.resources.dll",
+        "lib/net40/de/Xceed.Wpf.AvalonDock.resources.dll",
+        "lib/net40/es/Xceed.Wpf.AvalonDock.resources.dll",
+        "lib/net40/fr/Xceed.Wpf.AvalonDock.resources.dll",
+        "lib/net40/hu/Xceed.Wpf.AvalonDock.resources.dll",
+        "lib/net40/it/Xceed.Wpf.AvalonDock.resources.dll",
+        "lib/net40/ja-JP/Xceed.Wpf.AvalonDock.resources.dll",
+        "lib/net40/nl-BE/Xceed.Wpf.AvalonDock.resources.dll",
+        "lib/net40/pt-BR/Xceed.Wpf.AvalonDock.resources.dll",
+        "lib/net40/ro/Xceed.Wpf.AvalonDock.resources.dll",
+        "lib/net40/ru/Xceed.Wpf.AvalonDock.resources.dll",
+        "lib/net40/sv/Xceed.Wpf.AvalonDock.resources.dll",
+        "lib/net40/zh-Hans/Xceed.Wpf.AvalonDock.resources.dll",
+        "lib/net5.0/Xceed.Wpf.AvalonDock.NET5.dll",
+        "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.Aero.NET5.dll",
+        "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.Metro.NET5.dll",
+        "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.VS2010.NET5.dll",
+        "lib/net5.0/Xceed.Wpf.Toolkit.NET5.dll",
+        "lib/net5.0/cs-CZ/Xceed.Wpf.AvalonDock.NET5.resources.dll",
+        "lib/net5.0/de/Xceed.Wpf.AvalonDock.NET5.resources.dll",
+        "lib/net5.0/es/Xceed.Wpf.AvalonDock.NET5.resources.dll",
+        "lib/net5.0/fr/Xceed.Wpf.AvalonDock.NET5.resources.dll",
+        "lib/net5.0/hu/Xceed.Wpf.AvalonDock.NET5.resources.dll",
+        "lib/net5.0/it/Xceed.Wpf.AvalonDock.NET5.resources.dll",
+        "lib/net5.0/ja-JP/Xceed.Wpf.AvalonDock.NET5.resources.dll",
+        "lib/net5.0/pt-BR/Xceed.Wpf.AvalonDock.NET5.resources.dll",
+        "lib/net5.0/ro/Xceed.Wpf.AvalonDock.NET5.resources.dll",
+        "lib/net5.0/ru/Xceed.Wpf.AvalonDock.NET5.resources.dll",
+        "lib/net5.0/sv/Xceed.Wpf.AvalonDock.NET5.resources.dll",
+        "lib/net5.0/zh-Hans/Xceed.Wpf.AvalonDock.NET5.resources.dll",
+        "tools/install.ps1"
+      ]
+    },
     "GraphSharp/1.1.0": {
       "sha512": "fythJ3o5H2Y2hhv4xQ2uzHhcp54aEMQ95Pk+SJfWO02Z02WNWVYloQzERKRJ9uZ7/gRNr8werKhhIj25frxlgA==",
       "type": "package",
@@ -71,6 +224,28 @@
         "graphsharp.nuspec",
         "lib/net40/GraphSharp.Controls.dll",
         "lib/net40/GraphSharp.dll"
+      ]
+    },
+    "Microsoft.Xaml.Behaviors.Wpf/1.1.77": {
+      "sha512": "MCu674ZETgU18EbxfwIlRpUPJ02YbZenLsMCXTkpeA7KUBpXfFaOUDlEO+7UWu5AFnUoydg+aQENJkuaZPheMQ==",
+      "type": "package",
+      "path": "microsoft.xaml.behaviors.wpf/1.1.77",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net462/Design/Microsoft.Xaml.Behaviors.Design.dll",
+        "lib/net462/Design/Microsoft.Xaml.Behaviors.DesignTools.dll",
+        "lib/net462/Microsoft.Xaml.Behaviors.dll",
+        "lib/net462/Microsoft.Xaml.Behaviors.pdb",
+        "lib/net462/Microsoft.Xaml.Behaviors.xml",
+        "lib/net6.0-windows7.0/Design/Microsoft.Xaml.Behaviors.DesignTools.dll",
+        "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.dll",
+        "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.pdb",
+        "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.xml",
+        "microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512",
+        "microsoft.xaml.behaviors.wpf.nuspec",
+        "tools/Install.ps1"
       ]
     },
     "QuickGraph/3.6.61119.7": {
@@ -111,7 +286,10 @@
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
-      "GraphSharp >= 1.1.0"
+      "Expression.Blend.Sdk >= 1.0.2",
+      "Extended.Wpf.Toolkit >= 4.6.0",
+      "GraphSharp >= 1.1.0",
+      "Microsoft.Xaml.Behaviors.Wpf >= 1.1.77"
     ]
   },
   "packageFolders": {
@@ -158,9 +336,21 @@
       "net6.0-windows7.0": {
         "targetAlias": "net6.0-windows",
         "dependencies": {
+          "Expression.Blend.Sdk": {
+            "target": "Package",
+            "version": "[1.0.2, )"
+          },
+          "Extended.Wpf.Toolkit": {
+            "target": "Package",
+            "version": "[4.6.0, )"
+          },
           "GraphSharp": {
             "target": "Package",
             "version": "[1.1.0, )"
+          },
+          "Microsoft.Xaml.Behaviors.Wpf": {
+            "target": "Package",
+            "version": "[1.1.77, )"
           }
         },
         "imports": [
@@ -193,6 +383,16 @@
       "warningLevel": 1,
       "message": "GraphSharp 1.1.0 не задает включенную нижнюю границу для зависимости WPFExtensions. Использовано наилучшее приближенное соответствие WPFExtensions 1.0.0.",
       "libraryId": "WPFExtensions",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"Expression.Blend.Sdk 1.0.2\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net6.0-windows7.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "Expression.Blend.Sdk",
       "targetGraphs": [
         "net6.0-windows7.0"
       ]

@@ -8,7 +8,8 @@
 		xmlns:mv="clr-namespace:ParaPen.ModelViews"
 		xmlns:cg="clr-namespace:ParaPen.Models.CustomGraph"
 		xmlns:bn="clr-namespace:ParaPen.Models.CustomGraph.BlockNodes"
-
+		xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+		
 		mc:Ignorable="d"
         Title="BlockDiagramWindow" Height="450" Width="800"
         x:Name="root">
@@ -16,34 +17,34 @@
 
 	<Window.Resources>
 		<DataTemplate DataType="{x:Type bn:BlockNode}">
-			<Border BorderThickness="1">
-				<Border.Style>
-					<Style TargetType="Border">
-						<!--<Setter Property="BorderBrush" Value="Black"/>
+				<Border BorderThickness="1">
+					<Border.Style>
+						<Style TargetType="Border">
+							<!--<Setter Property="BorderBrush" Value="Black"/>
 						<Setter Property="BorderThickness" Value="1"/>-->
-						<Style.Triggers>
-							<!-- Поведение при IsHighlighted = true -->
-							<DataTrigger Binding="{Binding IsHighlighted}" Value="True">
-								<Setter Property="BorderBrush" Value="Orange"/>
-								<!-- FIXME: Утолщение рамки не происходит -->
-								<Setter Property="BorderThickness" Value="4"/>
-							</DataTrigger>
-							<!-- Поведение при IsHighlighted = false -->
-							<DataTrigger Binding="{Binding IsHighlighted}" Value="False">
-								<Setter Property="BorderBrush" Value="Black"/>
-								<!-- FIXME: Утолщение рамки не происходит -->
-								<Setter Property="BorderThickness" Value="2"/>
-							</DataTrigger>
-						</Style.Triggers>
-					</Style>
-				</Border.Style>
-				<TextBlock Text="{Binding Label}" 
+							<Style.Triggers>
+								<!-- Поведение при IsHighlighted = true -->
+								<DataTrigger Binding="{Binding IsHighlighted}" Value="True">
+									<Setter Property="BorderBrush" Value="Orange"/>
+									<!-- FIXME: Утолщение рамки не происходит -->
+									<Setter Property="BorderThickness" Value="4"/>
+								</DataTrigger>
+								<!-- Поведение при IsHighlighted = false -->
+								<DataTrigger Binding="{Binding IsHighlighted}" Value="False">
+									<Setter Property="BorderBrush" Value="Black"/>
+									<!-- FIXME: Утолщение рамки не происходит -->
+									<Setter Property="BorderThickness" Value="2"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</Border.Style>
+					<TextBlock Text="{Binding Label}" 
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center"/>
-			</Border>
+				</Border>
 		</DataTemplate>
 
-		<DataTemplate DataType="{x:Type bn:TerminalBlock}">
+		<DataTemplate DataType="{x:Type bn:TerminalNode}">
 			<Border BorderThickness="1" CornerRadius="5">
 				<Border.Style>
 					<Style TargetType="Border">
@@ -71,27 +72,64 @@
 			</Border>
 		</DataTemplate>
 
+		<!--<DataTemplate DataType="{x:Type gc:EdgeControl}">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="MouseLeftButtonDown">
+					<i:InvokeCommandAction Command="{Binding RectangleDoubleClickCommand}"
+                                           CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}}" />
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</DataTemplate>-->
+
 		<!-- Для рёбер -->
-		<Style TargetType="gc:EdgeControl">
+
+		<!--<Style TargetType="gc:EdgeControl">
 			<Style.Triggers>
 				<Trigger Property="IsMouseOver" Value="True">
 					<Setter Property="Foreground" Value="Red" />
 					<Setter Property="Cursor" Value="Hand" />
 				</Trigger>
 			</Style.Triggers>
-		</Style>
+		</Style>-->
 
+		<Style TargetType="gc:EdgeControl">
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Foreground" Value="Red" />
+					<Setter Property="Cursor" Value="Hand" />
+				</Trigger>
+				<!-- Отображение петли -->
+				<!--<DataTrigger Binding="{Binding IsLooped}" Value="True">
+					<Setter Property="Template">
+						<Setter.Value>
+							<ControlTemplate TargetType="{x:Type gc:EdgeControl}">
+								 --><!--fixme не следует за вершиной, так как RenderTransform не уведомляет по умолчанию о своём изменении--><!--
+								<Ellipse Margin="{Binding RelativeSource={RelativeSource AncestorType={x:Type gc:EdgeControl}}, Path=Source.Margin}"
+                         Stroke="Black" 
+                         Width="20" Height="20"/>
+							</ControlTemplate>
+						</Setter.Value>
+					</Setter>
+				</DataTrigger>-->
+			</Style.Triggers>
+		</Style>
 	</Window.Resources>
 
 	<Grid>
+		<!-- EfficientSugiyama   -->
 		<gc:GraphLayout x:Name="graphLayout" 
 						Graph="{Binding BlockDiagram}"
 						LayoutAlgorithmType="EfficientSugiyama"
-						OverlapRemovalAlgorithmType="FSA"
-						>
-		</gc:GraphLayout>
+						OverlapRemovalAlgorithmType="TwoLayerFSA"
+					    PreviewMouseLeftButtonDown="graphLayout_PreviewMouseLeftButtonDown"
+						HighlightAlgorithmType="Simple"
+						/>
+
+
 
 		<local:BlockPenContainersRemoveUC DataContext="{Binding}" Height="100" Width="100" HorizontalAlignment="Right"/>
 		<Button Content="Add" HorizontalAlignment="Left" Margin="485,364,0,0" VerticalAlignment="Top" Command="{Binding AddBlockPenContainer}" />
+
+		<Button Content="LaunchStep" HorizontalAlignment="Left" Margin="540,364,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAndGoToNextNodesCommand}" />
 	</Grid>
 </Window>

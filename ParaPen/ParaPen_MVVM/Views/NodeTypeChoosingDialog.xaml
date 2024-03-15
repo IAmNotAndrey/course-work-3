@@ -1,0 +1,38 @@
+﻿<Window x:Class="ParaPen.Views.NodeChoosingDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+		
+        xmlns:local="clr-namespace:ParaPen.Views"
+        xmlns:vmd="clr-namespace:ParaPen.ModelViews.Dialogs"
+
+		WindowStyle="None"
+        mc:Ignorable="d"
+        Title="NodeChoosingDialog" Height="150" Width="250"
+		x:Name="this">
+
+	<Window.DataContext>
+		<vmd:NodeTypeChoosingDialogVM />
+	</Window.DataContext>
+
+	<Grid>
+		<ComboBox x:Name="nodeTypesCB" ItemsSource="{Binding NodeTypes}" VerticalAlignment="Center" />
+		<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="2" Margin="0,5,5,5" >
+			<Button Content="OK" 
+					Command="{Binding OkCommand}"
+					CommandParameter="{Binding SelectedItem, ElementName=nodeTypesCB}" >
+				<!-- Вызов ОК и Cancel команд -->
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+						<i:InvokeCommandAction Command="{Binding OkCommand}" CommandParameter="{Binding SelectedItem, ElementName=nodeTypesCB}" />
+						<i:InvokeCommandAction Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=this}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Button>
+
+			<Button Content="Cancel" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=this}" />
+		</StackPanel>
+	</Grid>
+</Window>

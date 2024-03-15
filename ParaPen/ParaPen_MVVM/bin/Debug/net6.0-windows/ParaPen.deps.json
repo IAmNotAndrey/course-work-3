@@ -8,10 +8,83 @@
     ".NETCoreApp,Version=v6.0": {
       "ParaPen/1.0.0": {
         "dependencies": {
-          "GraphSharp": "1.1.0"
+          "Expression.Blend.Sdk": "1.0.2",
+          "Extended.Wpf.Toolkit": "4.6.0",
+          "GraphSharp": "1.1.0",
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.77"
         },
         "runtime": {
           "ParaPen.dll": {}
+        }
+      },
+      "Expression.Blend.Sdk/1.0.2": {
+        "runtime": {
+          "lib/net45/System.Windows.Interactivity.dll": {
+            "assemblyVersion": "4.5.0.0",
+            "fileVersion": "3.0.40218.0"
+          }
+        }
+      },
+      "Extended.Wpf.Toolkit/4.6.0": {
+        "runtime": {
+          "lib/net5.0/Xceed.Wpf.AvalonDock.NET5.dll": {
+            "assemblyVersion": "4.6.0.0",
+            "fileVersion": "4.6.0.0"
+          },
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.Aero.NET5.dll": {
+            "assemblyVersion": "4.6.0.0",
+            "fileVersion": "4.6.0.0"
+          },
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.Metro.NET5.dll": {
+            "assemblyVersion": "4.6.0.0",
+            "fileVersion": "4.6.0.0"
+          },
+          "lib/net5.0/Xceed.Wpf.AvalonDock.Themes.VS2010.NET5.dll": {
+            "assemblyVersion": "4.6.0.0",
+            "fileVersion": "4.6.0.0"
+          },
+          "lib/net5.0/Xceed.Wpf.Toolkit.NET5.dll": {
+            "assemblyVersion": "4.6.0.0",
+            "fileVersion": "4.6.0.0"
+          }
+        },
+        "resources": {
+          "lib/net5.0/cs-CZ/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "cs-CZ"
+          },
+          "lib/net5.0/de/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net5.0/es/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net5.0/fr/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net5.0/hu/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "hu"
+          },
+          "lib/net5.0/it/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net5.0/ja-JP/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "ja-JP"
+          },
+          "lib/net5.0/pt-BR/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net5.0/ro/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "ro"
+          },
+          "lib/net5.0/ru/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net5.0/sv/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "sv"
+          },
+          "lib/net5.0/zh-Hans/Xceed.Wpf.AvalonDock.NET5.resources.dll": {
+            "locale": "zh-Hans"
+          }
         }
       },
       "GraphSharp/1.1.0": {
@@ -27,6 +100,14 @@
           "lib/net40/GraphSharp.dll": {
             "assemblyVersion": "1.0.2.0",
             "fileVersion": "1.0.2.0"
+          }
+        }
+      },
+      "Microsoft.Xaml.Behaviors.Wpf/1.1.77": {
+        "runtime": {
+          "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.77.27830"
           }
         }
       },
@@ -66,12 +147,33 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Expression.Blend.Sdk/1.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2rOHxr7HsJ4gVc75JymaFDS80VvhT/1rpm50LHUKRmsykE1cdM4n2rmcntcTSG08/S1ZedLuSWQpb3yBY3xfUQ==",
+      "path": "expression.blend.sdk/1.0.2",
+      "hashPath": "expression.blend.sdk.1.0.2.nupkg.sha512"
+    },
+    "Extended.Wpf.Toolkit/4.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W67USjczMau4R5g8aU9/knYpCqnFurZ/kmzXnSvqxhC9YR3KaUTT2L+95WWoL1u9qlQ48U6ORP9s6I6x9/yW4Q==",
+      "path": "extended.wpf.toolkit/4.6.0",
+      "hashPath": "extended.wpf.toolkit.4.6.0.nupkg.sha512"
+    },
     "GraphSharp/1.1.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-fythJ3o5H2Y2hhv4xQ2uzHhcp54aEMQ95Pk+SJfWO02Z02WNWVYloQzERKRJ9uZ7/gRNr8werKhhIj25frxlgA==",
       "path": "graphsharp/1.1.0",
       "hashPath": "graphsharp.1.1.0.nupkg.sha512"
+    },
+    "Microsoft.Xaml.Behaviors.Wpf/1.1.77": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MCu674ZETgU18EbxfwIlRpUPJ02YbZenLsMCXTkpeA7KUBpXfFaOUDlEO+7UWu5AFnUoydg+aQENJkuaZPheMQ==",
+      "path": "microsoft.xaml.behaviors.wpf/1.1.77",
+      "hashPath": "microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512"
     },
     "QuickGraph/3.6.61119.7": {
       "type": "package",

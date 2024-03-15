@@ -32,6 +32,7 @@ public class BlockEdge : IEdge<object>, INotifyPropertyChanged
 	public object Source { get; init; }
 	public object Target { get; init; }
 
+	public bool IsLooped => Source == Target;
 
 	public BlockEdge(object source, object target, bool value=true)
 	{

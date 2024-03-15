@@ -4,17 +4,30 @@ namespace ParaPen.Models.CustomGraph.BlockNodes;
 
 public class ActionNode : BlockNode
 {
-    private readonly Action _action;
+    public Action Action { get; }
 
-    public ActionNode(string label, Action action) : base(label)
+    public ActionNode(Action action)
     {
-        _action = action;
-    }
+        Action = action;
+
+        IsHighlighted = false;
+        Label = $"{action}";
+	}
+
+    //public ActionNode(string label, Action action) : base(label)
+    //{
+    //    _action = action;
+    //}
 
     /// <returns><see langword="true"/></returns>
     public override bool Execute()
     {
-        _action.Invoke();
+        Action.Invoke();
         return true;
     }
+
+	//public override string ToString()
+	//{
+	//	return $"{base.ToString()}-Action-{_action}";
+	//}
 }

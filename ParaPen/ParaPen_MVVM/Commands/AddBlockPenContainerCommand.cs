@@ -29,15 +29,15 @@ public class AddBlockPenContainerCommand : CommandBase
 
 	public override void Execute(object? parameter)
 	{
-		TerminalBlock startNode = new("Start");
-		TerminalBlock endNode = new("End");
+		TerminalNode startNode = new("Start");
+		TerminalNode endNode = new("End");
 		BlockEdge edge = new(startNode, endNode);
 
 		_blockPenContainers.Add(new BlockPenContainer(_userViewMover)
 		{
 			StartNode = startNode,
 			InkCanvas = _inkCanvas,
-			ActiveNode = startNode,
+			SelectedNode = startNode,
 			InkPen = new InkPen(new Point(0, 0), new DrawingAttributes { Color = Colors.Green, Width = 4, Height = 4 }), // fixme
 		});
 

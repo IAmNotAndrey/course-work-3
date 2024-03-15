@@ -5,26 +5,28 @@ using static ParaPen.Helpers.NodeHelper;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
-// TODO
 public class InkPenActionNode : BlockNode
 {
 	public double StepMultiplier { get; init; }
 	public PenActions PenAction { get; init; }
 	public Directions Direction { get; init; }
-	public Action Action { get; set; }
+	public Action? Action { get; set; }
 
-	public InkPenActionNode(string label, double stepMultiplier, PenActions penAction, Directions direction) : base(label)
+	public InkPenActionNode(double stepMultiplier, PenActions penAction, Directions direction)
     {
 		StepMultiplier = stepMultiplier;
         PenAction = penAction;
 		Direction = direction;
+
+		Label = $"{PenAction} - {Direction}";
+		IsHighlighted = false;
 	}
 	
 	public ActionNode ToActionNode(InkPen inkPen, InkCanvas inkCanvas)
 	{
 		Action action = GetActionOutOfPenActions(StepMultiplier, PenAction, Direction, inkPen, inkCanvas);
 
-		return new ActionNode(Label, action);
+		return new ActionNode(action);
 	}
 
 
@@ -46,4 +48,9 @@ public class InkPenActionNode : BlockNode
 		//throw new NotImplementedException($"{nameof(InkPenActionNode)} должно быть преобразовано в {nameof(ActionNode)} перед использованием");
 		//return false;
 	}
+
+	//public override string ToString()
+	//{
+	//	return $"{PenAction} - {Direction}";
+	//}
 }

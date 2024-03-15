@@ -29,28 +29,28 @@ public class ExecuteAndGoToNextNodesCommand : CommandBase
 		_blockDiagram = blockDiagram;
 	}
 
-
 	public override void Execute(object? parameter)
 	{
 		//List<BlockPenContainer> updatedContainers = new();
 
 		foreach (var container in _blockPenContainers)
 		{
-			BlockNode? node = container.ActiveNode;
+			BlockNode? node = container.SelectedNode;
 
 			if (node is null)
 			{
 				//updatedContainers.Add(container);
-				container.ActiveNode = null;
+				container.SelectedNode = null;
 				continue;
 			}
 
 			bool branchValue = node.Execute();
 
 			BlockNode? target = ReturnNextNode(node, branchValue, _blockDiagram);
-			container.ActiveNode = target;  // Изменяем активный узел в BlockPenContainer
+			container.SelectedNode = target;  // Изменяем активный узел в BlockPenContainer
 
 			// Меняем выбранность `Node`
+			// bug : так как не происходит изначальная подсветка startNode, то с ней происходит баг подсветки при переходе на другую ноду
 			node.ToggleHighlight();
 			target.ToggleHighlight();
 
