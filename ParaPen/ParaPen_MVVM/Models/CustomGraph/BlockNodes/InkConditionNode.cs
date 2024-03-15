@@ -2,17 +2,24 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml.Serialization;
 using static ParaPen.Helpers.InkCanvasMethods;
 using static ParaPen.Models.StaticResources.StaticResources;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
+[Serializable]
 public class InkConditionNode : BlockNode
 {
 	public double StepValue { get; init; }
 	public Directions Direction { get; init; }
 
+	[XmlIgnore]
 	public Func<bool>? Condition { get; set; }
+
+
+	[Obsolete]
+	public InkConditionNode() { }
 
 
 	public InkConditionNode(double stepValue, Directions direction)

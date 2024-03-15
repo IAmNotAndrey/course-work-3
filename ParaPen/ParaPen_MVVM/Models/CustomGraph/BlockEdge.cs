@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 namespace ParaPen.Models.CustomGraph;
 
 [DebuggerDisplay("{Label}")]	
+[Serializable]
 public class BlockEdge : IEdge<object>, INotifyPropertyChanged
 {
 	public event PropertyChangedEventHandler? PropertyChanged;
@@ -34,7 +35,9 @@ public class BlockEdge : IEdge<object>, INotifyPropertyChanged
 
 	public bool IsLooped => Source == Target;
 
-	public BlockEdge(object source, object target, bool value=true)
+    public BlockEdge() { }
+
+    public BlockEdge(object source, object target, bool value=true)
 	{
 		//Id = id;
 		Value = value;

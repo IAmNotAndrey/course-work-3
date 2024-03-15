@@ -73,20 +73,18 @@ public class InsertNodeCommand : CommandBase
 
 		_blockDiagramGraph.AddVertex(nodeToAdd);
 
-		// CountingLoopNode, то добавляем ребро ссылающееся на саму CountingLoopNode с значением `false`
-		if (nodeToAdd is CountingLoopNode)
+		// CountingLoopNode или SubprogramNode, то добавляем ребро ссылающееся на саму вершину с значением `false`
+		if (nodeToAdd is CountingLoopNode || nodeToAdd is SubprogramNode)
 		{
 			_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, nodeToAdd, false));
 		}
-		if (nodeToAdd is InkConditionNode)
+		// Для InkConditionNode добавляем дополнительное выходящее false-ребро
+		else if (nodeToAdd is InkConditionNode)
 		{
-			//fixme 
 			_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, t, false));
 		}
-		//fixme edge.Value возникали ошибки с `CountingLoopNode`
+
 		_blockDiagramGraph.AddEdge(new BlockEdge(s, nodeToAdd, edge.Value));
 		_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, t));
-
-		//throw new NotImplementedException();
 	}
 }

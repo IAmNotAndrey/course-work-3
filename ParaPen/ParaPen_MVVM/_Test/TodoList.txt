@@ -1,6 +1,6 @@
-﻿InkConditionNode
+﻿+ InkConditionNode
 
-Отображение `false` на рёбрах
++ Отображение `false` на рёбрах (сделано цветом)
 
 SubprogramNode
 
@@ -15,5 +15,7 @@ SubprogramNode
 Корректная настройка CanExecute
 
 Запрет на перемещение вершин в GraphLayout
+
+обозначение цвета карандаша у BlockPenContainer
 
 Работа над дизайном

@@ -1,8 +1,12 @@
-﻿namespace ParaPen.Models.CustomGraph.BlockNodes;
+﻿using System;
 
+namespace ParaPen.Models.CustomGraph.BlockNodes;
+
+[Serializable]
 public class TerminalNode : BlockNode
 {
-	public string Label { get; init; } = null!;
+	[Obsolete]
+	public TerminalNode() { }
 
     public TerminalNode(string label)
     {

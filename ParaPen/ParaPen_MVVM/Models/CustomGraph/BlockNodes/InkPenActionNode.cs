@@ -1,16 +1,24 @@
 ﻿using ParaPen.Models.Enums;
 using System;
 using System.Windows.Controls;
+using System.Xml.Serialization;
 using static ParaPen.Helpers.NodeHelper;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
+[Serializable]
 public class InkPenActionNode : BlockNode
 {
 	public double StepValue { get; init; }
 	public PenActions PenAction { get; init; }
 	public Directions Direction { get; init; }
+
+	[XmlIgnore]
 	public Action? Action { get; set; }
+
+
+	[Obsolete]
+	public InkPenActionNode() { }
 
 	public InkPenActionNode(double stepValue, PenActions penAction, Directions direction)
     {

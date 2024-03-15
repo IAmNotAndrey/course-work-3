@@ -1,10 +1,14 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
 [DebuggerDisplay("{Label}")]
+[Serializable]
 public abstract class BlockNode : INotifyPropertyChanged
 {
 	public event PropertyChangedEventHandler? PropertyChanged;
@@ -13,6 +17,7 @@ public abstract class BlockNode : INotifyPropertyChanged
 	public string? Label { get; init; }
 
 	private bool _isHighlighted;
+	[XmlIgnore]
 	public bool IsHighlighted
 	{
 		get => _isHighlighted;

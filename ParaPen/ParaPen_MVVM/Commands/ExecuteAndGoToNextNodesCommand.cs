@@ -2,10 +2,7 @@
 using ParaPen.Models;
 using ParaPen.Models.CustomGraph;
 using ParaPen.Models.CustomGraph.BlockNodes;
-using ParaPen.ModelViews;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using static ParaPen.Helpers.NodeHelper;
 
 namespace ParaPen.Commands;
@@ -37,6 +34,7 @@ public class ExecuteAndGoToNextNodesCommand : CommandBase
 		{
 			BlockNode? node = container.SelectedNode;
 
+			// Если вершина уже null, значит прошли finish
 			if (node is null)
 			{
 				//updatedContainers.Add(container);

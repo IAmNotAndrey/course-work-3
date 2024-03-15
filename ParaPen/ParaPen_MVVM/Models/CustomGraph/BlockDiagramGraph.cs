@@ -1,13 +1,23 @@
-﻿using QuickGraph;
+﻿using ParaPen.Models.CustomGraph.BlockNodes;
+using QuickGraph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace ParaPen.Models.CustomGraph;
 
+[Serializable]
+[KnownType(typeof(CountingLoopNode))]
+[KnownType(typeof(InkConditionNode))]
+[KnownType(typeof(InkPenActionNode))]
+[KnownType(typeof(SubprogramNode))]
+[KnownType(typeof(TerminalNode))]
+[KnownType(typeof(BlockNode))]
+[KnownType(typeof(BlockEdge))]
 public class BlockDiagramGraph : BidirectionalGraph<object, IEdge<object>>
 {
-	// NOTE : не протестирован	
 	public IEnumerable<object> GetAllConnectedVertices(object currentNode)
 	{
 		HashSet<object> visited = new();
@@ -41,23 +51,4 @@ public class BlockDiagramGraph : BidirectionalGraph<object, IEdge<object>>
 			this.RemoveVertex(v);
 		}
 	}
-
-	//public new object Clone()
-	//{
-	//	BlockDiagramGraph cloningGraph = new();
-
-	//	// Клонируем вершины
-	//	foreach (var vertex in Vertices)
-	//	{
-	//		cloningGraph.AddVertex(vertex);
-	//	}
-
-	//	// Клонируем рёбра
-	//	foreach (var edge in Edges)
-	//	{
-	//		cloningGraph.AddEdge(edge);
-	//	}
-
-	//	return cloningGraph;
-	//}
 }

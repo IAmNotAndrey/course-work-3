@@ -1,9 +1,8 @@
-﻿using ParaPen.Models.CustomGraph;
-using ParaPen.Models.CustomGraph.BlockNodes;
+﻿using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.Models.Interfaces;
-using System;
 using System.Windows.Controls;
-using static ParaPen.Helpers.NodeHelper;
+using static ParaPen.Converters.ColorConverter;
+using System.Drawing;
 
 namespace ParaPen.Models;
 
@@ -72,6 +71,8 @@ public class BlockPenContainer
 
 	public override string ToString()
 	{
-		return $"Container - {InkPen.DrawingAttributes.Color}";
+		// fixme не отображается название цвета
+		//return $"Container - {InkPen.DrawingAttributes.Color.ToDrawingColor().Name}";
+		return $"Container - {InkPen.DrawingAttributes.Color.ToDrawingColor().Name}";
 	}
 }

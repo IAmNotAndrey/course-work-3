@@ -30,7 +30,7 @@ public static class NodeHelper
 
 		if (outEdges.Count() > 2)
 		{
-			throw new ArgumentException($"{nameof(node)} cannot have more than 2 {nameof(outEdges)}", nameof(outEdges));
+			throw new ArgumentException($"{nameof(node)} cannot have more than 2 {nameof(outEdges)}", nameof(node));
 		}
 
 		// Приводим все рёбра к типу `BlockEdge`. Если cast неудачный, то выдаст исключение

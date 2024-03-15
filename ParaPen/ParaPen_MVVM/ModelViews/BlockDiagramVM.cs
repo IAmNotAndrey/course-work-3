@@ -9,6 +9,8 @@ using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using static ParaPen.Models.StaticResources.StaticResources;
+using ParaPen.Serializers;
+using System.Linq;
 
 namespace ParaPen.ModelViews;
 
@@ -39,6 +41,7 @@ public class BlockDiagramVM : ViewModelBase
 
 	//public ICommand AddActionNodeCommand => new AddActionNodeCommand(BlockDiagram);
 
+
 	public ICommand ExecuteAndGoToNextNodesCommand => new ExecuteAndGoToNextNodesCommand(BlockPenContainers, BlockDiagram);
 
 	// todo
@@ -54,6 +57,8 @@ public class BlockDiagramVM : ViewModelBase
 
 		AddBlockPenContainer.Execute(null);
 
+		
+		/*
 		////removeme
 		//var a = new ActionNode(() => Console.WriteLine(1));
 		//var b = new ActionNode(() => Console.WriteLine(2));
@@ -69,7 +74,6 @@ public class BlockDiagramVM : ViewModelBase
 		//// fixme : сделать возможным отображение ребра ссылающегося на самого себя
 		//BlockDiagram.AddEdge(new BlockEdge(a, a));
 
-		/*
 		BlockDiagramGraph blockDiagram = new();
 
 

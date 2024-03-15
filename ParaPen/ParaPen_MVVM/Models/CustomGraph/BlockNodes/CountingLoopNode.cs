@@ -1,16 +1,23 @@
-﻿namespace ParaPen.Models.CustomGraph.BlockNodes;
+﻿using System;
 
+namespace ParaPen.Models.CustomGraph.BlockNodes;
+
+[Serializable]
 public class CountingLoopNode : BlockNode
 {
-    private uint _count;
+    public uint Count { get; private set; }
 
     //public CountingLoopNode(string label, uint count) : base(label)
     //{
     //    _count = count;
     //}
-	public CountingLoopNode(uint count)
+
+	[Obsolete]
+    public CountingLoopNode() { }
+
+    public CountingLoopNode(uint count)
 	{
-		_count = count;
+		Count = count;
 
 		Label = ToString();
 		IsHighlighted = false;
@@ -18,22 +25,22 @@ public class CountingLoopNode : BlockNode
 
 	/// <returns>
 	///		<see langword="false"/>:<br/>
-	///			<see langword="if"/> counting loop is still in process (<see cref="_count"/> > 0)<br/>
+	///			<see langword="if"/> counting loop is still in process (<see cref="Count"/> > 0)<br/>
 	///		<see langword="true"/>:<br/>
 	///		otherwise
 	/// </returns>
 	public override bool Execute()
     {
-        if (_count == 0)
+        if (Count == 0)
         {
             return true;
         }
-        _count--;
+        Count--;
         return false;
     }
 
 	public override string ToString()
 	{
-		return $"{nameof(CountingLoopNode)}-{_count}";
+		return $"{nameof(CountingLoopNode)}-{Count}";
 	}
 }
