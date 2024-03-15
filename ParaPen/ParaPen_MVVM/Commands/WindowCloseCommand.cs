@@ -10,7 +10,7 @@ public class WindowCloseCommand : CommandBase
 	{
 		if (parameter is not Window window)
 		{
-			throw new ArgumentException(null, nameof(window));
+			throw new ArgumentException(null, nameof(parameter));
 		}
 		window.Close();
 	}

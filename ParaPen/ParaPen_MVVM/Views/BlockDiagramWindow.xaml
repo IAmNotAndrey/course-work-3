@@ -17,31 +17,31 @@
 
 	<Window.Resources>
 		<DataTemplate DataType="{x:Type bn:BlockNode}">
-				<Border BorderThickness="1">
-					<Border.Style>
-						<Style TargetType="Border">
-							<!--<Setter Property="BorderBrush" Value="Black"/>
+			<Border BorderThickness="1">
+				<Border.Style>
+					<Style TargetType="Border">
+						<!--<Setter Property="BorderBrush" Value="Black"/>
 						<Setter Property="BorderThickness" Value="1"/>-->
-							<Style.Triggers>
-								<!-- Поведение при IsHighlighted = true -->
-								<DataTrigger Binding="{Binding IsHighlighted}" Value="True">
-									<Setter Property="BorderBrush" Value="Orange"/>
-									<!-- FIXME: Утолщение рамки не происходит -->
-									<Setter Property="BorderThickness" Value="4"/>
-								</DataTrigger>
-								<!-- Поведение при IsHighlighted = false -->
-								<DataTrigger Binding="{Binding IsHighlighted}" Value="False">
-									<Setter Property="BorderBrush" Value="Black"/>
-									<!-- FIXME: Утолщение рамки не происходит -->
-									<Setter Property="BorderThickness" Value="2"/>
-								</DataTrigger>
-							</Style.Triggers>
-						</Style>
-					</Border.Style>
-					<TextBlock Text="{Binding Label}" 
+						<Style.Triggers>
+							<!-- Поведение при IsHighlighted = true -->
+							<DataTrigger Binding="{Binding IsHighlighted}" Value="True">
+								<Setter Property="BorderBrush" Value="Orange"/>
+								<!-- FIXME: Утолщение рамки не происходит -->
+								<Setter Property="BorderThickness" Value="4"/>
+							</DataTrigger>
+							<!-- Поведение при IsHighlighted = false -->
+							<DataTrigger Binding="{Binding IsHighlighted}" Value="False">
+								<Setter Property="BorderBrush" Value="Black"/>
+								<!-- FIXME: Утолщение рамки не происходит -->
+								<Setter Property="BorderThickness" Value="2"/>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Border.Style>
+				<TextBlock Text="{Binding Label}" 
                    HorizontalAlignment="Center" 
                    VerticalAlignment="Center"/>
-				</Border>
+			</Border>
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type bn:TerminalNode}">
@@ -92,8 +92,36 @@
 			</Style.Triggers>
 		</Style>-->
 
-		<Style TargetType="gc:EdgeControl">
+
+		<Style TargetType="{x:Type gc:EdgeControl}">
+			<!-- fixme не работает --><!--
+			<Style.Resources>
+				<ToolTip x:Key="ToolTipContent">
+					<StackPanel>
+						<TextBlock Text="Kanten Information"/>
+					</StackPanel>
+				</ToolTip>
+			</Style.Resources>
+			<Setter Property="ToolTip" Value="{StaticResource ToolTipContent}"/>-->
+
+			
 			<Style.Triggers>
+				<!-- Ребро	зелёное: `Value=true`
+							красное: `Value=false` -->
+				<MultiDataTrigger>
+					<MultiDataTrigger.Conditions>
+						<Condition Binding="{Binding Value}" Value="True"/>
+					</MultiDataTrigger.Conditions>
+					<Setter Property="Foreground" Value="Green"/>
+				</MultiDataTrigger>
+				<MultiDataTrigger>
+					<MultiDataTrigger.Conditions>
+						<Condition Binding="{Binding Value}" Value="False"/>
+					</MultiDataTrigger.Conditions>
+					<Setter Property="Foreground" Value="Red"/>
+				</MultiDataTrigger>
+
+				<!-- NOTE Не видно при включённой подсветке GraphSharp -->
 				<Trigger Property="IsMouseOver" Value="True">
 					<Setter Property="Foreground" Value="Red" />
 					<Setter Property="Cursor" Value="Hand" />
@@ -103,7 +131,9 @@
 					<Setter Property="Template">
 						<Setter.Value>
 							<ControlTemplate TargetType="{x:Type gc:EdgeControl}">
-								 --><!--fixme не следует за вершиной, так как RenderTransform не уведомляет по умолчанию о своём изменении--><!--
+								 -->
+				<!--fixme не следует за вершиной, так как RenderTransform не уведомляет по умолчанию о своём изменении-->
+				<!--
 								<Ellipse Margin="{Binding RelativeSource={RelativeSource AncestorType={x:Type gc:EdgeControl}}, Path=Source.Margin}"
                          Stroke="Black" 
                          Width="20" Height="20"/>

@@ -83,7 +83,8 @@ public class InsertNodeCommand : CommandBase
 			//fixme 
 			_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, t, false));
 		}
-		_blockDiagramGraph.AddEdge(new BlockEdge(s, nodeToAdd));
+		//fixme edge.Value возникали ошибки с `CountingLoopNode`
+		_blockDiagramGraph.AddEdge(new BlockEdge(s, nodeToAdd, edge.Value));
 		_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, t));
 
 		//throw new NotImplementedException();

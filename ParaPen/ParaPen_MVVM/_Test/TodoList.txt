@@ -1,8 +1,8 @@
 ﻿InkConditionNode
 
-SubprogramNode
-
 Отображение `false` на рёбрах
+
+SubprogramNode
 
 Отображение рисунка карандаша
 
@@ -13,3 +13,7 @@ SubprogramNode
 Перемещение по полю блок-схем
 
 Корректная настройка CanExecute
+
+Запрет на перемещение вершин в GraphLayout
+
+Работа над дизайном

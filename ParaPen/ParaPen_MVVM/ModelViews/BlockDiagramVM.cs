@@ -5,7 +5,6 @@ using ParaPen.Models.CustomGraph;
 using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.Models.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -52,21 +51,23 @@ public class BlockDiagramVM : ViewModelBase
 	{
 		_inkCanvas = inkCanvas;
 		_userViewMover = userViewMover;
-		
-		//removeme
-		var a = new ActionNode(() => Console.WriteLine(1));
-		var b = new ActionNode(() => Console.WriteLine(2));
-		var c = new ActionNode(() => Console.WriteLine(3));
 
-		BlockDiagram.AddVertex(a);
-		BlockDiagram.AddVertex(b);
-		BlockDiagram.AddVertex(c);
-		BlockDiagram.AddEdge(new BlockEdge(a, b));
-		BlockDiagram.AddEdge(new BlockEdge(b, c));
+		AddBlockPenContainer.Execute(null);
+
+		////removeme
+		//var a = new ActionNode(() => Console.WriteLine(1));
+		//var b = new ActionNode(() => Console.WriteLine(2));
+		//var c = new ActionNode(() => Console.WriteLine(3));
+
+		//BlockDiagram.AddVertex(a);
+		//BlockDiagram.AddVertex(b);
+		//BlockDiagram.AddVertex(c);
+		//BlockDiagram.AddEdge(new BlockEdge(a, b));
+		//BlockDiagram.AddEdge(new BlockEdge(b, c));
 
 
-		// fixme : сделать возможным отображение ребра ссылающегося на самого себя
-		BlockDiagram.AddEdge(new BlockEdge(a, a));
+		//// fixme : сделать возможным отображение ребра ссылающегося на самого себя
+		//BlockDiagram.AddEdge(new BlockEdge(a, a));
 
 		/*
 		BlockDiagramGraph blockDiagram = new();
