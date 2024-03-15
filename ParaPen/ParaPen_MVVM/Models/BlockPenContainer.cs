@@ -1,6 +1,7 @@
 ﻿using ParaPen.Models.CustomGraph;
 using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.Models.Interfaces;
+using System;
 using System.Windows.Controls;
 using static ParaPen.Helpers.NodeHelper;
 
@@ -15,9 +16,15 @@ public class BlockPenContainer
 		set
 		{
 			// FIXME : упростить по возможности
+
+			// NOTE : изменять при каждом вхождении такой ноды: так как изменяются координаты InkPen
 			if (value is InkPenActionNode inkPenActionNode)
 			{
-				inkPenActionNode.Action ??= inkPenActionNode.ToActionNode(InkPen, InkCanvas).Action;
+				inkPenActionNode.Action = inkPenActionNode.ToActionNode(InkPen, InkCanvas).Action;
+			}
+			else if (value is InkConditionNode inkConditionNode)
+			{
+				inkConditionNode.Condition = inkConditionNode.ToConditionNode(InkPen, InkCanvas).Condition;
 			}
 			_selectedNode = value;
 		}

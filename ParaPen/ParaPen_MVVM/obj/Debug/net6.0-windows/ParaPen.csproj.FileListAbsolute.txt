@@ -60,3 +60,7 @@ D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\zh-Hans\Xc
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\CountingLoopDialog.g.cs
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\CountingLoopDialog.baml
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\ControlTemplates\_LoopEdgeCT.baml
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\InkConditionDialog.g.cs
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\InkConditionDialog.baml
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\EdgeTypeChoosingDialog.g.cs
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\EdgeTypeChoosingDialog.baml

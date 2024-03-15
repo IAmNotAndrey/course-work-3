@@ -17,7 +17,7 @@ public class ChooseNodeTypeCommand : CommandBase
 
 	public ChooseNodeTypeCommand(NodeTypeChoosingDialogVM vm)
     {
-		_vm = vm;         
+		_vm = vm;
     }
 
     public override void Execute(object? parameter)

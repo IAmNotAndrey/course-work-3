@@ -38,9 +38,11 @@ public class BlockDiagramVM : ViewModelBase
 	public ICommand DeleteBlockPenContainer => new DeleteBlockPenContainerCommand(BlockPenContainers, BlockDiagram);
 	//public ICommand ResetBlockPenContainers => ResetBlockPenContainersCommand();
 
-	public ICommand AddActionNodeCommand => new AddActionNodeCommand(BlockDiagram);
+	//public ICommand AddActionNodeCommand => new AddActionNodeCommand(BlockDiagram);
 
 	public ICommand ExecuteAndGoToNextNodesCommand => new ExecuteAndGoToNextNodesCommand(BlockPenContainers, BlockDiagram);
+
+	// todo
 	//public ICommand ExecuteAllNodesCommands => new ExecuteAllNodesCommand(_blockPenContainers, BlockDiagram);
 
 	//removeme

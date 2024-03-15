@@ -2,6 +2,7 @@
 using ParaPen.ModelViews;
 using System.Windows;
 using System.Windows.Input;
+using static ParaPen.Helpers.InkCanvasMethods;
 
 namespace ParaPen.Views;
 

@@ -61,9 +61,9 @@ public static class NodeHelper
 
 	#region ActionGetters
 
-	public static Action GetActionOutOfPenActions(double stepMultiplier, PenActions penAction, Directions direction, InkPen inkPen, InkCanvas inkCanvas)
+	public static Action GetActionOutOfPenActions(double stepValue, PenActions penAction, Directions direction, InkPen inkPen, InkCanvas inkCanvas)
 	{
-		Vector vectorStep = DirectionVectorDict[direction] * stepMultiplier;
+		Vector vectorStep = DirectionVectorDict[direction] * stepValue;
 
 		Action action = penAction switch
 		{

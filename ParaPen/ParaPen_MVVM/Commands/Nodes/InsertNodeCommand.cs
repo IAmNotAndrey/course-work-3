@@ -37,9 +37,9 @@ public class InsertNodeCommand : CommandBase
 
 		Window dialog;
 		// Вызов соответствующих диалоговых окон для установления `BlockNode` и их возврата через `CreatedNode`
-		if (creatingNodeType.Equals(typeof(ConditionNode)))
+		if (creatingNodeType.Equals(typeof(InkConditionNode)))
 		{
-			throw new NotImplementedException();
+			dialog = new InkConditionDialog();
 		}
 		else if (creatingNodeType.Equals(typeof(CountingLoopNode)))
 		{
@@ -77,6 +77,11 @@ public class InsertNodeCommand : CommandBase
 		if (nodeToAdd is CountingLoopNode)
 		{
 			_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, nodeToAdd, false));
+		}
+		if (nodeToAdd is InkConditionNode)
+		{
+			//fixme 
+			_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, t, false));
 		}
 		_blockDiagramGraph.AddEdge(new BlockEdge(s, nodeToAdd));
 		_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, t));

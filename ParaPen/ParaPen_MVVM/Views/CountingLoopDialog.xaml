@@ -18,6 +18,7 @@
 	</Window.DataContext>
 
 	<Window.Resources>
+		<!-- FIXME не работает -->
 		<Style x:Key="IntegerUpDownStyle" TargetType="xctk:IntegerUpDown">
 			<Setter Property="Validation.ErrorTemplate">
 				<Setter.Value>

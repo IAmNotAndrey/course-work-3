@@ -1,34 +1,46 @@
 ﻿using ParaPen.Models.Enums;
 using System;
-using System.Buffers;
+using System.Windows;
 using System.Windows.Controls;
+using static ParaPen.Helpers.InkCanvasMethods;
+using static ParaPen.Models.StaticResources.StaticResources;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
 public class InkConditionNode : BlockNode
 {
-	public double StepMultiplier { get; init; }
+	public double StepValue { get; init; }
 	public Directions Direction { get; init; }
 
-	public InkConditionNode(double stepMultiplier, Directions direction)
+	public Func<bool>? Condition { get; set; }
+
+
+	public InkConditionNode(double stepValue, Directions direction)
 	{
-		StepMultiplier = stepMultiplier;
+		StepValue = stepValue;
 		Direction = direction;
 
-		Label = $"Is empty on {StepMultiplier}-{Direction}?";
+		Label = $"Is empty on {StepValue}-{Direction}?";
 		IsHighlighted = false;
-
-		throw new NotImplementedException();
 	}
 
-	//todo ? что значит "есть место"?
+	// NOTE ? что значит "есть место"? -- определил, как есть ли штрихи на этом месте
 	public ConditionNode ToConditionNode(InkPen inkPen, InkCanvas inkCanvas)
 	{
-		throw new NotImplementedException();
+		Vector vectorStep = DirectionVectorDict[Direction] * StepValue;
+		Point pointToCheck = inkPen.CurCords + vectorStep;
+
+		Func<bool> condition = () => IsStrokeAtPoint(pointToCheck, inkCanvas);
+
+		return new ConditionNode(condition);
 	}
 
 	public override bool Execute()
 	{
-		throw new NotImplementedException();
+		if (Condition is null)
+		{
+			throw new NullReferenceException(nameof(Action));
+		}
+		return Condition.Invoke();
 	}
 }

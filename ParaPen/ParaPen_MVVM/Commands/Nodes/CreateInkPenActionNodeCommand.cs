@@ -36,8 +36,9 @@ public class CreateInkPenActionNodeCommand : CommandBase
 		var direction = (Directions)values[1];
 
 		//_inkPenActionNode = new InkPenActionNode(STEP_VALUE, penAction, direction);
-		// fixme небезопасно + не создаётся элемент
-		_vm.CreatedNode = new InkPenActionNode(STEP_VALUE, penAction, direction); ;
+
+		// fixme небезопасно
+		_vm.CreatedNode = new InkPenActionNode(STEP_VALUE, penAction, direction);
 	}
 
 	//fixme

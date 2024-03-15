@@ -19,6 +19,12 @@
     <Compile Update="Views\CountingLoopDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\EdgeTypeChoosingDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\InkConditionDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\InkPenActionDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -37,6 +43,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CountingLoopDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\EdgeTypeChoosingDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\InkConditionDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\InkPenActionDialog.xaml">

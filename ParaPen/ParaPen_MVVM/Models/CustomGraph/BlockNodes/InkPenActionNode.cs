@@ -7,14 +7,14 @@ namespace ParaPen.Models.CustomGraph.BlockNodes;
 
 public class InkPenActionNode : BlockNode
 {
-	public double StepMultiplier { get; init; }
+	public double StepValue { get; init; }
 	public PenActions PenAction { get; init; }
 	public Directions Direction { get; init; }
 	public Action? Action { get; set; }
 
-	public InkPenActionNode(double stepMultiplier, PenActions penAction, Directions direction)
+	public InkPenActionNode(double stepValue, PenActions penAction, Directions direction)
     {
-		StepMultiplier = stepMultiplier;
+		StepValue = stepValue;
         PenAction = penAction;
 		Direction = direction;
 
@@ -24,7 +24,7 @@ public class InkPenActionNode : BlockNode
 	
 	public ActionNode ToActionNode(InkPen inkPen, InkCanvas inkCanvas)
 	{
-		Action action = GetActionOutOfPenActions(StepMultiplier, PenAction, Direction, inkPen, inkCanvas);
+		Action action = GetActionOutOfPenActions(StepValue, PenAction, Direction, inkPen, inkCanvas);
 
 		return new ActionNode(action);
 	}

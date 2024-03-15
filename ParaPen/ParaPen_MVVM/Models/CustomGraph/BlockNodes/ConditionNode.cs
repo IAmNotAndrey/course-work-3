@@ -4,7 +4,7 @@ namespace ParaPen.Models.CustomGraph.BlockNodes;
 
 public class ConditionNode : BlockNode
 {
-    private readonly Func<bool> _condition;
+    public Func<bool> Condition { get; }
 
 	//public ConditionNode(string label, Func<bool> condition) : base(label)
 	//{
@@ -12,14 +12,14 @@ public class ConditionNode : BlockNode
 	//}
 	public ConditionNode(Func<bool> condition)
 	{
-		_condition = condition;
+		Condition = condition;
 
 		IsHighlighted = false;
 	}
 
-	/// <returns><see langword="bool"/> result of <see cref="_condition"/></returns>
+	/// <returns><see langword="bool"/> result of <see cref="Condition"/></returns>
 	public override bool Execute()
     {
-        return _condition.Invoke();
+        return Condition.Invoke();
     }
 }

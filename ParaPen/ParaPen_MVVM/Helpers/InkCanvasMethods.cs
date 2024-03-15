@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Input;
@@ -24,6 +26,28 @@ public static class InkCanvasMethods
 
         return line;
     }
+
+    public static bool IsStrokeAtPoint(Point point, InkCanvas inkCanvas)
+    {
+        return inkCanvas.Strokes.Any(s => ((Point[])s.StylusPoints).Contains(point));
+    }
+
+	/// <param name="delta">Допустимая погрешность</param>
+	[Obsolete]
+    public static bool IsStrokeAtPoint(Point point, InkCanvas inkCanvas, double delta = 0)
+	{
+		foreach (var stroke in inkCanvas.Strokes)
+		{
+			foreach (var p in (Point[])stroke.StylusPoints)
+			{
+				if (Math.Abs(p.X - point.X) <= delta && Math.Abs(p.Y - point.Y) <= delta)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
 	///// <summary>
 	///// Рисует на inkCanvas линию. Изменяет координаты inkPen на toOffset

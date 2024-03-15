@@ -20,9 +20,10 @@
 	<Grid>
 		<ComboBox x:Name="nodeTypesCB" ItemsSource="{Binding NodeTypes}" VerticalAlignment="Center" />
 		<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="2" Margin="0,5,5,5" >
-			<Button Content="OK" 
+			<!-- <Button Content="OK" 
 					Command="{Binding OkCommand}"
-					CommandParameter="{Binding SelectedItem, ElementName=nodeTypesCB}" >
+					CommandParameter="{Binding SelectedItem, ElementName=nodeTypesCB}" > -->
+			<Button Content="OK">
 				<!-- Вызов ОК и Cancel команд -->
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="Click">
