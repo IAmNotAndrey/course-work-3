@@ -1,19 +1,29 @@
-﻿using QuickGraph;
+﻿using ParaPen.Models.CustomGraph.BlockNodes;
+using QuickGraph;
 using System;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace ParaPen.Models.CustomGraph;
 
-[DebuggerDisplay("{Label}")]	
-[Serializable]
+[DebuggerDisplay("{Label}")]
+//[Serializable]
+[KnownType(typeof(CountingLoopNode))]
+[KnownType(typeof(InkConditionNode))]
+[KnownType(typeof(InkPenActionNode))]
+//[KnownType(typeof(SubprogramNode))] // note запрещена сериализация SubprogramNode. Разрешить, когда можно будет "развёртывать" SubprogramNode в обычные ноды
+[KnownType(typeof(TerminalNode))]
+[KnownType(typeof(BlockNode))]
+[KnownType(typeof(BlockEdge))]
+[DataContract]
 public class BlockEdge : IEdge<object>, INotifyPropertyChanged
 {
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 	//public string Id { get; init; }
+	[DataMember]
 	public bool Value { get; init; }
 
 	//private bool _isHighlighted;
@@ -30,9 +40,14 @@ public class BlockEdge : IEdge<object>, INotifyPropertyChanged
 	//	}
 	//}
 
+	[DataMember]
 	public object Source { get; init; }
+
+	[DataMember]
 	public object Target { get; init; }
 
+	//[XmlIgnore]
+	[IgnoreDataMember]
 	public bool IsLooped => Source == Target;
 
     public BlockEdge() { }

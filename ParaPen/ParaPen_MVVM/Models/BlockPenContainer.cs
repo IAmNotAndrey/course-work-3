@@ -1,13 +1,15 @@
 ﻿using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.Models.Interfaces;
+using System;
 using System.Windows.Controls;
 using static ParaPen.Converters.ColorConverter;
-using System.Drawing;
 
 namespace ParaPen.Models;
 
 public class BlockPenContainer
 {
+	private readonly IUserViewMover _userViewMover;
+
 	private BlockNode? _selectedNode;
 	public BlockNode? SelectedNode
 	{
@@ -29,16 +31,21 @@ public class BlockPenContainer
 		}
 	}
 
-	public BlockNode StartNode { get; init; }
+	// note: было init. Может быть опасно
+	public BlockNode StartNode { get; set; }
 	public InkPen InkPen { get; init; }
 	public InkCanvas InkCanvas { get; init; }
 
 	public string Label => ToString();
-	//public BlockPenContainer() { }
+
+
+	public BlockPenContainer() { }
 
 
 	public BlockPenContainer(IUserViewMover userViewMover)
 	{
+		_userViewMover = userViewMover;
+
 		userViewMover.UserViewOffsetChanged += OnUserViewOffsetChanged;
 	}
 
@@ -75,4 +82,15 @@ public class BlockPenContainer
 		//return $"Container - {InkPen.DrawingAttributes.Color.ToDrawingColor().Name}";
 		return $"Container - {InkPen.DrawingAttributes.Color.ToDrawingColor().Name}";
 	}
+
+	//public object Clone()
+	//{
+	//	return new BlockPenContainer(_userViewMover)
+	//	{
+	//		InkCanvas = InkCanvas,
+	//		InkPen = InkPen,
+	//		SelectedNode = SelectedNode,
+	//		StartNode = StartNode
+	//	};
+	//}
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace ParaPen.Models.CustomGraph;
@@ -18,13 +19,13 @@ namespace ParaPen.Models.CustomGraph;
 [KnownType(typeof(BlockEdge))]
 public class BlockDiagramGraph : BidirectionalGraph<object, IEdge<object>>
 {
-	public IEnumerable<object> GetAllConnectedVertices(object currentNode)
+	public IEnumerable<object> GetAllConnectedVertices(object v)
 	{
 		HashSet<object> visited = new();
 		Queue<object> queue = new();
 
-		queue.Enqueue(currentNode);
-		visited.Add(currentNode);
+		queue.Enqueue(v);
+		visited.Add(v);
 
 		while (queue.Count > 0)
 		{
@@ -50,5 +51,16 @@ public class BlockDiagramGraph : BidirectionalGraph<object, IEdge<object>>
 		{
 			this.RemoveVertex(v);
 		}
+	}
+
+	public IEnumerable<IEdge<object>> GetAllEdges(IEnumerable<object> vs)
+	{
+		HashSet<IEdge<object>> edges = new();
+		foreach (var node in vs)
+		{
+			var edgesOfNode = this.InEdges(node).Concat(this.OutEdges(node));
+			edges.UnionWith(edgesOfNode);
+		}
+		return edges;
 	}
 }

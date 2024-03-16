@@ -1,20 +1,25 @@
-﻿using ParaPen.Models.CustomGraph;
+﻿using ParaPen.Models;
+using ParaPen.Models.CustomGraph;
 using ParaPen.Models.CustomGraph.BlockNodes;
-using ParaPen.ModelViews;
 using ParaPen.ModelViews.Dialogs;
 using ParaPen.Views;
 using System;
+using System.Collections.Generic;
 using System.Windows;
+using ParaPen.Helpers;
+using ParaPen.Helpers.Interfaces;
 
 namespace ParaPen.Commands.Nodes;
 
 public class InsertNodeCommand : CommandBase
 {
 	private readonly BlockDiagramGraph _blockDiagramGraph;
+	private readonly IEnumerable<BlockPenContainer> _bpContainers;
 
-	public InsertNodeCommand(BlockDiagramGraph blockDiagram)
+	public InsertNodeCommand(BlockDiagramGraph blockDiagram, IEnumerable<BlockPenContainer> bpContainers)
 	{
 		_blockDiagramGraph = blockDiagram;
+		_bpContainers = bpContainers;
 	}
 
 	/// <param name="parameter">Edge</param>
@@ -24,8 +29,8 @@ public class InsertNodeCommand : CommandBase
 		{
 			throw new ArgumentException(null, nameof(edge));
 		}
-
-		// Открываем диалоговое окно выбора BlockNode и пытаемся получить оттуда тип добавляемой BlockNode
+		
+		// Открываем диалог с выбором типа вершины
 		NodeChoosingDialog nodeTypeChoosingDialog = new();
 		nodeTypeChoosingDialog.ShowDialog();
 		Type? creatingNodeType = ((NodeTypeChoosingDialogVM)nodeTypeChoosingDialog.DataContext).ChosenType;
@@ -34,32 +39,21 @@ public class InsertNodeCommand : CommandBase
 			return;
 		}
 
-
-		Window dialog;
-		// Вызов соответствующих диалоговых окон для установления `BlockNode` и их возврата через `CreatedNode`
-		if (creatingNodeType.Equals(typeof(InkConditionNode)))
+		// Открываем диалоги для создания вершин
+		BlockNode? nodeToAdd;
+		if (TryCreateDialog(creatingNodeType, out Window? dialog))
 		{
-			dialog = new InkConditionDialog();
-		}
-		else if (creatingNodeType.Equals(typeof(CountingLoopNode)))
-		{
-			dialog = new CountingLoopDialog();
-		}
-		else if (creatingNodeType.Equals(typeof(InkPenActionNode)))
-		{
-			dialog = new InkPenActionDialog();
+			dialog?.ShowDialog();
+			nodeToAdd = ((NodeSetDialogVMBase)dialog.DataContext).CreatedNode;
 		}
 		else if (creatingNodeType.Equals(typeof(SubprogramNode)))
 		{
-			throw new NotImplementedException();
+			nodeToAdd = CreateSubprogramNode(edge);
 		}
 		else
 		{
-			throw new ArgumentException(null, nameof(creatingNodeType)); 
+			throw new ArgumentException(null, nameof(creatingNodeType));
 		}
-
-		dialog.ShowDialog();
-		BlockNode? nodeToAdd = ((NodeSetDialogVMBase)dialog.DataContext).CreatedNode;
 
 		if (nodeToAdd is null)
 		{
@@ -69,22 +63,53 @@ public class InsertNodeCommand : CommandBase
 		var s = edge.Source;
 		var t = edge.Target;
 
+		// Удаляем ребро, в которое вставляем вершину
 		_blockDiagramGraph.RemoveEdge(edge);
-
+		// Добавляем новую вершину
 		_blockDiagramGraph.AddVertex(nodeToAdd);
 
-		// CountingLoopNode или SubprogramNode, то добавляем ребро ссылающееся на саму вершину с значением `false`
+		// Если добавляемая вершина CountingLoopNode или SubprogramNode, то ей дополнительно добавляем петлю с значением false
 		if (nodeToAdd is CountingLoopNode || nodeToAdd is SubprogramNode)
 		{
 			_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, nodeToAdd, false));
 		}
-		// Для InkConditionNode добавляем дополнительное выходящее false-ребро
+		// Если InkConditionNode, то добавляем дополнительное выходящее false-ребро 
 		else if (nodeToAdd is InkConditionNode)
 		{
 			_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, t, false));
 		}
 
+		// Соединяем новую вершину с предыдущей и последующей
 		_blockDiagramGraph.AddEdge(new BlockEdge(s, nodeToAdd, edge.Value));
 		_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, t));
+	}
+
+	private static bool TryCreateDialog(Type creatingNodeType, out Window? dialog)
+	{
+		dialog = null;
+		Dictionary<Type, INodeDialogFactory> dialogFactories = new()
+		{
+			{ typeof(InkConditionNode), new InkConditionNodeDialogFactory() },
+			{ typeof(CountingLoopNode), new CountingLoopNodeDialogFactory() },
+			{ typeof(InkPenActionNode), new InkPenActionNodeDialogFactory() }
+		};
+
+		if (dialogFactories.TryGetValue(creatingNodeType, out var factory))
+		{
+			dialog = factory.CreateDialog();
+		}
+
+		return dialog != null;
+	}
+
+	private BlockNode? CreateSubprogramNode(BlockEdge edge)
+	{
+		NodeSetDialogVMBase vm = new();
+		BlockPenContainer bpContainer = _bpContainers.GetBlockPenContainer(edge, _blockDiagramGraph)
+			?? throw new NullReferenceException(nameof(bpContainer));
+
+		var command = new CreateSubprogramNodeCommand(vm, bpContainer);
+		command.Execute(null);
+		return vm.CreatedNode;
 	}
 }

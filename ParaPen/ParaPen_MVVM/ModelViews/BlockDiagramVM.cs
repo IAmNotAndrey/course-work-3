@@ -9,8 +9,11 @@ using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using static ParaPen.Models.StaticResources.StaticResources;
-using ParaPen.Serializers;
+using static ParaPen.Serializers.EdgesVerticesContainerSerializer;
 using System.Linq;
+using System.Xml.Linq;
+using System.Collections.Generic;
+using ParaPen.Commands.Serialization;
 
 namespace ParaPen.ModelViews;
 
@@ -33,10 +36,13 @@ public class BlockDiagramVM : ViewModelBase
 	public ObservableCollection<BlockPenContainer> BlockPenContainers { get; } = new();
 
 
-	public ICommand InsertNodeCommand => new InsertNodeCommand(BlockDiagram);
+	public ICommand InsertNodeCommand => new InsertNodeCommand(BlockDiagram, BlockPenContainers);
 
 	public ICommand AddBlockPenContainer => new AddBlockPenContainerCommand(BlockPenContainers, BlockDiagram, _userViewMover, _inkCanvas, BLOCK_DIAGRAM_LIMIT);
 	public ICommand DeleteBlockPenContainer => new DeleteBlockPenContainerCommand(BlockPenContainers, BlockDiagram);
+
+	public ICommand SerializeEdges => new SerializeEdgesCommand(BlockDiagram);
+
 	//public ICommand ResetBlockPenContainers => ResetBlockPenContainersCommand();
 
 	//public ICommand AddActionNodeCommand => new AddActionNodeCommand(BlockDiagram);
@@ -48,7 +54,8 @@ public class BlockDiagramVM : ViewModelBase
 	//public ICommand ExecuteAllNodesCommands => new ExecuteAllNodesCommand(_blockPenContainers, BlockDiagram);
 
 	//removeme
-	public ICommand TestCommand => new TestCommand();
+	public ICommand TestCommand => new _TestCommand();
+
 
 	public BlockDiagramVM(InkCanvas inkCanvas, IUserViewMover userViewMover)
 	{
@@ -57,7 +64,13 @@ public class BlockDiagramVM : ViewModelBase
 
 		AddBlockPenContainer.Execute(null);
 
-		
+		//var start = BlockDiagram.Vertices.ToList()[0];
+		//var nodes = BlockDiagram.GetAllConnectedVertices(start);
+		//var edges = BlockDiagram.GetAllEdges(nodes);
+
+		//EdgesVerticesContainer evContainer = new() { Vertices = nodes.ToArray(), Edges = edges.ToArray() };
+		//_SerializeXml(evContainer, "test.xml");
+
 		/*
 		////removeme
 		//var a = new ActionNode(() => Console.WriteLine(1));

@@ -2,22 +2,34 @@
 using ParaPen.Models.CustomGraph.BlockNodes;
 using QuickGraph;
 using System;
-using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
 namespace ParaPen.Models;
 
-[Serializable]
+//[Serializable]
+//[XmlInclude(typeof(CountingLoopNode))]
+//[XmlInclude(typeof(InkConditionNode))]
+//[XmlInclude(typeof(InkPenActionNode))]
+//[XmlInclude(typeof(SubprogramNode))]
+//[XmlInclude(typeof(TerminalNode))]
+//[XmlInclude(typeof(BlockNode))]
+//[XmlInclude(typeof(BlockEdge))]
+
 [KnownType(typeof(CountingLoopNode))]
 [KnownType(typeof(InkConditionNode))]
 [KnownType(typeof(InkPenActionNode))]
-[KnownType(typeof(SubprogramNode))]
+//[KnownType(typeof(SubprogramNode))] // note запрещена сериализация SubprogramNode. Разрешить, когда можно будет "развёртывать" SubprogramNode в обычные ноды
 [KnownType(typeof(TerminalNode))]
 [KnownType(typeof(BlockNode))]
 [KnownType(typeof(BlockEdge))]
+[DataContract]
 public class EdgesVerticesContainer
 {
-	public object[] Vertices { get; set; } = null!;
-	public IEdge<object>[] Edges { get; set; } = null!;
+	[DataMember]
+	public BlockNode[] Vertices { get; set; } = null!;
+
+	[DataMember]
+	public BlockEdge[] Edges { get; set; } = null!;
+
 }

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
-[Serializable]
+//[Serializable]
+[DataContract]
 public class TerminalNode : BlockNode
 {
 	[Obsolete]
@@ -15,8 +17,8 @@ public class TerminalNode : BlockNode
 
     public override bool Execute() { return true; }
 
-	public override string ToString()
-	{
-		return Label;
-	}
+	//public override string ToString()
+	//{
+	//	return Label;
+	//}
 }

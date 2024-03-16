@@ -1,4 +1,7 @@
-﻿using System;
+﻿using QuickGraph;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using static ParaPen.Helpers.NodeHelper;
 
@@ -25,13 +28,32 @@ public class SubprogramNode : BlockNode
 	[Obsolete]
 	public SubprogramNode() { }
 
-	public SubprogramNode(BlockPenContainer container, BlockDiagramGraph localBlockDiagram)
-    {
-		_container = container;
-		_localBlockDiagram = localBlockDiagram;
+	//public SubprogramNode(BlockPenContainer container, BlockDiagramGraph localBlockDiagram)
+	//   {
+	//	_container = container;
+	//	_localBlockDiagram = localBlockDiagram;
+	//}
+
+	public SubprogramNode(BlockPenContainer container, IEnumerable<IEdge<object>> edges)
+	{
+		_localBlockDiagram = new BlockDiagramGraph();
+		_localBlockDiagram.AddVerticesAndEdgeRange(edges);
+
+		_container = new BlockPenContainer()
+		{
+			InkCanvas = container.InkCanvas,
+			InkPen = container.InkPen,
+			StartNode = GetStartNode(_localBlockDiagram)
+				?? throw new ArgumentException($"{nameof(edges)} has no start vertex", nameof(edges))
+		};
+		_container.Reset();
+
+		//FIXME
+		Label = "Subprogram";
 	}
 
-    public override bool Execute()
+
+	public override bool Execute()
 	{
 		BlockNode node = _container.SelectedNode!;
 
@@ -41,7 +63,7 @@ public class SubprogramNode : BlockNode
 		_container.SelectedNode = target;
 
 		// Если target is null, значит работа подпрограммы закончилась
-		if (target is null) 
+		if (target is null)
 		{
 			//fixme? можно прогонять ноду через цикл. reset? 
 			_container.Reset();

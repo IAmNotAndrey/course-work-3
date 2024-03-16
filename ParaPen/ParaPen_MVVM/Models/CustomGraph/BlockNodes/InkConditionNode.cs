@@ -1,5 +1,6 @@
 ﻿using ParaPen.Models.Enums;
 using System;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml.Serialization;
@@ -8,13 +9,18 @@ using static ParaPen.Models.StaticResources.StaticResources;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
-[Serializable]
+//[Serializable]
+[DataContract]
 public class InkConditionNode : BlockNode
 {
+	[DataMember]
 	public double StepValue { get; init; }
+
+	[DataMember]
 	public Directions Direction { get; init; }
 
-	[XmlIgnore]
+	//[XmlIgnore]
+	[IgnoreDataMember]
 	public Func<bool>? Condition { get; set; }
 
 

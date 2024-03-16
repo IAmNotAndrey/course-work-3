@@ -75,11 +75,6 @@ public static class NodeHelper
 		return action;
 	}
 
-	//todo
-	public static Func<bool> GetBoolActionOutOf___()
-	{
-		throw new NotImplementedException();
-	}
 
 	#endregion
 
@@ -118,5 +113,18 @@ public static class NodeHelper
 		graph.AddEdgeRange(edgesToAdd);
 
 		// fixme ? ссылка не изменяется? должна изменяться - не слушай IDE
+	}
+
+	/// <summary>
+	/// Находит начальную <see cref="TerminalNode"/> вершину в <paramref name="graph"/>
+	/// </summary>
+	/// <returns><see cref="TerminalNode"/> или <see langword="null"/></returns>
+	public static TerminalNode? GetStartNode(BlockDiagramGraph graph)
+	{
+		return (TerminalNode?)graph.Vertices
+			.SingleOrDefault(v => 
+				v is TerminalNode 
+				&& graph.OutEdges(v).Count() == 1 
+			);
 	}
 }

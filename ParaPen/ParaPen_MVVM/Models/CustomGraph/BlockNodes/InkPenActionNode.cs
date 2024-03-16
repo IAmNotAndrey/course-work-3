@@ -1,19 +1,27 @@
 ﻿using ParaPen.Models.Enums;
 using System;
+using System.Runtime.Serialization;
 using System.Windows.Controls;
 using System.Xml.Serialization;
 using static ParaPen.Helpers.NodeHelper;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
-[Serializable]
+//[Serializable]
+[DataContract]
 public class InkPenActionNode : BlockNode
 {
+	[DataMember]
 	public double StepValue { get; init; }
+
+	[DataMember]
 	public PenActions PenAction { get; init; }
+
+	[DataMember]
 	public Directions Direction { get; init; }
 
-	[XmlIgnore]
+	//[XmlIgnore]
+	[IgnoreDataMember]
 	public Action? Action { get; set; }
 
 
@@ -21,15 +29,15 @@ public class InkPenActionNode : BlockNode
 	public InkPenActionNode() { }
 
 	public InkPenActionNode(double stepValue, PenActions penAction, Directions direction)
-    {
+	{
 		StepValue = stepValue;
-        PenAction = penAction;
+		PenAction = penAction;
 		Direction = direction;
 
 		Label = $"{PenAction} - {Direction}";
 		IsHighlighted = false;
 	}
-	
+
 	public ActionNode ToActionNode(InkPen inkPen, InkCanvas inkCanvas)
 	{
 		Action action = GetActionOutOfPenActions(StepValue, PenAction, Direction, inkPen, inkCanvas);

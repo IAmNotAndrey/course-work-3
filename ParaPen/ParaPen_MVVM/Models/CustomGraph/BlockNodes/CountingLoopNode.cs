@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
-[Serializable]
+//[Serializable]
+[DataContract]
 public class CountingLoopNode : BlockNode
 {
-    public uint Count { get; private set; }
+	[DataMember]
+    public uint Count { get; set; }
 
     //public CountingLoopNode(string label, uint count) : base(label)
     //{

@@ -94,7 +94,8 @@
 
 
 		<Style TargetType="{x:Type gc:EdgeControl}">
-			<!-- fixme не работает --><!--
+			<!-- fixme не работает -->
+			<!--
 			<Style.Resources>
 				<ToolTip x:Key="ToolTipContent">
 					<StackPanel>
@@ -104,7 +105,7 @@
 			</Style.Resources>
 			<Setter Property="ToolTip" Value="{StaticResource ToolTipContent}"/>-->
 
-			
+
 			<Style.Triggers>
 				<!-- Ребро	зелёное: `Value=true`
 							красное: `Value=false` -->
@@ -157,7 +158,23 @@
 
 
 
-		<local:BlockPenContainersRemoveUC DataContext="{Binding}" Height="100" Width="100" HorizontalAlignment="Right"/>
+		<!--  -->
+		<ListBox x:Name="blockPenContainersLB" 
+				 Height="100"
+				 Width="100"
+				 HorizontalAlignment="Right"
+				 ItemsSource="{Binding BlockPenContainers}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Label}" />
+					<!-- Замените YourItemProperty на свойство вашего объекта BlockPenContainer -->
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<Button Height="20"  Content="Сериализовать" Command="{Binding SerializeEdges}" CommandParameter="{Binding SelectedItem, ElementName=blockPenContainersLB}" VerticalAlignment="Top" Margin="683,274,10,0" />
+		<Button Height="20"  Content="Удалить" Command="{Binding DeleteBlockPenContainer}" CommandParameter="{Binding SelectedItem, ElementName=blockPenContainersLB}" VerticalAlignment="Bottom" Margin="720,0,20,95" />
+		<!-- -->
+
 		<Button Content="Add" HorizontalAlignment="Left" Margin="485,364,0,0" VerticalAlignment="Top" Command="{Binding AddBlockPenContainer}" />
 
 		<Button Content="LaunchStep" HorizontalAlignment="Left" Margin="540,364,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAndGoToNextNodesCommand}" />

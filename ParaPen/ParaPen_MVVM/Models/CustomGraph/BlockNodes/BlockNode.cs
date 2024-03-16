@@ -8,16 +8,19 @@ using System.Xml.Serialization;
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
 [DebuggerDisplay("{Label}")]
-[Serializable]
+//[Serializable]
+[DataContract]
 public abstract class BlockNode : INotifyPropertyChanged
 {
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 	//public string Id { get; init; }
+	[DataMember]
 	public string? Label { get; init; }
 
 	private bool _isHighlighted;
-	[XmlIgnore]
+	//[XmlIgnore]
+	[IgnoreDataMember]
 	public bool IsHighlighted
 	{
 		get => _isHighlighted;
