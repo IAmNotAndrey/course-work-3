@@ -1,10 +1,10 @@
 ﻿using ParaPen.Commands;
 using ParaPen.Models;
 using ParaPen.Models.Interfaces;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using static ParaPen.Models.StaticResources.StaticResources;
 
 namespace ParaPen.ModelViews;
 
@@ -12,20 +12,17 @@ public class InkCanvasVM : ViewModelBase
 {
 	private readonly IInkScalerService _inkScalerService;
 	private readonly InkCanvas _inkCanvas;
-	//private readonly IUserViewMover _userViewMover;
+
 	public IUserViewMover UserViewMover { get; init; }
 
 	public InkCanvasVM(InkCanvas inkCanvas)
 	{
 		_inkScalerService = new InkScalerService(1.1);
 		_inkCanvas = inkCanvas;
-		UserViewMover = new UserViewMover();
+		UserViewMover = new UserViewMover() { MovementSpeed = USER_VIEW_SPEED } ;
 
 		UserViewMover.UserViewOffsetChanged += OnUserViewOffsetChanged;
 	}
-
-	//public double ZoomFactor => _inkScalerService.ZoomFactor;
-	//public double CurrentScale => _inkScalerService.CurrentScale;
 
 	public ICommand ZoomInCommand => new ZoomInCommand(_inkCanvas, _inkScalerService);
 	public ICommand ZoomOutCommand => new ZoomOutCommand(_inkCanvas, _inkScalerService);
@@ -34,7 +31,7 @@ public class InkCanvasVM : ViewModelBase
 
 	private void OnUserViewOffsetChanged(object? sender, Models.EventArgs.OffsetEventArgs e)
 	{
-		// Переместить Strokes
+		// Перемещаем Strokes
 		_inkCanvas.Strokes.Transform(new Matrix(1, 0, 0, 1, e.Offset.X, e.Offset.Y), false);
 	}
 }

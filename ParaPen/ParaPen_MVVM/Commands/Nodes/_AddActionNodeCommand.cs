@@ -5,11 +5,11 @@ using System;
 namespace ParaPen.Commands.Nodes;
 
 // removeme
-public class AddActionNodeCommand : CommandBase
+public class _AddActionNodeCommand : CommandBase
 {
 	private readonly BlockDiagramGraph _blockDiagramGraph;
 
-	public AddActionNodeCommand(BlockDiagramGraph blockDiagramGraph)
+	public _AddActionNodeCommand(BlockDiagramGraph blockDiagramGraph)
     {
 		_blockDiagramGraph = blockDiagramGraph;
 	}

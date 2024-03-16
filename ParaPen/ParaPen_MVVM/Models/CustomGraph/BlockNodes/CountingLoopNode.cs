@@ -1,25 +1,29 @@
-﻿using System;
+﻿using ParaPen.Models.Interfaces;
+using System;
 using System.Runtime.Serialization;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
-//[Serializable]
 [DataContract]
-public class CountingLoopNode : BlockNode
+public class CountingLoopNode : BlockNode, IResetable
 {
+	private readonly uint _count;
+
+
 	[DataMember]
     public uint Count { get; set; }
 
-    //public CountingLoopNode(string label, uint count) : base(label)
-    //{
-    //    _count = count;
-    //}
 
 	[Obsolete]
-    public CountingLoopNode() { }
+    public CountingLoopNode() 
+	{ 
+		// Восстанавливаем значение после десериализации
+		_count = Count; 
+	}
 
     public CountingLoopNode(uint count)
 	{
+		_count = count;
 		Count = count;
 
 		Label = ToString();
@@ -30,7 +34,7 @@ public class CountingLoopNode : BlockNode
 	///		<see langword="false"/>:<br/>
 	///			<see langword="if"/> counting loop is still in process (<see cref="Count"/> > 0)<br/>
 	///		<see langword="true"/>:<br/>
-	///		otherwise
+	///			otherwise
 	/// </returns>
 	public override bool Execute()
     {
@@ -45,5 +49,11 @@ public class CountingLoopNode : BlockNode
 	public override string ToString()
 	{
 		return $"{nameof(CountingLoopNode)}-{Count}";
+	}
+
+	public override void Reset()
+	{
+		Count = _count;
+		base.Reset();
 	}
 }

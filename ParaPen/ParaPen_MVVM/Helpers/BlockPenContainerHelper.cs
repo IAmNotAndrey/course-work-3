@@ -1,12 +1,11 @@
-﻿using ParaPen.Models;
-using ParaPen.Models.CustomGraph;
-using QuickGraph;
+﻿using ParaPen.Models.CustomGraph;
+using ParaPen.Models;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace ParaPen.Helpers;
 
-public static class EdgeHelper
+public static class BlockPenContainerHelper
 {
 	/// <summary>
 	/// Пытается получить <see cref="BlockPenContainer"/>, в котором присутствует <paramref name="edge"/>

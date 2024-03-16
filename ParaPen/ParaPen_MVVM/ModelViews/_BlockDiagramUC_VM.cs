@@ -1,6 +1,6 @@
 ﻿namespace ParaPen.ModelViews;
 
-public class BlockDiagramUC_VM : ViewModelBase
+public class _BlockDiagramUC_VM : ViewModelBase
 {
 	//private List<BlockNode> _activeNodes = new();
 	//private List<BlockPenContainer> _blockPenContainers = new();
@@ -16,7 +16,7 @@ public class BlockDiagramUC_VM : ViewModelBase
 	// todo : сохранять начальные ноды в переменной для сохранения графов
 
 
-	public BlockDiagramUC_VM()
+	public _BlockDiagramUC_VM()
 	{
 		//BlockDiagram = new();
 

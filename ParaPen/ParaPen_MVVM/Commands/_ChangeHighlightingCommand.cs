@@ -4,7 +4,7 @@ using System;
 
 namespace ParaPen.ModelViews;
 
-public class ChangeHighlightingCommand : CommandBase
+public class _ChangeHighlightingCommand : CommandBase
 {
 	public event EventHandler? CanExecuteChanged;
 

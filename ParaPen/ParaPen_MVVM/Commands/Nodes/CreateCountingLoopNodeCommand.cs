@@ -26,6 +26,6 @@ public class CreateCountingLoopNodeCommand : CommandBase
 
 	public override bool CanExecute(object? parameter)
 	{
-		return parameter is int;
+		return parameter is int count && count > 0;
 	}
 }

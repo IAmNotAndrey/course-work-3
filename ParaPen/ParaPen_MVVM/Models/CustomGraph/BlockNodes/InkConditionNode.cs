@@ -3,13 +3,11 @@ using System;
 using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Controls;
-using System.Xml.Serialization;
 using static ParaPen.Helpers.InkCanvasMethods;
 using static ParaPen.Models.StaticResources.StaticResources;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
-//[Serializable]
 [DataContract]
 public class InkConditionNode : BlockNode
 {
@@ -19,7 +17,6 @@ public class InkConditionNode : BlockNode
 	[DataMember]
 	public Directions Direction { get; init; }
 
-	//[XmlIgnore]
 	[IgnoreDataMember]
 	public Func<bool>? Condition { get; set; }
 
@@ -43,7 +40,7 @@ public class InkConditionNode : BlockNode
 		Vector vectorStep = DirectionVectorDict[Direction] * StepValue;
 		Point pointToCheck = inkPen.CurCords + vectorStep;
 
-		Func<bool> condition = () => IsStrokeAtPoint(pointToCheck, inkCanvas);
+		bool condition() => IsStrokeAtPoint(pointToCheck, inkCanvas);
 
 		return new ConditionNode(condition);
 	}

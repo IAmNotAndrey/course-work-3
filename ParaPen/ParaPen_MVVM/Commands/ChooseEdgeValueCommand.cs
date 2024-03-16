@@ -12,8 +12,8 @@ public class ChooseEdgeValueCommand : CommandBase
 		_vm = vm;
 	}
 
-	/// <param name="parameter">bool `edgeValue`</param>
-    public override void Execute(object? parameter)
+	/// <param name="parameter"><see langword="bool" /> edgeValue</param>
+	public override void Execute(object? parameter)
 	{
 		if (parameter is not bool edgeValue)
 		{

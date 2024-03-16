@@ -6,10 +6,6 @@ public class ConditionNode : BlockNode
 {
     public Func<bool> Condition { get; }
 
-	//public ConditionNode(string label, Func<bool> condition) : base(label)
-	//{
-	//    _condition = condition;
-	//}
 	public ConditionNode(Func<bool> condition)
 	{
 		Condition = condition;

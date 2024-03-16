@@ -44,13 +44,13 @@ public class ExecuteAndGoToNextNodesCommand : CommandBase
 
 			bool branchValue = node.Execute();
 
-			BlockNode? target = ReturnNextNode(node, branchValue, _blockDiagram);
+			BlockNode? target = node.ReturnNextNode(branchValue, _blockDiagram);
 			container.SelectedNode = target;  // Изменяем активный узел в BlockPenContainer
 
 			// Меняем выбранность `Node`
 			// bug : так как не происходит изначальная подсветка startNode, то с ней происходит баг подсветки при переходе на другую ноду
 			node.ToggleHighlight();
-			target.ToggleHighlight();
+			target?.ToggleHighlight();
 
 			//updatedContainers.Add(container);
 		}

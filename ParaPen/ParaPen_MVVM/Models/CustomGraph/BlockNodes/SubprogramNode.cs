@@ -1,50 +1,30 @@
-﻿using QuickGraph;
+﻿using ParaPen.Models.Interfaces;
+using QuickGraph;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using static ParaPen.Helpers.NodeHelper;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
-// TODO
-[Serializable]
-public class SubprogramNode : BlockNode
+public class SubprogramNode : BlockNode, IResetable
 {
 	private readonly BlockPenContainer _container;
-	private readonly BlockDiagramGraph _localBlockDiagram;
-
-	//private readonly Action<BlockPenContainer> _subprogramAction;
-
-	//public SubprogramNode(string label, Action<BlockPenContainer> subprogramAction) : base(label)
-	//{
-	//	_subprogramAction = subprogramAction;
-	//}
-	//public SubprogramNode(Action<BlockPenContainer> subprogramAction)
-	//{
-	//	_subprogramAction = subprogramAction;
-	//}
 
 	[Obsolete]
 	public SubprogramNode() { }
 
-	//public SubprogramNode(BlockPenContainer container, BlockDiagramGraph localBlockDiagram)
-	//   {
-	//	_container = container;
-	//	_localBlockDiagram = localBlockDiagram;
-	//}
-
 	public SubprogramNode(BlockPenContainer container, IEnumerable<IEdge<object>> edges)
 	{
-		_localBlockDiagram = new BlockDiagramGraph();
-		_localBlockDiagram.AddVerticesAndEdgeRange(edges);
+		BlockDiagramGraph localBlockDiagram = new();
+		localBlockDiagram.AddVerticesAndEdgeRange(edges);
 
+		// NOTE создаём с пустым конструктором, так как нам не нужно привязываться к событию `userViewMover.UserViewOffsetChanged`: `InkPen` уже на него реагирует
 		_container = new BlockPenContainer()
 		{
 			InkCanvas = container.InkCanvas,
 			InkPen = container.InkPen,
-			StartNode = GetStartNode(_localBlockDiagram)
-				?? throw new ArgumentException($"{nameof(edges)} has no start vertex", nameof(edges))
+			StartNode = GetStartNode(localBlockDiagram) ?? throw new ArgumentException($"{nameof(edges)} has no start vertex", nameof(edges)),
+			BlockDiagramGraph = localBlockDiagram
 		};
 		_container.Reset();
 
@@ -59,22 +39,22 @@ public class SubprogramNode : BlockNode
 
 		bool branchValue = node.Execute();
 
-		BlockNode? target = ReturnNextNode(node, branchValue, _localBlockDiagram);
+		BlockNode? target = node.ReturnNextNode(branchValue, _container.BlockDiagramGraph);
 		_container.SelectedNode = target;
 
 		// Если target is null, значит работа подпрограммы закончилась
 		if (target is null)
 		{
-			//fixme? можно прогонять ноду через цикл. reset? 
-			_container.Reset();
+			//NOTE? можно прогонять ноду через цикл. reset? 
+			Reset();
 			return true;
 		}
 		return false;
+	}
 
-		// ADDME возможно при выполнении данной ноды стоит подменить ссылку: `this=TerminationNode` и начать выполнение уже `TerminationNode`
-		//BlockPenContainer subprogramContainer = new(); // Создаем новый контейнер
-		//_subprogramAction.Invoke(subprogramContainer); // Выполняем подпрограмму
-		//return true;
+	public override void Reset()
+	{
+		_container.Reset();
+		base.Reset();
 	}
 }
-// через (не-)явную типизацию класс SpecializedActionNode приводим к ActionNode. Сохранение для подпрограмм происходит в SpecializedActionNode, потом интерпретируется в ActionNode

@@ -22,7 +22,6 @@ public class DeleteBlockPenContainerCommand : CommandBase
 		{
 			throw new ArgumentException(null, nameof(parameter));
 		}
-		//var container = parameter as BlockPenContainer;
 
 		_containers.Remove(container);
 

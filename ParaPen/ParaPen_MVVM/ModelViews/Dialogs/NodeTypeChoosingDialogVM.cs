@@ -18,6 +18,4 @@ public class NodeTypeChoosingDialogVM : DialogVMBase
 	public Type? ChosenType { get; set; }
 	
 	public ICommand OkCommand => new ChooseNodeTypeCommand(this);
-	
-	// todo
 }

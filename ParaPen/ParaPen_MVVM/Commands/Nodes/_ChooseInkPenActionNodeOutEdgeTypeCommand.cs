@@ -1,6 +1,6 @@
 ﻿namespace ParaPen.Commands.Nodes;
 
-public class ChooseInkPenActionNodeOutEdgeTypeCommand : CommandBase
+public class _ChooseInkPenActionNodeOutEdgeTypeCommand : CommandBase
 {
 	public override void Execute(object? parameter)
 	{

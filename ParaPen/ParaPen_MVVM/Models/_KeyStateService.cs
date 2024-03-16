@@ -2,7 +2,7 @@
 
 namespace ParaPen_MVVM.Models;
 
-public class KeyStateService : IKeyStateService
+public class _KeyStateService : IKeyStateService
 {
 	public bool IsCtrlPressed { get; set; }
 	public bool IsRightMouseDown { get; set; }

@@ -39,6 +39,7 @@ public class AddBlockPenContainerCommand : CommandBase
 			InkCanvas = _inkCanvas,
 			SelectedNode = startNode,
 			InkPen = new InkPen(new Point(0, 0), new DrawingAttributes { Color = Colors.Green, Width = 4, Height = 4 }), // fixme
+			BlockDiagramGraph = _blockDiagram,
 		});
 
 		_blockDiagram.AddVertex(startNode);

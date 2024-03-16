@@ -1,15 +1,15 @@
-﻿using ParaPen.Models.CustomGraph.BlockNodes;
+﻿using ParaPen.Models.CustomGraph;
+using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.Models.Interfaces;
-using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using static ParaPen.Converters.ColorConverter;
 
 namespace ParaPen.Models;
 
-public class BlockPenContainer
+public class BlockPenContainer : IResetable
 {
-	private readonly IUserViewMover _userViewMover;
-
 	private BlockNode? _selectedNode;
 	public BlockNode? SelectedNode
 	{
@@ -36,6 +36,9 @@ public class BlockPenContainer
 	public InkPen InkPen { get; init; }
 	public InkCanvas InkCanvas { get; init; }
 
+	// note могу вызывать ошибки, пока не протестил! может не стоит использовать?
+	public BlockDiagramGraph BlockDiagramGraph { get; init; }
+
 	public string Label => ToString();
 
 
@@ -44,32 +47,18 @@ public class BlockPenContainer
 
 	public BlockPenContainer(IUserViewMover userViewMover)
 	{
-		_userViewMover = userViewMover;
-
 		userViewMover.UserViewOffsetChanged += OnUserViewOffsetChanged;
 	}
 
 	public void Reset()
 	{
 		SelectedNode = StartNode;
+
+		// Находим все вершины, которые реализуют интерфейс IResetable
+		IEnumerable<IResetable> resetableNodes = BlockDiagramGraph.GetAllConnectedVertices(StartNode).OfType<IResetable>();
+		// Переустанавливаем все найденные вершины
+		foreach (var rn in resetableNodes) rn.Reset();
 	}
-
-	// FIXME : Для вызова `подпрограммы` стоит сделать HashMap : Action's на данный момент сохраняются только для конкретного `BlockPenContainer`, тогда как должны только указывать действия "обезличенного" карандаша
-
-	///// <summary>
-	///// Рисует на inkCanvas линию. Изменяет координаты inkPen на toOffset
-	///// </summary>
-	//public void DrawLine(Vector toOffset)
-	//{
-	//	Point startPoint = Pen.CurCords;
-	//	// Изменяем координаты и заносим в переменную конечную точку
-	//	Point endPoint = Pen.MoveOffset(toOffset);
-
-	//	Stroke line = GetStrokeLine(startPoint, endPoint, Pen.DrawingAttributes);
-	//	InkCanvas.Strokes.Add(line);
-	//}
-
-	//public void MovePen(Vector toOffset) => Pen.MoveOffset(toOffset);
 
 	private void OnUserViewOffsetChanged(object? sender, EventArgs.OffsetEventArgs e)
 	{
@@ -82,15 +71,4 @@ public class BlockPenContainer
 		//return $"Container - {InkPen.DrawingAttributes.Color.ToDrawingColor().Name}";
 		return $"Container - {InkPen.DrawingAttributes.Color.ToDrawingColor().Name}";
 	}
-
-	//public object Clone()
-	//{
-	//	return new BlockPenContainer(_userViewMover)
-	//	{
-	//		InkCanvas = InkCanvas,
-	//		InkPen = InkPen,
-	//		SelectedNode = SelectedNode,
-	//		StartNode = StartNode
-	//	};
-	//}
 }

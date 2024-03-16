@@ -5,7 +5,7 @@ namespace ParaPen.Commands;
 
 public class WindowCloseCommand : CommandBase
 {
-	/// <param name="parameter">window</param>
+	/// <param name="parameter"><see cref="Window"/></param>
 	public override void Execute(object? parameter)
 	{
 		if (parameter is not Window window)

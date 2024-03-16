@@ -1,18 +1,10 @@
 ﻿using ParaPen.ModelViews.Dialogs;
 using System;
-using System.Windows.Input;
 
 namespace ParaPen.Commands.Nodes;
 
 public class ChooseNodeTypeCommand : CommandBase
 {
-	//private Type? _chosenType;
-
-	//public ChooseNodeTypeCommand(Type? chosenType)
-	//{
-	//	_chosenType = chosenType;
-	//}
-
 	private readonly NodeTypeChoosingDialogVM _vm;
 
 	public ChooseNodeTypeCommand(NodeTypeChoosingDialogVM vm)

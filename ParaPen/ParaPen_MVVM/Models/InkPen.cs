@@ -28,16 +28,14 @@ public class InkPen : INotifyPropertyChanged
 	}
 
 	public DrawingAttributes DrawingAttributes { get; }
-    //public InkPenMode Mode { get; }
 
     public InkPen(Point startCords, DrawingAttributes drawingAttributes)
     {
         CurCords = startCords;
         DrawingAttributes = drawingAttributes;
-        //Mode = mode;
     }
 
-	/// <returns>CurCords+offset</returns>
+	/// <returns><see cref="CurCords"/> <see langword="+"/> <paramref name="offset"/></returns>
 	public Point MoveOffset(Vector offset)
 	{
 		CurCords += offset;

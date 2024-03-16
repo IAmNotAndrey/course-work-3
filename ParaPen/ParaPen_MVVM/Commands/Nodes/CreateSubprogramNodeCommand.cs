@@ -3,9 +3,8 @@ using ParaPen.Models;
 using ParaPen.Models.CustomGraph;
 using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.ModelViews.Dialogs;
-using System.Collections;
-using System.Collections.Generic;
 using static ParaPen.Serializers.EdgesVerticesContainerSerializer;
+using static ParaPen.Models.StaticResources.StaticResources;
 
 namespace ParaPen.Commands.Nodes;
 
@@ -20,18 +19,20 @@ public class CreateSubprogramNodeCommand : CommandBase
 		_bpContainer = bpContainer;
 	}
 
-	/// <param name="parameter">null</param>
+	/// <param name="parameter"><see langword="null"/></param>
 	public override void Execute(object? parameter)
     {
 		OpenFileDialog dialog = new()
 		{
-			Filter = "PPEV files (*.ppev)|*.ppev",
+			Filter = SUBPROGRAM_FILTER
 		};
+
 		bool? result = dialog.ShowDialog();
 		if (result != true)
 		{
 			return;
 		}
+		
 		string filePath = dialog.FileName;
 
 		BlockEdge[] edges = Deserialize(filePath);

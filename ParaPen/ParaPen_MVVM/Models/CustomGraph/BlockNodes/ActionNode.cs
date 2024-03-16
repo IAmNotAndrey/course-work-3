@@ -14,20 +14,10 @@ public class ActionNode : BlockNode
         Label = $"{action}";
 	}
 
-    //public ActionNode(string label, Action action) : base(label)
-    //{
-    //    _action = action;
-    //}
-
     /// <returns><see langword="true"/></returns>
     public override bool Execute()
     {
         Action.Invoke();
         return true;
     }
-
-	//public override string ToString()
-	//{
-	//	return $"{base.ToString()}-Action-{_action}";
-	//}
 }

@@ -3,7 +3,6 @@ using System.Runtime.Serialization;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
-//[Serializable]
 [DataContract]
 public class TerminalNode : BlockNode
 {

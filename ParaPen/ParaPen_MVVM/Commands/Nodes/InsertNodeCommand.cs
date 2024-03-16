@@ -27,7 +27,7 @@ public class InsertNodeCommand : CommandBase
 	{
 		if (parameter is not BlockEdge edge)
 		{
-			throw new ArgumentException(null, nameof(edge));
+			throw new ArgumentException(null, nameof(parameter));
 		}
 		
 		// Открываем диалог с выбором типа вершины

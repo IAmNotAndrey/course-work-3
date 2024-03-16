@@ -1,22 +1,17 @@
-﻿using ParaPen.Models.CustomGraph.BlockNodes;
-using QuickGraph;
-using System;
+﻿using QuickGraph;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Xml.Linq;
-using System.Xml.Serialization;
 
 namespace ParaPen.Models.CustomGraph;
 
-[Serializable]
-[KnownType(typeof(CountingLoopNode))]
-[KnownType(typeof(InkConditionNode))]
-[KnownType(typeof(InkPenActionNode))]
-[KnownType(typeof(SubprogramNode))]
-[KnownType(typeof(TerminalNode))]
-[KnownType(typeof(BlockNode))]
-[KnownType(typeof(BlockEdge))]
+//[Serializable]
+//[KnownType(typeof(CountingLoopNode))]
+//[KnownType(typeof(InkConditionNode))]
+//[KnownType(typeof(InkPenActionNode))]
+//[KnownType(typeof(SubprogramNode))]
+//[KnownType(typeof(TerminalNode))]
+//[KnownType(typeof(BlockNode))]
+//[KnownType(typeof(BlockEdge))]
 public class BlockDiagramGraph : BidirectionalGraph<object, IEdge<object>>
 {
 	public IEnumerable<object> GetAllConnectedVertices(object v)
@@ -53,6 +48,7 @@ public class BlockDiagramGraph : BidirectionalGraph<object, IEdge<object>>
 		}
 	}
 
+	/// <returns>Все <see cref="IEdge{TVertex}" />, как-либо связанные с <paramref name="vs"/></returns>
 	public IEnumerable<IEdge<object>> GetAllEdges(IEnumerable<object> vs)
 	{
 		HashSet<IEdge<object>> edges = new();

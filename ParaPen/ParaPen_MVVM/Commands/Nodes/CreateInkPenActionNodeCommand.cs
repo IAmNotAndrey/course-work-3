@@ -8,14 +8,6 @@ namespace ParaPen.Commands.Nodes;
 
 public class CreateInkPenActionNodeCommand : CommandBase
 {
-	//private BlockNode? _inkPenActionNode;
-
-	//public CreateInkPenActionNode(BlockNode? inkPenActionNode)
-	//{
-	//	_inkPenActionNode = inkPenActionNode;
-	//}
-
-
 	private readonly NodeSetDialogVMBase _vm;
 
 	public CreateInkPenActionNodeCommand(NodeSetDialogVMBase vm)

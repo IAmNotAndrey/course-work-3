@@ -9,13 +9,7 @@ public class UserViewMover : IUserViewMover
 {
 	public event EventHandler<OffsetEventArgs> UserViewOffsetChanged;
 
-	public double MovementSpeed { get; set; } = 2;
-	//private Point cursorPrePos;
-
-	//public UserViewMover(Point cursorPrePos)
-	//{
-	//	this.cursorPrePos = cursorPrePos;
-	//}
+	public double MovementSpeed { get; set; }
 
 	public void MoveUserView(Point cursorPrePos, Point cursorPoint)
 	{

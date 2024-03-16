@@ -1,29 +1,19 @@
-﻿using ParaPen.Models;
-using ParaPen.Models.CustomGraph;
+﻿using ParaPen.Models.CustomGraph;
 using ParaPen.Models.CustomGraph.BlockNodes;
-using ParaPen.Models.Enums;
-using QuickGraph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using static ParaPen.Models.StaticResources.StaticResources;
 
 namespace ParaPen.Helpers;
 public static class NodeHelper
 {
 	// TODO : упростить код
 
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <param name="node"></param>
-	/// <param name="branchValue">По какой ветке будет осуществлён переход</param>
-	/// <param name="blockDiagram"></param>
-	/// <returns></returns>
-	/// <exception cref="ArgumentException"></exception>
-	public static BlockNode? ReturnNextNode(BlockNode node, bool branchValue, BlockDiagramGraph blockDiagram)
+
+	/// <param name="node">OutEdges не может превышать 2</param>
+	/// <param name="branchValue">По какой ветке будет осуществлён переход</param>	
+	/// <exception cref="ArgumentException" /> // fixme : лучше другое исключение
+	public static BlockNode? ReturnNextNode(this BlockNode node, bool branchValue, BlockDiagramGraph blockDiagram)
 	{
 		// Нахождение исходящих рёбер
 		var outEdges = blockDiagram.OutEdges(node);
@@ -51,32 +41,14 @@ public static class NodeHelper
 		return target;
 	}
 
-	public static void ToggleHighlight(this BlockNode? node)
+	/// <summary>
+	/// Меняет значение <paramref name="node"/>.IsHighlighted на противоположное
+	/// </summary>
+	/// <param name="node"></param>
+	public static void ToggleHighlight(this BlockNode node)
 	{
-		if (node is not null)
-		{
-			node.IsHighlighted = !node.IsHighlighted;
-		}
+		node.IsHighlighted = !node.IsHighlighted;
 	}
-
-	#region ActionGetters
-
-	public static Action GetActionOutOfPenActions(double stepValue, PenActions penAction, Directions direction, InkPen inkPen, InkCanvas inkCanvas)
-	{
-		Vector vectorStep = DirectionVectorDict[direction] * stepValue;
-
-		Action action = penAction switch
-		{
-			PenActions.Move => () => inkPen.MoveOffset(vectorStep),
-			PenActions.Draw => () => inkPen.DrawLine(vectorStep, inkCanvas),
-			_ => throw new ArgumentException(null, nameof(penAction)),
-		};
-
-		return action;
-	}
-
-
-	#endregion
 
 	/// <summary>
 	/// Заменяет вершину на графе сохраняя рёбра
@@ -87,7 +59,7 @@ public static class NodeHelper
 		// Добавляем новую вершину на граф
 		graph.AddVertex(newNode);
 
-		List<BlockEdge> edgesToAdd = new();	
+		List<BlockEdge> edgesToAdd = new();
 
 		// Дублируем все входящие рёбра в `oldNode` для `newNode`
 		foreach (var edge in graph.InEdges(oldNode).Cast<BlockEdge>())
@@ -111,20 +83,18 @@ public static class NodeHelper
 		graph.RemoveVertex(oldNode);
 
 		graph.AddEdgeRange(edgesToAdd);
-
-		// fixme ? ссылка не изменяется? должна изменяться - не слушай IDE
 	}
 
 	/// <summary>
-	/// Находит начальную <see cref="TerminalNode"/> вершину в <paramref name="graph"/>
+	/// Находит начальную <see cref="TerminalNode"/> в <paramref name="graph"/>
 	/// </summary>
-	/// <returns><see cref="TerminalNode"/> или <see langword="null"/></returns>
+	/// <returns><see cref="TerminalNode"/> или <see langword="null"/>, если вершина не была найдена или было найдено более 1 совпадений</returns>
 	public static TerminalNode? GetStartNode(BlockDiagramGraph graph)
 	{
 		return (TerminalNode?)graph.Vertices
-			.SingleOrDefault(v => 
-				v is TerminalNode 
-				&& graph.OutEdges(v).Count() == 1 
+			.SingleOrDefault(v =>
+				v is TerminalNode
+				&& graph.OutEdges(v).Count() == 1
 			);
 	}
 }

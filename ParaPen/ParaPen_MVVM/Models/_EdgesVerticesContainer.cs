@@ -1,9 +1,6 @@
 ﻿using ParaPen.Models.CustomGraph;
 using ParaPen.Models.CustomGraph.BlockNodes;
-using QuickGraph;
-using System;
 using System.Runtime.Serialization;
-using System.Xml.Serialization;
 
 namespace ParaPen.Models;
 
@@ -24,7 +21,7 @@ namespace ParaPen.Models;
 [KnownType(typeof(BlockNode))]
 [KnownType(typeof(BlockEdge))]
 [DataContract]
-public class EdgesVerticesContainer
+public class _EdgesVerticesContainer
 {
 	[DataMember]
 	public BlockNode[] Vertices { get; set; } = null!;

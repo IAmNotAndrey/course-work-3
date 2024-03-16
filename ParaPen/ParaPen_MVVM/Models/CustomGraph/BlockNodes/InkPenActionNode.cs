@@ -2,12 +2,10 @@
 using System;
 using System.Runtime.Serialization;
 using System.Windows.Controls;
-using System.Xml.Serialization;
-using static ParaPen.Helpers.NodeHelper;
+using static ParaPen.Helpers.InkPenHelper;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
-//[Serializable]
 [DataContract]
 public class InkPenActionNode : BlockNode
 {
@@ -20,7 +18,6 @@ public class InkPenActionNode : BlockNode
 	[DataMember]
 	public Directions Direction { get; init; }
 
-	//[XmlIgnore]
 	[IgnoreDataMember]
 	public Action? Action { get; set; }
 
@@ -45,14 +42,6 @@ public class InkPenActionNode : BlockNode
 		return new ActionNode(action);
 	}
 
-
-	///// <summary>
-	///// Всегда возвращает <see langword="false">, так как сама по себе напрямую не используется а преображается в <see cref="ActionNode"/>
-	///// </summary>
-	///// <returns><see langword="false"/></returns>
-	/// <summary>
-	/// Вызывает исключение
-	/// </summary>
 	public override bool Execute()
 	{
 		if (Action is null)
