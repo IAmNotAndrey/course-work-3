@@ -12,7 +12,7 @@ public static class EdgesVerticesContainerSerializer
 
 	public static void Serialize(BlockEdge[] edges, string fileName)
 	{
-		using FileStream fs = new(fileName, FileMode.OpenOrCreate);
+		using FileStream fs = new(fileName, FileMode.Create);
 		_serializer.WriteObject(fs, edges);
 	}
 

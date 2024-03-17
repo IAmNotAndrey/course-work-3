@@ -175,8 +175,9 @@
 		<Button Height="20"  Content="Удалить" Command="{Binding DeleteBlockPenContainer}" CommandParameter="{Binding SelectedItem, ElementName=blockPenContainersLB}" VerticalAlignment="Bottom" Margin="720,0,20,95" />
 		<!-- -->
 
-		<Button Content="Add" HorizontalAlignment="Left" Margin="485,364,0,0" VerticalAlignment="Top" Command="{Binding AddBlockPenContainer}" />
+		<Button Content="Add" HorizontalAlignment="Left" Margin="460,364,0,50" Command="{Binding AddBlockPenContainer}" Width="51" />
 
 		<Button Content="LaunchStep" HorizontalAlignment="Left" Margin="540,364,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAndGoToNextNodesCommand}" />
+		<Button Content="LaunchAll" HorizontalAlignment="Left" Margin="635,364,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAllNodesCommand}" />
 	</Grid>
 </Window>

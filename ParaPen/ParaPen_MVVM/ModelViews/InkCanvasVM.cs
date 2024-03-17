@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using static ParaPen.Models.StaticResources.AppConfigs;
+using static ParaPen.Models.StaticResources.AppConfig;
 
 namespace ParaPen.ModelViews;
 

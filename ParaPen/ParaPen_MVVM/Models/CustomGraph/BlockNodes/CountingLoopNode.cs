@@ -7,23 +7,20 @@ namespace ParaPen.Models.CustomGraph.BlockNodes;
 [DataContract]
 public class CountingLoopNode : BlockNode, IResetable
 {
-	private readonly uint _count;
-
-
 	[DataMember]
+	public uint UnchangingCount { get; init; }
+
+
+	[IgnoreDataMember]
     public uint Count { get; set; }
 
 
 	[Obsolete]
-    public CountingLoopNode() 
-	{ 
-		// Восстанавливаем значение после десериализации
-		_count = Count; 
-	}
+	public CountingLoopNode() { }
 
     public CountingLoopNode(uint count)
 	{
-		_count = count;
+		UnchangingCount = count;
 		Count = count;
 
 		Label = ToString();
@@ -53,7 +50,7 @@ public class CountingLoopNode : BlockNode, IResetable
 
 	public override void Reset()
 	{
-		Count = _count;
+		Count = UnchangingCount;
 		base.Reset();
 	}
 }

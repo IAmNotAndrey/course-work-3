@@ -3,12 +3,10 @@ using ParaPen.Commands.Nodes;
 using ParaPen.Commands.Serialization;
 using ParaPen.Models;
 using ParaPen.Models.CustomGraph;
-using ParaPen.Models.Interfaces;
 using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using static ParaPen.Models.StaticResources.AppConfigs;
+using static ParaPen.Models.StaticResources.AppConfig;
 
 namespace ParaPen.ModelViews;
 
@@ -16,10 +14,8 @@ public class BlockDiagramVM : ViewModelBase
 {
 	private readonly InkCanvasVM _inkCanvasVM;
 	private readonly InkCanvas _inkCanvas;
-	private IUserViewMover UserViewMover => _inkCanvasVM.UserViewMover;
+	//private IUserViewMover UserViewMover => _inkCanvasVM.UserViewMover;
 
-
-	private readonly Vector _inkCanvasWindowViewOffset;
 
 	private BlockDiagramGraph _blockDiagram = new();
 	public BlockDiagramGraph BlockDiagram
@@ -32,7 +28,6 @@ public class BlockDiagramVM : ViewModelBase
 		}
 	}
 
-
 	public ObservableCollection<BlockPenContainer> BlockPenContainers { get; } = new();
 
 
@@ -40,7 +35,7 @@ public class BlockDiagramVM : ViewModelBase
 
 	public ICommand InsertNodeCommand => new InsertNodeCommand(BlockDiagram, BlockPenContainers);
 
-	public ICommand AddBlockPenContainer => new AddBlockPenContainerCommand(BlockPenContainers, BlockDiagram, UserViewMover, _inkCanvas, BLOCK_DIAGRAM_LIMIT, _inkCanvasVM);
+	public ICommand AddBlockPenContainer => new AddBlockPenContainerCommand(BlockPenContainers, BlockDiagram, _inkCanvasVM.UserViewMover, _inkCanvas, BLOCK_DIAGRAM_LIMIT, _inkCanvasVM);
 	public ICommand DeleteBlockPenContainer => new DeleteBlockPenContainerCommand(BlockPenContainers, BlockDiagram);
 
 	public ICommand SerializeEdges => new SerializeEdgesCommand(BlockDiagram);
@@ -49,9 +44,8 @@ public class BlockDiagramVM : ViewModelBase
 	//public ICommand ResetBlockPenContainers => ResetBlockPenContainersCommand();
 
 	public ICommand ExecuteAndGoToNextNodesCommand => new ExecuteAndGoToNextNodesCommand(BlockPenContainers, BlockDiagram);
-
 	// todo
-	//public ICommand ExecuteAllNodesCommands => new ExecuteAllNodesCommand(_blockPenContainers, BlockDiagram);
+	public ICommand ExecuteAllNodesCommand => new ExecuteAllNodesCommand(ACTION_DELAY_TIME, BlockPenContainers, BlockDiagram);
 
 
 	#endregion

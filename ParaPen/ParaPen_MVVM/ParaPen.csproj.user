@@ -10,10 +10,10 @@
     <Compile Update="Views\BlockDiagramWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\BlockDiagramUC.xaml.cs">
+    <Compile Update="Views\_BlockDiagramUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\BlockPenContainerRemoveUC.xaml.cs">
+    <Compile Update="Views\_BlockPenContainerRemoveUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\CountingLoopDialog.xaml.cs">
@@ -33,10 +33,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Views\BlockDiagramUC.xaml">
+    <Page Update="Views\_BlockDiagramUC.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\BlockPenContainerRemoveUC.xaml">
+    <Page Update="Views\_BlockPenContainerRemoveUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\ControlTemplates\_LoopEdgeCT.xaml">

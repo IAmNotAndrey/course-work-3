@@ -53,6 +53,8 @@ public class BlockPenContainer : IResetable
 	public void Reset()
 	{
 		SelectedNode = StartNode;
+		// bug при смещении и остановке выполнения устанавливаются неправильные координаты
+		InkPen.Reset();
 
 		// Находим все вершины, которые реализуют интерфейс IResetable
 		IEnumerable<IResetable> resetableNodes = BlockDiagramGraph.GetAllConnectedVertices(StartNode).OfType<IResetable>();

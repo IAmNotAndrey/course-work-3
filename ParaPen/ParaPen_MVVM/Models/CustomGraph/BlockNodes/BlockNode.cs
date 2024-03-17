@@ -15,7 +15,7 @@ public abstract class BlockNode : INotifyPropertyChanged, IResetable
 	[DataMember]
 	public string? Label { get; init; }
 
-	private bool _isHighlighted;
+	private bool _isHighlighted = false;
 
 	[IgnoreDataMember]
 	public bool IsHighlighted

@@ -3,6 +3,7 @@ using ParaPen.Models;
 using ParaPen.Models.CustomGraph;
 using ParaPen.Models.CustomGraph.BlockNodes;
 using System.Collections.Generic;
+using System.Linq;
 using static ParaPen.Helpers.NodeHelper;
 
 namespace ParaPen.Commands;
@@ -28,7 +29,12 @@ public class ExecuteAndGoToNextNodesCommand : CommandBase
 
 	public override void Execute(object? parameter)
 	{
-		//List<BlockPenContainer> updatedContainers = new();
+		//// todo Если закончили выполнение всех `_blockPenContainers`, то все Reset() 
+		//if (_blockPenContainers.All(c => c.SelectedNode is null))
+		//{
+		//	foreach (var container in _blockPenContainers) { container.Reset(); }
+		//	return;
+		//}
 
 		foreach (var container in _blockPenContainers)
 		{

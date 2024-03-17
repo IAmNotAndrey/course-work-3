@@ -1,13 +1,16 @@
-﻿using System.ComponentModel;
+﻿using ParaPen.Models.Interfaces;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Ink;
 
 namespace ParaPen.Models;
 
-public class InkPen : INotifyPropertyChanged
+public class InkPen : INotifyPropertyChanged, IResetable
 {
-    //public event EventHandler<PositionEventArgs> PenPositionChanged;
+	private readonly Point _startCords;
+
+	//public event EventHandler<PositionEventArgs> PenPositionChanged;
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 
@@ -30,11 +33,12 @@ public class InkPen : INotifyPropertyChanged
 
 	public DrawingAttributes DrawingAttributes { get; }
 
-    public InkPen(Point startCords, DrawingAttributes drawingAttributes)
-    {
-        CurCords = startCords;
-        DrawingAttributes = drawingAttributes;
-    }
+	public InkPen(Point startCords, DrawingAttributes drawingAttributes)
+	{
+		_startCords = startCords;
+		CurCords = startCords;
+		DrawingAttributes = drawingAttributes;
+	}
 
 	/// <returns><see cref="CurCords"/> <see langword="+"/> <paramref name="offset"/></returns>
 	public Point MoveOffset(Vector offset)
@@ -46,5 +50,10 @@ public class InkPen : INotifyPropertyChanged
 	protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
 	{
 		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+	}
+
+	public void Reset() 
+	{
+		CurCords = _startCords;
 	}
 }

@@ -2,7 +2,7 @@
 using ParaPen.Models.Enums;
 using ParaPen.ModelViews.Dialogs;
 using System;
-using static ParaPen.Models.StaticResources.AppConfigs;
+using static ParaPen.Models.StaticResources.AppConfig;
 
 namespace ParaPen.Commands.Nodes;
 

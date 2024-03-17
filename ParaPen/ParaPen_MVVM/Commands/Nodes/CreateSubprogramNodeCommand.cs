@@ -4,7 +4,7 @@ using ParaPen.Models.CustomGraph;
 using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.ModelViews.Dialogs;
 using static ParaPen.Serializers.EdgesVerticesContainerSerializer;
-using static ParaPen.Models.StaticResources.AppConfigs;
+using static ParaPen.Models.StaticResources.AppConfig;
 
 namespace ParaPen.Commands.Nodes;
 

@@ -30,10 +30,6 @@ D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\QuickGraph
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\QuickGraph.dll
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\WPFExtensions.dll
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
-D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\BlockDiagramUC.g.cs
-D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\BlockDiagramUC.baml
-D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\BlockPenContainerRemoveUC.g.cs
-D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\BlockPenContainerRemoveUC.baml
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\System.Windows.Interactivity.dll
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\Microsoft.Xaml.Behaviors.dll
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\InkPenActionDialog.g.cs
@@ -64,3 +60,7 @@ D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\InkC
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\InkConditionDialog.baml
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\EdgeTypeChoosingDialog.g.cs
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\EdgeTypeChoosingDialog.baml
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\_BlockDiagramUC.g.cs
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\_BlockPenContainerRemoveUC.g.cs
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\_BlockDiagramUC.baml
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\_BlockPenContainerRemoveUC.baml

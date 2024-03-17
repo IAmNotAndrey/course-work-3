@@ -5,7 +5,7 @@ using ParaPen.Models.CustomGraph.BlockNodes;
 using System;
 using System.Linq;
 using static ParaPen.Serializers.EdgesVerticesContainerSerializer;
-using static ParaPen.Models.StaticResources.AppConfigs;
+using static ParaPen.Models.StaticResources.AppConfig;
 
 namespace ParaPen.Commands.Serialization;
 
@@ -44,9 +44,17 @@ public class SerializeEdgesCommand : CommandBase
         string filePath = dialog.FileName;
 
         // Получаем все вершины BlockPenContainer'а
-        var nodes = _graph.GetAllConnectedVertices(bpContainer.StartNode);
+        var nodes = _graph.GetAllConnectedVertices(bpContainer.StartNode).Cast<BlockNode>();
+
+        // Reset все вершины перед сериализацией для восстановления всех значений
+        foreach (var n in nodes)
+        {
+            n.Reset();
+        }
+
         // Получаем все рёбра BlockPenContainer'а
         var edges = _graph.GetAllEdges(nodes);
+
 
         Serialize(edges.Cast<BlockEdge>().ToArray(), filePath);
     }
