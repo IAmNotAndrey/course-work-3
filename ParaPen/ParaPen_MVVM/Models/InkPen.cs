@@ -1,7 +1,4 @@
-﻿using ParaPen.Models.EventArgs;
-using ParaPen.Models.Interfaces;
-using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Ink;
@@ -13,6 +10,7 @@ public class InkPen : INotifyPropertyChanged
     //public event EventHandler<PositionEventArgs> PenPositionChanged;
 	public event PropertyChangedEventHandler? PropertyChanged;
 
+
 	private Point curCords;
 	public Point CurCords
 	{
@@ -21,11 +19,14 @@ public class InkPen : INotifyPropertyChanged
 		{
 			if (curCords != value)
 			{
-				OnPropertyChanged(nameof(CurCords));
 				curCords = value;
+				OnPropertyChanged(nameof(CurCords));
+				//OnPropertyChanged(nameof(CurCords.X));
+				//OnPropertyChanged(nameof(CurCords.Y));
 			}
 		}
 	}
+
 
 	public DrawingAttributes DrawingAttributes { get; }
 

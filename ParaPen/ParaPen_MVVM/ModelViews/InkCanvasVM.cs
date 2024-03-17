@@ -1,6 +1,7 @@
 ﻿using ParaPen.Commands;
 using ParaPen.Models;
 using ParaPen.Models.Interfaces;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -15,18 +16,23 @@ public class InkCanvasVM : ViewModelBase
 
 	public IUserViewMover UserViewMover { get; init; }
 
+	//fixme это ссылка из BlockDiagramVM! Не надо так делать
+	public ObservableCollection<BlockPenContainer> BlockPenContainers { get; set; }
+
+
+	public ICommand ZoomInCommand => new ZoomInCommand(_inkCanvas, _inkScalerService);
+	public ICommand ZoomOutCommand => new ZoomOutCommand(_inkCanvas, _inkScalerService);
+	public ICommand MoveUserViewCommand => new MoveUserViewCommand(UserViewMover);
+
+
 	public InkCanvasVM(InkCanvas inkCanvas)
 	{
-		_inkScalerService = new InkScalerService(1.1);
+		_inkScalerService = new InkScalerService(ZOOM_FACTOR);
 		_inkCanvas = inkCanvas;
 		UserViewMover = new UserViewMover() { MovementSpeed = USER_VIEW_SPEED } ;
 
 		UserViewMover.UserViewOffsetChanged += OnUserViewOffsetChanged;
 	}
-
-	public ICommand ZoomInCommand => new ZoomInCommand(_inkCanvas, _inkScalerService);
-	public ICommand ZoomOutCommand => new ZoomOutCommand(_inkCanvas, _inkScalerService);
-	public ICommand MoveUserViewCommand => new MoveUserViewCommand(UserViewMover);
 
 
 	private void OnUserViewOffsetChanged(object? sender, Models.EventArgs.OffsetEventArgs e)

@@ -23,8 +23,6 @@ public partial class MainWindow : Window
 		PreviewMouseMove += MainWindow_PreviewMouseMove;
 		PreviewMouseDown += MainWindow_OnMouseEvent;
 		PreviewMouseUp += MainWindow_OnMouseEvent;
-
-		DataContext = new InkCanvasVM(inkCanvas);
 	}
 
 	private void MainWindow_PreviewMouseMove(object sender, MouseEventArgs e)

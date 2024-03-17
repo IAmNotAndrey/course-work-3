@@ -4,15 +4,56 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ParaPen.Views"
+        xmlns:convs="clr-namespace:ParaPen.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-	<Grid x:Name="grid">
+	<Window.Resources>
+		<!--<DataTemplate x:Key="InkPenTemplate">
+            <Ellipse Width="10" Height="10" Fill="{Binding DrawingAttributes.Color}" 
+                     Canvas.Left="{Binding CurCords.X}" Canvas.Top="{Binding CurCords.Y}" />
+            -->
+		<!-- Здесь может быть ваш шаблон для карандаша -->
+		<!--
+        </DataTemplate>-->
+		<convs:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+	</Window.Resources>
+
+	<Grid>
 		<ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
-			<!--Canvas для бесконечного поля-->
 			<InkCanvas x:Name="inkCanvas" Background="White">
-				<Canvas x:Name="inkImageCanvas">
-				</Canvas>
+				<!-- BUG Пишет об ошибке привязки к X и Y, но работает :/ -->
+				<ItemsControl ItemsSource="{Binding BlockPenContainers}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Ellipse Width="10" Height="10" 
+                                     Stroke="{Binding InkPen.DrawingAttributes.Color, Converter={StaticResource ColorToBrushConverter}}" 
+                                     StrokeThickness="2">
+								<Ellipse.RenderTransform >
+									<TranslateTransform X="{Binding InkPen.CurCords.X}" 
+														Y="{Binding InkPen.CurCords.Y}" />
+								</Ellipse.RenderTransform>
+							</Ellipse>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
 			</InkCanvas>
 		</ScrollViewer>
 	</Grid>
+	<!--<Grid>
+		<ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+			<InkCanvas x:Name="inkCanvas" Background="White">
+				<ItemsControl ItemsSource="{Binding BlockPenContainers}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Ellipse Width="10" Height="10" 
+                                     Stroke="{Binding InkPen.DrawingAttributes.Color, Converter={StaticResource ColorToBrushConverter}}" 
+                                     StrokeThickness="2"
+									 InkCanvas.Left="{Binding InkPen.CurCords.X}" 
+                                     InkCanvas.Top="{Binding InkPen.CurCords.Y}" />
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</InkCanvas>
+		</ScrollViewer>
+	</Grid>-->
 </Window>

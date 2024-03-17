@@ -2,12 +2,14 @@
 using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.Models.Interfaces;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Controls;
 using static ParaPen.Converters.ColorConverter;
 
 namespace ParaPen.Models;
 
+// FIXME : упростить по возможности
 public class BlockPenContainer : IResetable
 {
 	private BlockNode? _selectedNode;
@@ -16,8 +18,6 @@ public class BlockPenContainer : IResetable
 		get => _selectedNode;
 		set
 		{
-			// FIXME : упростить по возможности
-
 			// NOTE : изменять при каждом вхождении такой ноды: так как изменяются координаты InkPen
 			if (value is InkPenActionNode inkPenActionNode)
 			{
@@ -64,7 +64,7 @@ public class BlockPenContainer : IResetable
 	{
 		InkPen.CurCords += e.Offset;
 	}
-
+	
 	public override string ToString()
 	{
 		// fixme не отображается название цвета
