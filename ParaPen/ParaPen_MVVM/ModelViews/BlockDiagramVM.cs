@@ -5,16 +5,21 @@ using ParaPen.Models;
 using ParaPen.Models.CustomGraph;
 using ParaPen.Models.Interfaces;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using static ParaPen.Models.StaticResources.StaticResources;
+using static ParaPen.Models.StaticResources.AppConfigs;
 
 namespace ParaPen.ModelViews;
 
 public class BlockDiagramVM : ViewModelBase
 {
+	private readonly InkCanvasVM _inkCanvasVM;
 	private readonly InkCanvas _inkCanvas;
-	private readonly IUserViewMover _userViewMover;
+	private IUserViewMover UserViewMover => _inkCanvasVM.UserViewMover;
+
+
+	private readonly Vector _inkCanvasWindowViewOffset;
 
 	private BlockDiagramGraph _blockDiagram = new();
 	public BlockDiagramGraph BlockDiagram
@@ -27,6 +32,7 @@ public class BlockDiagramVM : ViewModelBase
 		}
 	}
 
+
 	public ObservableCollection<BlockPenContainer> BlockPenContainers { get; } = new();
 
 
@@ -34,7 +40,7 @@ public class BlockDiagramVM : ViewModelBase
 
 	public ICommand InsertNodeCommand => new InsertNodeCommand(BlockDiagram, BlockPenContainers);
 
-	public ICommand AddBlockPenContainer => new AddBlockPenContainerCommand(BlockPenContainers, BlockDiagram, _userViewMover, _inkCanvas, BLOCK_DIAGRAM_LIMIT);
+	public ICommand AddBlockPenContainer => new AddBlockPenContainerCommand(BlockPenContainers, BlockDiagram, UserViewMover, _inkCanvas, BLOCK_DIAGRAM_LIMIT, _inkCanvasVM);
 	public ICommand DeleteBlockPenContainer => new DeleteBlockPenContainerCommand(BlockPenContainers, BlockDiagram);
 
 	public ICommand SerializeEdges => new SerializeEdgesCommand(BlockDiagram);
@@ -50,10 +56,20 @@ public class BlockDiagramVM : ViewModelBase
 
 	#endregion
 
-	public BlockDiagramVM(InkCanvas inkCanvas, IUserViewMover userViewMover)
+	//public BlockDiagramVM(InkCanvas inkCanvas, IUserViewMover userViewMover, ref Vector inkCanvasWindowViewOffset)
+	//{
+	//	_inkCanvas = inkCanvas;
+	//	_userViewMover = userViewMover;
+
+	//	_inkCanvasWindowViewOffset = inkCanvasWindowViewOffset;
+
+	//	AddBlockPenContainer.Execute(null);
+	//}
+
+	public BlockDiagramVM(InkCanvasVM inkCanvasVM, InkCanvas inkCanvas)
 	{
+		_inkCanvasVM = inkCanvasVM;
 		_inkCanvas = inkCanvas;
-		_userViewMover = userViewMover;
 
 		AddBlockPenContainer.Execute(null);
 	}

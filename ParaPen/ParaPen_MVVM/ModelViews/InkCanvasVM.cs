@@ -2,10 +2,11 @@
 using ParaPen.Models;
 using ParaPen.Models.Interfaces;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using static ParaPen.Models.StaticResources.StaticResources;
+using static ParaPen.Models.StaticResources.AppConfigs;
 
 namespace ParaPen.ModelViews;
 
@@ -15,6 +16,8 @@ public class InkCanvasVM : ViewModelBase
 	private readonly InkCanvas _inkCanvas;
 
 	public IUserViewMover UserViewMover { get; init; }
+	public Vector UserViewOffset { get; private set; } = new(0, 0);
+
 
 	//fixme это ссылка из BlockDiagramVM! Не надо так делать
 	public ObservableCollection<BlockPenContainer> BlockPenContainers { get; set; }
@@ -39,5 +42,6 @@ public class InkCanvasVM : ViewModelBase
 	{
 		// Перемещаем Strokes
 		_inkCanvas.Strokes.Transform(new Matrix(1, 0, 0, 1, e.Offset.X, e.Offset.Y), false);
+		UserViewOffset += e.Offset;
 	}
 }

@@ -5,7 +5,7 @@ using ParaPen.Models.CustomGraph.BlockNodes;
 using System;
 using System.Linq;
 using static ParaPen.Serializers.EdgesVerticesContainerSerializer;
-using static ParaPen.Models.StaticResources.StaticResources;
+using static ParaPen.Models.StaticResources.AppConfigs;
 
 namespace ParaPen.Commands.Serialization;
 

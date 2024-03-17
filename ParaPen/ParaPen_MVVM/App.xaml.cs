@@ -18,7 +18,8 @@ public partial class App : Application
 
 		BlockDiagramWindow blockDiagramWindow = new();
 		//blockDiagramWindow.blockDiagramUC.DataContext = new BlockDiagramUC_VM(mainWindow.inkCanvas, ((InkCanvasVM)mainWindow.DataContext).UserViewMover);
-		var blockDiagramVM = new BlockDiagramVM(mainWindow.inkCanvas, ((InkCanvasVM)mainWindow.DataContext).UserViewMover);
+		//var blockDiagramVM = new BlockDiagramVM(mainWindow.inkCanvas, ((InkCanvasVM)mainWindow.DataContext).UserViewMover);
+		var blockDiagramVM = new BlockDiagramVM(((InkCanvasVM)mainWindow.DataContext), mainWindow.inkCanvas);
 		blockDiagramWindow.DataContext = blockDiagramVM;
 
 		// fixme постнастройка

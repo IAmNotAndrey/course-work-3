@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Controls;
 using static ParaPen.Helpers.InkCanvasMethods;
-using static ParaPen.Models.StaticResources.StaticResources;
+using static ParaPen.Models.StaticResources.AppConfigs;
 
 namespace ParaPen.Models.CustomGraph.BlockNodes;
 
