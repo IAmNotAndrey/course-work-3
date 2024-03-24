@@ -37,6 +37,7 @@ public class CountingLoopNode : BlockNode, IResetable
     {
         if (Count == 0)
         {
+			Reset();
             return true;
         }
         Count--;

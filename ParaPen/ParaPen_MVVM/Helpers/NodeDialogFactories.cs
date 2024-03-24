@@ -4,6 +4,7 @@ using System.Windows;
 
 namespace ParaPen.Helpers;
 
+
 public class InkConditionNodeDialogFactory : INodeDialogFactory
 {
 	public Window CreateDialog()

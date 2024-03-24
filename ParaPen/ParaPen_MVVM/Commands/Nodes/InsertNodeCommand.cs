@@ -29,7 +29,7 @@ public class InsertNodeCommand : CommandBase
 		{
 			throw new ArgumentException(null, nameof(parameter));
 		}
-		
+
 		// Открываем диалог с выбором типа вершины
 		NodeChoosingDialog nodeTypeChoosingDialog = new();
 		nodeTypeChoosingDialog.ShowDialog();
@@ -68,8 +68,8 @@ public class InsertNodeCommand : CommandBase
 		// Добавляем новую вершину
 		_blockDiagramGraph.AddVertex(nodeToAdd);
 
-		// Если добавляемая вершина CountingLoopNode или SubprogramNode, то ей дополнительно добавляем петлю с значением false
-		if (nodeToAdd is CountingLoopNode || nodeToAdd is SubprogramNode)
+		// Если добавляемая вершина CountingLoopNode, SubprogramNode или InkConditionLoopNode то ей дополнительно добавляем петлю с значением false
+		if (nodeToAdd is CountingLoopNode || nodeToAdd is SubprogramNode || creatingNodeType.Equals(typeof(InkConditionLoopNode)))
 		{
 			_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, nodeToAdd, false));
 		}
@@ -78,6 +78,7 @@ public class InsertNodeCommand : CommandBase
 		{
 			_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, t, false));
 		}
+
 
 		// Соединяем новую вершину с предыдущей и последующей
 		_blockDiagramGraph.AddEdge(new BlockEdge(s, nodeToAdd, edge.Value));
@@ -90,6 +91,7 @@ public class InsertNodeCommand : CommandBase
 		Dictionary<Type, INodeDialogFactory> dialogFactories = new()
 		{
 			{ typeof(InkConditionNode), new InkConditionNodeDialogFactory() },
+			{ typeof(InkConditionLoopNode), new InkConditionNodeDialogFactory() },
 			{ typeof(CountingLoopNode), new CountingLoopNodeDialogFactory() },
 			{ typeof(InkPenActionNode), new InkPenActionNodeDialogFactory() }
 		};

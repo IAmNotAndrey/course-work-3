@@ -26,6 +26,7 @@ public class SubprogramNode : BlockNode, IResetable
 			StartNode = GetStartNode(localBlockDiagram) ?? throw new ArgumentException($"{nameof(edges)} has no start vertex", nameof(edges)),
 			BlockDiagramGraph = localBlockDiagram
 		};
+		// Устанавливаем `SelectedNode`
 		_container.Reset();
 
 		//FIXME

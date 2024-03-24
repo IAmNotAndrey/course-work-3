@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ParaPen.Models.CustomGraph.BlockNodes.ActionNode">
+    <Position X="3.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\CustomGraph\BlockNodes\ActionNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParaPen.Models.CustomGraph.BlockNodes.BlockNode">
+    <Position X="9" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAABAQEIIAAgAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CustomGraph\BlockNodes\BlockNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ParaPen.Models.CustomGraph.BlockNodes.ConditionNode">
+    <Position X="12.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CustomGraph\BlockNodes\ConditionNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParaPen.Models.CustomGraph.BlockNodes.CountingLoopNode">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAABAQEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CustomGraph\BlockNodes\CountingLoopNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ParaPen.Models.CustomGraph.BlockNodes.InkConditionNode">
+    <Position X="9" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAKAAAQAACAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CustomGraph\BlockNodes\InkConditionNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParaPen.Models.CustomGraph.BlockNodes.InkPenActionNode">
+    <Position X="14.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAACAAAAAAQBAAAAAAAAAAAgAAAAQ=</HashCode>
+      <FileName>Models\CustomGraph\BlockNodes\InkPenActionNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ParaPen.Models.CustomGraph.BlockNodes.SubprogramNode">
+    <Position X="7.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAQAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CustomGraph\BlockNodes\SubprogramNode.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ParaPen.Models.CustomGraph.BlockNodes.TerminalNode">
+    <Position X="10.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CustomGraph\BlockNodes\TerminalNode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

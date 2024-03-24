@@ -69,13 +69,18 @@ public partial class BlockDiagramWindow : Window
 
 		else if (e.Source is VertexControl vertexControl)
 		{
-			if (vertexControl.Vertex is not CountingLoopNode countingLoopNode)
+			//if (vertexControl.Vertex is not CountingLoopNode countingLoopNode)
+			//{
+			//	return;
+			//}
+			// Проверяем, есть ли у вершины петля
+			if (!graphLayout.Graph.OutEdges(vertexControl.Vertex).Any(e => ((BlockEdge)e).IsLooped))
 			{
 				return;
 			}
 
 			// Получение петли
-			var edge = graphLayout.Graph.Edges.SingleOrDefault(e => e.Source == e.Target && e.Source == countingLoopNode);
+			var edge = graphLayout.Graph.Edges.SingleOrDefault(e => e.Source == e.Target && e.Source == vertexControl.Vertex);
 			if (edge is not null)
 			{
 				((BlockDiagramVM)DataContext).InsertNodeCommand.Execute(edge);

@@ -2,7 +2,6 @@
 using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.Models.Interfaces;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Controls;
 using static ParaPen.Converters.ColorConverter;

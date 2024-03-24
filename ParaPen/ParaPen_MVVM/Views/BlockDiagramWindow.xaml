@@ -8,6 +8,7 @@
 		xmlns:mv="clr-namespace:ParaPen.ModelViews"
 		xmlns:cg="clr-namespace:ParaPen.Models.CustomGraph"
 		xmlns:bn="clr-namespace:ParaPen.Models.CustomGraph.BlockNodes"
+		xmlns:convs="clr-namespace:ParaPen.Converters"
 		xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 		
 		mc:Ignorable="d"
@@ -16,6 +17,9 @@
 
 
 	<Window.Resources>
+		<convs:IsItemBlockPenContainerConverter x:Key="IsItemBlockPenContainerConverter"/>
+		<convs:IsBlockPenContainersInLimitConverter x:Key="IsBlockPenContainersInLimitConverter"/>
+
 		<DataTemplate DataType="{x:Type bn:BlockNode}">
 			<Border BorderThickness="1">
 				<Border.Style>
@@ -156,14 +160,13 @@
 						HighlightAlgorithmType="Simple"
 						/>
 
-
-
 		<!--  -->
 		<ListBox x:Name="blockPenContainersLB" 
 				 Height="100"
 				 Width="100"
 				 HorizontalAlignment="Right"
-				 ItemsSource="{Binding BlockPenContainers}">
+				 ItemsSource="{Binding BlockPenContainers}"
+				 >
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<TextBlock Text="{Binding Label}" />
@@ -171,11 +174,28 @@
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-		<Button Height="20"  Content="Сериализовать" Command="{Binding SerializeEdges}" CommandParameter="{Binding SelectedItem, ElementName=blockPenContainersLB}" VerticalAlignment="Top" Margin="683,274,10,0" />
-		<Button Height="20"  Content="Удалить" Command="{Binding DeleteBlockPenContainer}" CommandParameter="{Binding SelectedItem, ElementName=blockPenContainersLB}" VerticalAlignment="Bottom" Margin="720,0,20,95" />
+		<Button Content="Сериализовать"
+				Command="{Binding SerializeEdges}"
+				CommandParameter="{Binding SelectedItem, ElementName=blockPenContainersLB}"
+				IsEnabled="{Binding SelectedItem, ElementName=blockPenContainersLB, Converter={StaticResource IsItemBlockPenContainerConverter}}"
+				Height="20" VerticalAlignment="Top" Margin="683,274,10,0" 
+				/>
+		<Button Content="Удалить" 
+				CommandParameter="{Binding SelectedItem, ElementName=blockPenContainersLB}" 
+				Command="{Binding DeleteBlockPenContainer}"
+				IsEnabled="{Binding SelectedItem, ElementName=blockPenContainersLB, Converter={StaticResource IsItemBlockPenContainerConverter}}"
+				Height="20" VerticalAlignment="Bottom" Margin="720,0,20,95" 
+				/>
 		<!-- -->
 
-		<Button Content="Add" HorizontalAlignment="Left" Margin="460,364,0,50" Command="{Binding AddBlockPenContainer}" Width="51" />
+		<!-- BUG Кнопка не перестаёт быть активной при выход за лимит -->
+		<Button Content="Add" 
+				Command="{Binding AddBlockPenContainer}"
+				IsEnabled="{Binding BlockPenContainers, Converter={StaticResource IsBlockPenContainersInLimitConverter}}"
+				Width="51" Height="30" 
+				HorizontalAlignment="Left" VerticalAlignment="Top" Margin="444,364,0,0" 
+				/>
+
 
 		<Button Content="LaunchStep" HorizontalAlignment="Left" Margin="540,364,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAndGoToNextNodesCommand}" />
 		<Button Content="LaunchAll" HorizontalAlignment="Left" Margin="635,364,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAllNodesCommand}" />

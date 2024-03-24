@@ -39,6 +39,7 @@ public class BlockDiagramVM : ViewModelBase
 	public ICommand DeleteBlockPenContainer => new DeleteBlockPenContainerCommand(BlockPenContainers, BlockDiagram);
 
 	public ICommand SerializeEdges => new SerializeEdgesCommand(BlockDiagram);
+	//public ICommand SerializeEdges => new SerializeEdgesCommand(BlockDiagram, SelectedBlockPenContainer);
 
 	//todo
 	//public ICommand ResetBlockPenContainers => ResetBlockPenContainersCommand();

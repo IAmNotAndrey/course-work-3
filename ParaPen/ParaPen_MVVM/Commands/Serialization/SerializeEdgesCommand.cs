@@ -12,11 +12,13 @@ namespace ParaPen.Commands.Serialization;
 public class SerializeEdgesCommand : CommandBase
 {
     private readonly BlockDiagramGraph _graph;
+	//private readonly BlockPenContainer _selectedBlockPenContainer;
 
-    public SerializeEdgesCommand(BlockDiagramGraph graph)
+	public SerializeEdgesCommand(BlockDiagramGraph graph)
     {
         _graph = graph;
-    }
+		//_selectedBlockPenContainer = selectedBlockPenContainer;
+	}
 
 	/// <param name="parameter"> <see cref="BlockPenContainer"/></param>
 	public override void Execute(object? parameter)
@@ -26,7 +28,7 @@ public class SerializeEdgesCommand : CommandBase
             throw new ArgumentException(null, nameof(parameter));
         }
 
-        SaveFileDialog dialog = new()
+		SaveFileDialog dialog = new()
         {
             Filter = SUBPROGRAM_FILTER,
             DefaultExt = DEFAULT_EXT,
@@ -58,4 +60,9 @@ public class SerializeEdgesCommand : CommandBase
 
         Serialize(edges.Cast<BlockEdge>().ToArray(), filePath);
     }
+
+    //public override bool CanExecute(object? parameter)
+    //{
+    //    return parameter is BlockPenContainer;
+    //}
 }

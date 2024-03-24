@@ -10,6 +10,7 @@ public class NodeTypeChoosingDialogVM : DialogVMBase
 	public static Type[] NodeTypes => new Type[] 
 	{
 		typeof(InkConditionNode), 
+		typeof(InkConditionLoopNode),
 		typeof(CountingLoopNode),
 		typeof(InkPenActionNode),
 		typeof(SubprogramNode),
