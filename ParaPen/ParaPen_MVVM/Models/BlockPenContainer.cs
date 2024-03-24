@@ -30,6 +30,16 @@ public class BlockPenContainer : IResetable
 				// BUG условие работает неправильно, если до его вызова перемещать UserView
 				inkConditionNode.Condition = inkConditionNode.ToConditionNode(InkPen, InkCanvas).Condition;
 			}
+
+			// Изменяем подсветку вершины
+			if (_selectedNode != null)
+			{
+				_selectedNode.IsHighlighted = false;
+			}
+			if (value != null)
+			{
+				value.IsHighlighted = true;
+			}
 			_selectedNode = value;
 		}
 	}
@@ -38,11 +48,11 @@ public class BlockPenContainer : IResetable
 	public BlockNode StartNode { get; set; }
 	public InkPen InkPen { get; init; }
 	public InkCanvas InkCanvas { get; init; }
+	public string Label => ToString();
 
 	// note могу вызывать ошибки, пока не протестил! может не стоит использовать?
 	public BlockDiagramGraph BlockDiagramGraph { get; init; }
 
-	public string Label => ToString();
 
 
 	public BlockPenContainer() { }
@@ -56,16 +66,16 @@ public class BlockPenContainer : IResetable
 
 	public void Reset()
 	{
-		SelectedNode = StartNode;
-
-		InkPen.Reset();
-		//// Реальные начальные координаты у карандаша могли быть изменены при перемещении UserView, поэтому выполняем
-		//InkPen.CurCords += _inkCanvasVM.UserViewOffset;
-
 		// Находим все вершины, которые реализуют интерфейс IResetable
 		IEnumerable<IResetable> resetableNodes = BlockDiagramGraph.GetAllConnectedVertices(StartNode).OfType<IResetable>();
 		// Переустанавливаем все найденные вершины
 		foreach (var rn in resetableNodes) rn.Reset();
+
+		//// Реальные начальные координаты у карандаша могли быть изменены при перемещении UserView, поэтому выполняем
+		//InkPen.CurCords += _inkCanvasVM.UserViewOffset;
+		InkPen.Reset();
+
+		SelectedNode = StartNode;
 	}
 
 	private void OnUserViewOffsetChanged(object? sender, EventArgs.OffsetEventArgs e)
@@ -73,7 +83,7 @@ public class BlockPenContainer : IResetable
 		InkPen.CurCords += e.Offset;
 		InkPen.StartCords += e.Offset;
 	}
-	
+
 	public override string ToString()
 	{
 		// fixme не отображается название цвета

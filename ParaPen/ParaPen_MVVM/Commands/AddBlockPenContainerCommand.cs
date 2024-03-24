@@ -66,6 +66,8 @@ public class AddBlockPenContainerCommand : CommandBase
 		_blockDiagram.AddVertex(startNode);
 		_blockDiagram.AddVertex(endNode);
 		_blockDiagram.AddEdge(edge);
+
+		//startNode.IsHighlighted = true;
 	}
 
 	public override bool CanExecute(object? parameter)

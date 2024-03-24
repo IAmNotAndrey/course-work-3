@@ -21,6 +21,7 @@ public class BreakExecutionCommand : CommandBase
 		foreach (var bpContainer in _blockPenContainers)
 		{
 			bpContainer.Reset();
+			//bpContainer.StartNode.IsHighlighted = true;
 		}
 		_inkCanvas.Strokes.Clear();
 	}

@@ -16,5 +16,5 @@ D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\App.xaml
 208369209481
 Views\BlockDiagramWindow.xaml;Views\ControlTemplates\_LoopEdgeCT.xaml;Views\CountingLoopDialog.xaml;Views\EdgeTypeChoosingDialog.xaml;Views\InkConditionDialog.xaml;Views\InkPenActionDialog.xaml;Views\MainWindow.xaml;Views\NodeTypeChoosingDialog.xaml;Views\_BlockDiagramUC.xaml;Views\_BlockPenContainerRemoveUC.xaml;
 
-False
+True
 

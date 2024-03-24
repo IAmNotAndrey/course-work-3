@@ -68,7 +68,6 @@ public class InsertNodeCommand : CommandBase
 		// Добавляем новую вершину
 		_blockDiagramGraph.AddVertex(nodeToAdd);
 
-
 		// Соединяем новую вершину с предыдущей
 		_blockDiagramGraph.AddEdge(new BlockEdge(s, nodeToAdd, edge.Value));
 

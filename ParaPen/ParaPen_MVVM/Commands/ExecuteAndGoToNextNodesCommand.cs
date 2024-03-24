@@ -55,8 +55,8 @@ public class ExecuteAndGoToNextNodesCommand : CommandBase
 
 			// Меняем выбранность `Node`
 			// bug : так как не происходит изначальная подсветка startNode, то с ней происходит баг подсветки при переходе на другую ноду
-			node.ToggleHighlight();
-			target?.ToggleHighlight();
+			//node.ToggleHighlight();
+			//target?.ToggleHighlight();
 
 			//updatedContainers.Add(container);
 		}
