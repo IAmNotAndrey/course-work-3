@@ -28,9 +28,9 @@ public class CountingLoopNode : BlockNode, IResetable
 	}
 
 	/// <returns>
-	///		<see langword="false"/>:<br/>
-	///			<see langword="if"/> counting loop is still in process (<see cref="Count"/> > 0)<br/>
 	///		<see langword="true"/>:<br/>
+	///			<see langword="if"/> counting loop is still in process (<see cref="Count"/> > 0)<br/>
+	///		<see langword="false"/>:<br/>
 	///			otherwise
 	/// </returns>
 	public override bool Execute()
@@ -38,10 +38,10 @@ public class CountingLoopNode : BlockNode, IResetable
         if (Count == 0)
         {
 			Reset();
-            return true;
+            return false;
         }
         Count--;
-        return false;
+        return true;
     }
 
 	public override string ToString()

@@ -199,5 +199,6 @@
 
 		<Button Content="LaunchStep" HorizontalAlignment="Left" Margin="540,364,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAndGoToNextNodesCommand}" />
 		<Button Content="LaunchAll" HorizontalAlignment="Left" Margin="635,364,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAllNodesCommand}" />
+		<Button Content="Break" HorizontalAlignment="Left" Margin="717,379,0,0" VerticalAlignment="Top" Command="{Binding BreakExecutionCommand}" />
 	</Grid>
 </Window>

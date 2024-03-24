@@ -15,7 +15,7 @@ public static class AppConfig
 	public const double PEN_STROKE_HEIGHT = 3;
 	public static readonly Vector PEN_START_CORDS = new(50, 50);
 
-	public static readonly TimeSpan ACTION_DELAY_TIME = new(0, 0, 0, 0, 8);
+	public static readonly TimeSpan ACTION_DELAY_TIME = new(0, 0, 0, 0, 30);
 
 	public const uint BLOCK_DIAGRAM_LIMIT = 3;
 	public const double STEP_VALUE = 50;

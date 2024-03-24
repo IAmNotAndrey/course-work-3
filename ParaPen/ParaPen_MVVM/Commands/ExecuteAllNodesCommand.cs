@@ -28,10 +28,5 @@ public class ExecuteAllNodesCommand : CommandBase
 			_command.Execute(null);
 			await Task.Delay(_actionDelayTime);
 		}
-
-		foreach (var c  in _blockPenContainers)
-		{
-			c.Reset();
-		} 
 	}
 }

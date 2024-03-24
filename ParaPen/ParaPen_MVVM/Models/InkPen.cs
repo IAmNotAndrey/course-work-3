@@ -8,7 +8,7 @@ namespace ParaPen.Models;
 
 public class InkPen : INotifyPropertyChanged, IResetable
 {
-	private readonly Point _startCords;
+	public Point StartCords { get; set; }
 
 	//public event EventHandler<PositionEventArgs> PenPositionChanged;
 	public event PropertyChangedEventHandler? PropertyChanged;
@@ -35,7 +35,7 @@ public class InkPen : INotifyPropertyChanged, IResetable
 
 	public InkPen(Point startCords, DrawingAttributes drawingAttributes)
 	{
-		_startCords = startCords;
+		StartCords = startCords;
 		CurCords = startCords;
 		DrawingAttributes = drawingAttributes;
 	}
@@ -54,6 +54,6 @@ public class InkPen : INotifyPropertyChanged, IResetable
 
 	public void Reset() 
 	{
-		CurCords = _startCords;
+		CurCords = StartCords;
 	}
 }

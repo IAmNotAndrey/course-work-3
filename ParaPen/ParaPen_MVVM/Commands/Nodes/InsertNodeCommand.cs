@@ -68,10 +68,16 @@ public class InsertNodeCommand : CommandBase
 		// Добавляем новую вершину
 		_blockDiagramGraph.AddVertex(nodeToAdd);
 
-		// Если добавляемая вершина CountingLoopNode, SubprogramNode или InkConditionLoopNode то ей дополнительно добавляем петлю с значением false
+
+		// Соединяем новую вершину с предыдущей
+		_blockDiagramGraph.AddEdge(new BlockEdge(s, nodeToAdd, edge.Value));
+
+		// Если добавляемая вершина CountingLoopNode, SubprogramNode или InkConditionLoopNode то ей дополнительно добавляем петлю с значением true и выходящее ребро со значением false
 		if (nodeToAdd is CountingLoopNode || nodeToAdd is SubprogramNode || creatingNodeType.Equals(typeof(InkConditionLoopNode)))
 		{
-			_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, nodeToAdd, false));
+			_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, nodeToAdd));
+			_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, t, false));
+			return;
 		}
 		// Если InkConditionNode, то добавляем дополнительное выходящее false-ребро 
 		else if (nodeToAdd is InkConditionNode)
@@ -79,9 +85,6 @@ public class InsertNodeCommand : CommandBase
 			_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, t, false));
 		}
 
-
-		// Соединяем новую вершину с предыдущей и последующей
-		_blockDiagramGraph.AddEdge(new BlockEdge(s, nodeToAdd, edge.Value));
 		_blockDiagramGraph.AddEdge(new BlockEdge(nodeToAdd, t));
 	}
 

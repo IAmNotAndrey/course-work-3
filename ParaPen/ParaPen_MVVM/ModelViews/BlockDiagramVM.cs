@@ -45,9 +45,9 @@ public class BlockDiagramVM : ViewModelBase
 	//public ICommand ResetBlockPenContainers => ResetBlockPenContainersCommand();
 
 	public ICommand ExecuteAndGoToNextNodesCommand => new ExecuteAndGoToNextNodesCommand(BlockPenContainers, BlockDiagram);
-	// todo
 	public ICommand ExecuteAllNodesCommand => new ExecuteAllNodesCommand(ACTION_DELAY_TIME, BlockPenContainers, BlockDiagram);
 
+	public ICommand BreakExecutionCommand => new BreakExecutionCommand(BlockPenContainers, _inkCanvas);
 
 	#endregion
 

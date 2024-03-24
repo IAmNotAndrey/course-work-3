@@ -48,9 +48,9 @@ public class SubprogramNode : BlockNode, IResetable
 		{
 			//NOTE? можно прогонять ноду через цикл. reset? 
 			Reset();
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	public override void Reset()

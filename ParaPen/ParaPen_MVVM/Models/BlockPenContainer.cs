@@ -1,6 +1,7 @@
 ﻿using ParaPen.Models.CustomGraph;
 using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.Models.Interfaces;
+using ParaPen.ModelViews;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
@@ -12,6 +13,8 @@ namespace ParaPen.Models;
 public class BlockPenContainer : IResetable
 {
 	private BlockNode? _selectedNode;
+	//private readonly InkCanvasVM _inkCanvasVM;
+
 	public BlockNode? SelectedNode
 	{
 		get => _selectedNode;
@@ -24,6 +27,7 @@ public class BlockPenContainer : IResetable
 			}
 			else if (value is InkConditionNode inkConditionNode)
 			{
+				// BUG условие работает неправильно, если до его вызова перемещать UserView
 				inkConditionNode.Condition = inkConditionNode.ToConditionNode(InkPen, InkCanvas).Condition;
 			}
 			_selectedNode = value;
@@ -47,13 +51,16 @@ public class BlockPenContainer : IResetable
 	public BlockPenContainer(IUserViewMover userViewMover)
 	{
 		userViewMover.UserViewOffsetChanged += OnUserViewOffsetChanged;
+		//_inkCanvasVM = inkCanvasVM;
 	}
 
 	public void Reset()
 	{
 		SelectedNode = StartNode;
-		// bug при смещении и остановке выполнения устанавливаются неправильные координаты
+
 		InkPen.Reset();
+		//// Реальные начальные координаты у карандаша могли быть изменены при перемещении UserView, поэтому выполняем
+		//InkPen.CurCords += _inkCanvasVM.UserViewOffset;
 
 		// Находим все вершины, которые реализуют интерфейс IResetable
 		IEnumerable<IResetable> resetableNodes = BlockDiagramGraph.GetAllConnectedVertices(StartNode).OfType<IResetable>();
@@ -64,6 +71,7 @@ public class BlockPenContainer : IResetable
 	private void OnUserViewOffsetChanged(object? sender, EventArgs.OffsetEventArgs e)
 	{
 		InkPen.CurCords += e.Offset;
+		InkPen.StartCords += e.Offset;
 	}
 	
 	public override string ToString()
