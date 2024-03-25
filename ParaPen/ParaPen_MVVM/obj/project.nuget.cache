@@ -1,14 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "mw/FofGTVpam6eTbQTSN60rDJNU0DyMjI/zUBiTDV9g2TLlA62r6mSp1mZolKZljQ2jBDpLIdYvIyYjanki3EQ==",
+  "dgSpecHash": "nSYPdVheGb/PiNYdct9z/sMnIRdquHKqGNKd4ARbhvWv7Gh5RJ5DAgUi78THZ+Sm4M0qo5HMeWx+2bYv26Fk9A==",
   "success": true,
   "projectFilePath": "D:\\GitHub\\course-work-3\\ParaPen\\ParaPen_MVVM\\ParaPen.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\perma\\.nuget\\packages\\controlzex\\4.4.0\\controlzex.4.4.0.nupkg.sha512",
     "C:\\Users\\perma\\.nuget\\packages\\expression.blend.sdk\\1.0.2\\expression.blend.sdk.1.0.2.nupkg.sha512",
     "C:\\Users\\perma\\.nuget\\packages\\extended.wpf.toolkit\\4.6.0\\extended.wpf.toolkit.4.6.0.nupkg.sha512",
     "C:\\Users\\perma\\.nuget\\packages\\graphsharp\\1.1.0\\graphsharp.1.1.0.nupkg.sha512",
+    "C:\\Users\\perma\\.nuget\\packages\\mahapps.metro\\2.4.10\\mahapps.metro.2.4.10.nupkg.sha512",
+    "C:\\Users\\perma\\.nuget\\packages\\materialdesigncolors\\3.0.0\\materialdesigncolors.3.0.0.nupkg.sha512",
+    "C:\\Users\\perma\\.nuget\\packages\\materialdesignthemes\\5.0.0\\materialdesignthemes.5.0.0.nupkg.sha512",
+    "C:\\Users\\perma\\.nuget\\packages\\materialdesignthemes.mahapps\\1.0.0\\materialdesignthemes.mahapps.1.0.0.nupkg.sha512",
     "C:\\Users\\perma\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.77\\microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512",
     "C:\\Users\\perma\\.nuget\\packages\\quickgraph\\3.6.61119.7\\quickgraph.3.6.61119.7.nupkg.sha512",
+    "C:\\Users\\perma\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
     "C:\\Users\\perma\\.nuget\\packages\\wpfextensions\\1.0.0\\wpfextensions.1.0.0.nupkg.sha512"
   ],
   "logs": [

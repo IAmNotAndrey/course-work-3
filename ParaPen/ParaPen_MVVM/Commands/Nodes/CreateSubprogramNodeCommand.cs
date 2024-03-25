@@ -5,6 +5,7 @@ using ParaPen.Models.CustomGraph.BlockNodes;
 using ParaPen.ModelViews.Dialogs;
 using static ParaPen.Serializers.EdgesVerticesContainerSerializer;
 using static ParaPen.Models.StaticResources.AppConfig;
+using System.IO;
 
 namespace ParaPen.Commands.Nodes;
 
@@ -37,7 +38,7 @@ public class CreateSubprogramNodeCommand : CommandBase
 
 		BlockEdge[] edges = Deserialize(filePath);
 
-		SubprogramNode node = new(_bpContainer, edges);
+		SubprogramNode node = new(_bpContainer, edges, Path.GetFileNameWithoutExtension(dialog.FileName));
 		//fixme?
 		_vm.CreatedNode = node;
     }

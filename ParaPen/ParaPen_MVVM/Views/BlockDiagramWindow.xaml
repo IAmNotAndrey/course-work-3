@@ -5,6 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:gc="clr-namespace:GraphSharp.Controls;assembly=GraphSharp.Controls"
         xmlns:local="clr-namespace:ParaPen.Views" 
+
+		xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+
 		xmlns:mv="clr-namespace:ParaPen.ModelViews"
 		xmlns:cg="clr-namespace:ParaPen.Models.CustomGraph"
 		xmlns:bn="clr-namespace:ParaPen.Models.CustomGraph.BlockNodes"
@@ -13,13 +16,23 @@
 		
 		mc:Ignorable="d"
         Title="BlockDiagramWindow" Height="450" Width="800"
-        x:Name="root">
+        x:Name="root"
+		
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+		TextElement.FontWeight="Regular"
+		TextElement.FontSize="13"
+		TextOptions.TextFormattingMode="Ideal"
+		TextOptions.TextRenderingMode="Auto"
+		FontFamily="{DynamicResource MaterialDesignFont}"
+		>
 
 
 	<Window.Resources>
 		<convs:IsItemBlockPenContainerConverter x:Key="IsItemBlockPenContainerConverter"/>
 		<convs:IsBlockPenContainersInLimitConverter x:Key="IsBlockPenContainersInLimitConverter"/>
 
+		<!-- Вид вершин -->
 		<DataTemplate DataType="{x:Type bn:BlockNode}">
 			<Border BorderThickness="1">
 				<Border.Style>
@@ -75,6 +88,81 @@
                    VerticalAlignment="Center"/>
 			</Border>
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type bn:InkConditionNode}">
+			<Grid>
+				<!-- Задаем размеры ромба -->
+				<Viewbox Width="100" Height="20">
+					<!-- Используем Path для создания ромба -->
+					<Path Data="M 50,0 L 100,10 L 50,20 L 0,10 Z"
+                  StrokeThickness="1"
+                  Fill="Transparent">
+						<Path.Style>
+							<Style TargetType="Path">
+								<Style.Triggers>
+									<!-- Поведение при IsHighlighted = true -->
+									<DataTrigger Binding="{Binding IsHighlighted}" Value="True">
+										<Setter Property="Stroke" Value="Orange"/>
+										<Setter Property="StrokeThickness" Value="4"/>
+									</DataTrigger>
+									<!-- Поведение при IsHighlighted = false -->
+									<DataTrigger Binding="{Binding IsHighlighted}" Value="False">
+										<Setter Property="Stroke" Value="Black"/>
+										<Setter Property="StrokeThickness" Value="1"/>
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</Path.Style>
+					</Path>
+				</Viewbox>
+				<!-- Текст внутри ромба -->
+				<TextBlock Text="{Binding Label}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+			</Grid>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type bn:SubprogramNode}">
+			<Border BorderThickness="1">
+				<Border.Style>
+					<Style TargetType="Border">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding IsHighlighted}" Value="True">
+								<Setter Property="BorderBrush" Value="Orange"/>
+								<Setter Property="BorderThickness" Value="4"/>
+							</DataTrigger>
+							<DataTrigger Binding="{Binding IsHighlighted}" Value="False">
+								<Setter Property="BorderBrush" Value="Black"/>
+								<Setter Property="BorderThickness" Value="2"/>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Border.Style>
+				<Grid>
+					<!-- Основное содержимое -->
+					<TextBlock Text="{Binding Label}" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"/>
+					<!-- Дополнительная полоска слева -->
+					<Rectangle Width="1" HorizontalAlignment="Left" Fill="Black" Margin="5,0,0,0"/>
+					<!-- Дополнительная полоска справа -->
+					<Rectangle Width="1" HorizontalAlignment="Right" Fill="Black" Margin="0,0,5,0"/>
+				</Grid>
+			</Border>
+		</DataTemplate>
+
+		<!--<DataTemplate DataType="{x:Type bn:CountingLoopNode}">
+			<Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+				<Canvas VerticalAlignment="Center" HorizontalAlignment="Center">
+					<Polygon Points="0,0 20,-20 80,-20 100,0 80,20 20,20"
+                 Stroke="Black"
+                 Fill="Transparent"/>
+				</Canvas>
+				<TextBlock Text="{Binding Label}" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"/>
+			</Grid>
+		</DataTemplate>-->
 
 		<!--<DataTemplate DataType="{x:Type gc:EdgeControl}">
 			<i:Interaction.Triggers>
@@ -153,6 +241,23 @@
 			<Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
 		</Style>
 
+		<Style TargetType="Controls:Flyout">
+			<Setter Property="CloseButtonVisibility" Value="Collapsed"/>
+		</Style>
+
+		<Style x:Key="ArrowButtonStyle" TargetType="Button">
+			<Setter Property="Content">
+				<Setter.Value>
+					<Path Data="M 0 0 L 4 4 L 8 0 Z" Fill="Black" Width="8" Height="4"/>
+				</Setter.Value>
+			</Setter>
+			<Style.Triggers>
+				<Trigger Property="IsEnabled" Value="False">
+					<Setter Property="Opacity" Value="0.5"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+
 	</Window.Resources>
 
 	<Grid>
@@ -167,7 +272,7 @@
 						/>
 
 		<!--  -->
-		<ListBox x:Name="blockPenContainersLB" 
+		<!--<ListBox x:Name="blockPenContainersLB" 
 				 Height="100"
 				 Width="100"
 				 HorizontalAlignment="Right"
@@ -176,41 +281,156 @@
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<TextBlock Text="{Binding Label}" />
-					<!-- Замените YourItemProperty на свойство вашего объекта BlockPenContainer -->
+					-->
+		<!-- Замените YourItemProperty на свойство вашего объекта BlockPenContainer -->
+		<!--
 				</DataTemplate>
 			</ListBox.ItemTemplate>
-		</ListBox>
-		<Button Content="Serialize"
-				Command="{Binding SerializeEdges}"
-				CommandParameter="{Binding SelectedItem, ElementName=blockPenContainersLB}"
-				IsEnabled="{Binding SelectedItem, ElementName=blockPenContainersLB, Converter={StaticResource IsItemBlockPenContainerConverter}}"
-				Height="20" VerticalAlignment="Top" Margin="683,314,10,0" 
-				/>
-		<Button Content="Delete" 
-				CommandParameter="{Binding SelectedItem, ElementName=blockPenContainersLB}" 
-				Command="{Binding DeleteBlockPenContainer}"
-				IsEnabled="{Binding SelectedItem, ElementName=blockPenContainersLB, Converter={StaticResource IsItemBlockPenContainerConverter}}"
-				Height="20" VerticalAlignment="Top" Margin="683,339,10,0" 
-				/>
+		</ListBox>-->
+		<Controls:Flyout x:Name="blockPenContainersFlyout"
+                         Position="Right"
+                         VerticalAlignment="Center"
+						 HorizontalAlignment="Right"
+						 Height="Auto"
+						 Width="Auto"
+                         Theme="Accent"
+						 >
+			<Grid>
+				<ListBox x:Name="blockPenContainersLB" 
+						 ItemsSource="{Binding BlockPenContainers}"
+						 BorderThickness="0"
+						 Background="{DynamicResource MaterialDesignPaper}"
+						 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+						 >
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Label}" 
+									   Margin="10"
+									   VerticalAlignment="Center"
+									   Foreground="{DynamicResource MaterialDesignBody}"
+									   FontSize="16"/>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10">
+					<Button Content="Serialize"
+							Command="{Binding SerializeEdges}"
+							CommandParameter="{Binding SelectedItem, ElementName=blockPenContainersLB}"
+							IsEnabled="{Binding SelectedItem, ElementName=blockPenContainersLB, Converter={StaticResource IsItemBlockPenContainerConverter}}"
+							Margin="5,0"
+							Style="{DynamicResource MaterialDesignFlatButton}"
+							Background="CornflowerBlue"
+							/>
+					<!-- BUG Кнопка не перестаёт быть активной при выход за лимит -->
+					<Button Content="Add" 
+							Command="{Binding AddBlockPenContainer}"
+							IsEnabled="{Binding BlockPenContainers, Converter={StaticResource IsBlockPenContainersInLimitConverter}}"
+							Margin="5,0"
+							Style="{DynamicResource MaterialDesignFlatButton}"
+							Background="LightGreen"
+							/>
+					<Button Content="Delete" 
+							CommandParameter="{Binding SelectedItem, ElementName=blockPenContainersLB}" 
+							Command="{Binding DeleteBlockPenContainer}"
+							IsEnabled="{Binding SelectedItem, ElementName=blockPenContainersLB, Converter={StaticResource IsItemBlockPenContainerConverter}}"
+							Margin="5,0"
+							Style="{DynamicResource MaterialDesignFlatButton}"
+							Background="IndianRed"
+							/>
+				</StackPanel>
+			</Grid>
+		</Controls:Flyout>
+
+
+
+
+		<Controls:Flyout x:Name="tracebackFlyout"
+                 Position="Left"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Left"
+                 Height="320"
+                 Width="300"
+                 Theme="Accent">
+			<Controls:Flyout.Resources>
+				<SolidColorBrush x:Key="FlyoutBackground" Color="{DynamicResource MaterialDesignPaper}"/>
+			</Controls:Flyout.Resources>
+			<Grid Background="{StaticResource FlyoutBackground}">
+				<DataGrid x:Name="tracebackTable" 
+						  ItemsSource="{Binding Tracebacker.Items}" 
+						  HorizontalAlignment="Stretch"
+						  VerticalAlignment="Stretch"
+						  Background="Transparent"
+						  AlternatingRowBackground="{DynamicResource MaterialDesignPaper}"
+						  RowBackground="{DynamicResource MaterialDesignPaper}"
+						  CellStyle="{DynamicResource MaterialDesignDataGridCell}"
+						  RowHeaderStyle="{DynamicResource MaterialDesignDataGridRowHeader}"
+						  ColumnHeaderStyle="{DynamicResource MaterialDesignDataGridColumnHeader}"
+						  BorderBrush="{DynamicResource MaterialDesignDivider}"
+						  />
+			</Grid>
+		</Controls:Flyout>
+
+
+
+
 		<!-- -->
 
-		<!-- BUG Кнопка не перестаёт быть активной при выход за лимит -->
-		<Button Content="Add" 
-				Command="{Binding AddBlockPenContainer}"
-				IsEnabled="{Binding BlockPenContainers, Converter={StaticResource IsBlockPenContainersInLimitConverter}}"
-				Width="52" Height="20" 
-				HorizontalAlignment="Left" VerticalAlignment="Top" Margin="720,279,0,0" 
-				/>
 
 
-		<Button Content="LaunchStep" HorizontalAlignment="Left" Margin="585,329,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAndGoToNextNodesCommand}" />
-		<Button Content="LaunchAll" HorizontalAlignment="Left" Margin="595,354,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAllNodesCommand}" />
-		<Button Content="Break" HorizontalAlignment="Left" Margin="618,379,0,0" VerticalAlignment="Top" Command="{Binding BreakExecutionCommand}" />
+		<Grid VerticalAlignment="Top" Margin="0,20,0,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<!-- Кнопка Traceback (слева) -->
+				<ColumnDefinition Width="*"/>
+				<!-- Кнопки Step, All, Break (по центру) -->
+				<ColumnDefinition Width="Auto"/>
+				<!-- Кнопка Containers (справа) -->
+			</Grid.ColumnDefinitions>
 
-		<!-- FIXME : отображение в несколько столбцов -->
-		<DataGrid x:Name="tracebackTable" 
-				  ItemsSource="{Binding Tracebacker.Items}" 
-				  Margin="0,324,400,10" 
-				  />
+			<!-- Кнопка Traceback (слева) -->
+			<Button Content="Traceback"
+					Click="Button_Click_1" 
+					Style="{DynamicResource MaterialDesignFlatSecondaryDarkButton}"
+					Background="LightGray"
+					HorizontalAlignment="Left"
+					Margin="20,0,0,0"
+					/>
+
+			<!-- Кнопки Step, All, Break (по центру) -->
+			<StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+				<Button Content="Step"
+						Command="{Binding ExecuteAndGoToNextNodesCommand}" 
+						Width="Auto" 
+						Margin="5,0"
+						Style="{DynamicResource MaterialDesignFlatButton}"
+						Background="PaleGreen"
+						/>
+				<Button Content="All" 
+						Command="{Binding ExecuteAllNodesCommand}" 
+						Width="Auto"
+						Margin="5,0"
+						Style="{DynamicResource MaterialDesignFlatButton}"
+						Background="CornflowerBlue"
+						/>
+				<Button Content="Break" 
+						Command="{Binding BreakExecutionCommand}" 
+						Width="Auto" 
+						Margin="5,0"
+						Style="{DynamicResource MaterialDesignFlatButton}"
+						Background="IndianRed"
+						/>
+			</StackPanel>
+
+			<!-- Кнопка Containers (справа) -->
+			<Button Content="Containers"
+					Click="Button_Click" 
+					Style="{DynamicResource MaterialDesignFlatSecondaryDarkButton}"
+					Background="LightGray"
+					HorizontalAlignment="Right"
+					Grid.Column="2"
+					Margin="0,0,20,0"
+					/>
+		</Grid>
 	</Grid>
 </Window>

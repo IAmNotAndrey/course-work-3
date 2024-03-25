@@ -6,6 +6,18 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
+      "ControlzEx/4.4.0": {
+        "dependencies": {
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.77",
+          "System.Text.Json": "4.7.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/ControlzEx.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.4.0.50"
+          }
+        }
+      },
       "Expression.Blend.Sdk/1.0.2": {
         "runtime": {
           "lib/net45/System.Windows.Interactivity.dll": {
@@ -92,6 +104,55 @@
           }
         }
       },
+      "MahApps.Metro/2.4.10": {
+        "dependencies": {
+          "ControlzEx": "4.4.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/MahApps.Metro.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.4.10.1"
+          }
+        },
+        "resources": {
+          "lib/netcoreapp3.1/de/MahApps.Metro.resources.dll": {
+            "locale": "de"
+          }
+        }
+      },
+      "MaterialDesignColors/3.0.0": {
+        "runtime": {
+          "lib/net6.0/MaterialDesignColors.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
+      },
+      "MaterialDesignThemes/5.0.0": {
+        "dependencies": {
+          "MaterialDesignColors": "3.0.0",
+          "Microsoft.Xaml.Behaviors.Wpf": "1.1.77"
+        },
+        "runtime": {
+          "lib/net6.0/MaterialDesignThemes.Wpf.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.0.0"
+          }
+        }
+      },
+      "MaterialDesignThemes.MahApps/1.0.0": {
+        "dependencies": {
+          "MahApps.Metro": "2.4.10",
+          "MaterialDesignColors": "3.0.0",
+          "MaterialDesignThemes": "5.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/MaterialDesignThemes.MahApps.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Microsoft.Xaml.Behaviors.Wpf/1.1.77": {
         "runtime": {
           "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
@@ -120,6 +181,14 @@
           }
         }
       },
+      "System.Text.Json/4.7.2": {
+        "runtime": {
+          "lib/netcoreapp3.0/System.Text.Json.dll": {
+            "assemblyVersion": "4.0.1.2",
+            "fileVersion": "4.700.20.21406"
+          }
+        }
+      },
       "WPFExtensions/1.0.0": {
         "runtime": {
           "lib/WPFExtensions.dll": {
@@ -131,6 +200,13 @@
     }
   },
   "libraries": {
+    "ControlzEx/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pZ5z4hYWwE4R13UMCVs6vII//nL7hz+Nwn4oJlnsZJRGqJNy6Z9KnJiTZfly6lKFu0pMc1aWBZpx+VqFTQKP1Q==",
+      "path": "controlzex/4.4.0",
+      "hashPath": "controlzex.4.4.0.nupkg.sha512"
+    },
     "Expression.Blend.Sdk/1.0.2": {
       "type": "package",
       "serviceable": true,
@@ -152,6 +228,34 @@
       "path": "graphsharp/1.1.0",
       "hashPath": "graphsharp.1.1.0.nupkg.sha512"
     },
+    "MahApps.Metro/2.4.10": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-45exHKJCVYaD1/rNr3ekZPECEBM4uHOt6aYp6yNaJbliFMUo+d3z8Gi1xG+qEkbiHKITX+dlz+BW1FOsjAbl/w==",
+      "path": "mahapps.metro/2.4.10",
+      "hashPath": "mahapps.metro.2.4.10.nupkg.sha512"
+    },
+    "MaterialDesignColors/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yIAqOd9RYY7JUnspmBaL/PK+NEbRFFMCS43AT1YWM5MBkGAU5rUYh9q11zzEfqFcz2jDO6Zaf9W+m4Y1dGhatQ==",
+      "path": "materialdesigncolors/3.0.0",
+      "hashPath": "materialdesigncolors.3.0.0.nupkg.sha512"
+    },
+    "MaterialDesignThemes/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Az/2+YP+AdtyNceaU42cFo7Fl7KBrFkMa56uvesR363kZyOrASb0OnMvi0Ou4j1x0zwGa19AaK/vspDUBNDlBQ==",
+      "path": "materialdesignthemes/5.0.0",
+      "hashPath": "materialdesignthemes.5.0.0.nupkg.sha512"
+    },
+    "MaterialDesignThemes.MahApps/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3EoUyXSwtby5jJG7dgPqEYmzIiqYQ4YYHk/cWLeGk+4q8QRYKcKW7Acqc82+/D3rkFzWkQUqdpbcOqjbYcEcPg==",
+      "path": "materialdesignthemes.mahapps/1.0.0",
+      "hashPath": "materialdesignthemes.mahapps.1.0.0.nupkg.sha512"
+    },
     "Microsoft.Xaml.Behaviors.Wpf/1.1.77": {
       "type": "package",
       "serviceable": true,
@@ -165,6 +269,13 @@
       "sha512": "sha512-crtYNiFcYFtYbmbEfdYsdGw5M3923OO5ZZD25K+WeLPgTp/q4oq3U/FVrbaOK5+Jg8UJDmoZ6sqAVion4RgXCA==",
       "path": "quickgraph/3.6.61119.7",
       "hashPath": "quickgraph.3.6.61119.7.nupkg.sha512"
+    },
+    "System.Text.Json/4.7.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TcMd95wcrubm9nHvJEQs70rC0H/8omiSGGpU4FQ/ZA1URIqD4pjmFJh2Mfv1yH1eHgJDWTi2hMDXwTET+zOOyg==",
+      "path": "system.text.json/4.7.2",
+      "hashPath": "system.text.json.4.7.2.nupkg.sha512"
     },
     "WPFExtensions/1.0.0": {
       "type": "package",

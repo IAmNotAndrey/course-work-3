@@ -87,4 +87,14 @@ public partial class BlockDiagramWindow : Window
 			}
 		}
 	}
+
+	private void Button_Click(object sender, RoutedEventArgs e)
+	{
+		blockPenContainersFlyout.IsOpen = !blockPenContainersFlyout.IsOpen;
+	}
+
+	private void Button_Click_1(object sender, RoutedEventArgs e)
+	{
+		tracebackFlyout.IsOpen = !tracebackFlyout.IsOpen;
+	}
 }

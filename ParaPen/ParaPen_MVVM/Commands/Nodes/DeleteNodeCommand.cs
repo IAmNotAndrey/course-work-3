@@ -43,10 +43,9 @@ public class DeleteNodeCommand : CommandBase
 				var edge = _vm.BlockDiagram.OutEdges(node).Single(e => ((BlockEdge)e).Value == false);
 				// Удаляем ребро, для того, чтобы удалить только вершины находящиеся внутри тела цикла
 				_vm.BlockDiagram.RemoveEdge(edge);
+				// Удаляем все вершины внутри тела цикла и саму вершину цикла
+				Helpers.NodeHelper.RecursivelyRemoveAllNextNodes(node, _vm.BlockDiagram);
 			}
-			// Удаляем все вершины внутри тела цикла и саму вершину цикла
-			Helpers.NodeHelper.RecursivelyRemoveAllNextNodes(node, _vm.BlockDiagram);
-
 		}
 
 		foreach (var ie in inEdges)

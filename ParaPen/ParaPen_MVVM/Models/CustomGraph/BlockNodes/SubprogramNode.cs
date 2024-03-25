@@ -13,7 +13,7 @@ public class SubprogramNode : BlockNode, IResetable
 	[Obsolete]
 	public SubprogramNode() { }
 
-	public SubprogramNode(BlockPenContainer container, IEnumerable<IEdge<object>> edges)
+	public SubprogramNode(BlockPenContainer container, IEnumerable<IEdge<object>> edges, string label)
 	{
 		BlockDiagramGraph localBlockDiagram = new();
 		localBlockDiagram.AddVerticesAndEdgeRange(edges);
@@ -30,7 +30,8 @@ public class SubprogramNode : BlockNode, IResetable
 		_container.Reset();
 
 		//FIXME
-		Label = "Subprogram";
+		//Label = "Subprogram";
+		Label = label;
 	}
 
 

@@ -30,7 +30,7 @@ public class InkConditionNode : BlockNode
 		StepValue = stepValue;
 		Direction = direction;
 
-		Label = $"Is there strokes on {StepValue}-{Direction}?";
+		Label = $"Strokes on {StepValue}-{Direction}?";
 		IsHighlighted = false;
 	}
 

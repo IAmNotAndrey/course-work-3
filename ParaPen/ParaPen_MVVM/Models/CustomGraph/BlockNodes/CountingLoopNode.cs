@@ -46,7 +46,7 @@ public class CountingLoopNode : BlockNode, IResetable
 
 	public override string ToString()
 	{
-		return $"{nameof(CountingLoopNode)}-{Count}";
+		return $"CountingLoop-{Count}";
 	}
 
 	public override void Reset()
