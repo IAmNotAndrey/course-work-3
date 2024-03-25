@@ -73,3 +73,5 @@ D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\MaterialDe
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\MaterialDesignThemes.Wpf.dll
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\App.baml
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\bin\Debug\net6.0-windows\MaterialDesignThemes.MahApps.dll
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\InfiniteGridUC.g.cs
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\InfiniteGridUC.baml

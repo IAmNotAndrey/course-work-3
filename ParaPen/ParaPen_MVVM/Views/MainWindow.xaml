@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ParaPen.Views"
         xmlns:convs="clr-namespace:ParaPen.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+		>
 	<Window.Resources>
 		<!--<DataTemplate x:Key="InkPenTemplate">
             <Ellipse Width="10" Height="10" Fill="{Binding DrawingAttributes.Color}" 
@@ -16,11 +17,15 @@
 		<!--
         </DataTemplate>-->
 		<convs:ColorToBrushConverter x:Key="ColorToBrushConverter" />
+		<convs:EllipseCenterAlignCordConverter x:Key="EllipseCenterAlignCordConverter" />
 	</Window.Resources>
 
 	<Grid>
 		<ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
 			<InkCanvas x:Name="inkCanvas" Background="White">
+				<local:InfiniteGridUC />
+
+
 				<ItemsControl ItemsSource="{Binding BlockPenContainers}">
 					<ItemsControl.ItemsPanel>
 						<ItemsPanelTemplate>
@@ -29,12 +34,13 @@
 					</ItemsControl.ItemsPanel>
 					<ItemsControl.ItemTemplate>
 						<DataTemplate>
-							<Ellipse Width="10" Height="10" 
+							<Ellipse x:Name="ellipse" 
+									 Width="10" Height="10"
                                      Stroke="{Binding InkPen.DrawingAttributes.Color, Converter={StaticResource ColorToBrushConverter}}" 
                                      StrokeThickness="2">
 								<Ellipse.RenderTransform>
-									<TranslateTransform X="{Binding InkPen.CurCords.X}" 
-                                                        Y="{Binding InkPen.CurCords.Y}" />
+									<TranslateTransform X="{Binding InkPen.CurCords.X, Converter={StaticResource EllipseCenterAlignCordConverter}, ConverterParameter=10}"
+                                                        Y="{Binding InkPen.CurCords.Y, Converter={StaticResource EllipseCenterAlignCordConverter}, ConverterParameter=10}" />
 								</Ellipse.RenderTransform>
 							</Ellipse>
 						</DataTemplate>

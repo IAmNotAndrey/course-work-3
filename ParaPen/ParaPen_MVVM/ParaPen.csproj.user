@@ -10,6 +10,9 @@
     <Compile Update="Views\BlockDiagramWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\InfiniteGridUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\_TracebackTableUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -36,6 +39,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\InfiniteGridUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\_TracebackTableUC.xaml">
       <SubType>Designer</SubType>
     </Page>
