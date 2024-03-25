@@ -10,10 +10,12 @@
         xmlns:en="clr-namespace:ParaPen.Models.Enums"
         xmlns:conv="clr-namespace:ParaPen.Converters"
 		mc:Ignorable="d"
-		WindowStyle="None"
         Title="InkPenActionDialog" 
 		Height="150" Width="250"
 		x:Name="this"
+
+		WindowStyle="None"
+		WindowStartupLocation="CenterScreen"
 		>
 	<Window.DataContext>
 		<vmd:InkPenActionDialogVM />
@@ -29,18 +31,27 @@
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
+			<RowDefinition Height="42" />
 		</Grid.RowDefinitions>
 
-		<TextBlock Text="Pen Actions" Grid.Row="0" />
-		<ComboBox x:Name="penActionsCB" ItemsSource="{Binding PenActionsValues}" Grid.Row="1"/>
+		<TextBlock Text="Pen Action" Grid.Row="0" VerticalAlignment="Center" />
+		<ComboBox x:Name="penActionsCB" 
+				  ItemsSource="{Binding PenActionsValues}" 
+				  Grid.Row="1"
+				  Style="{StaticResource ComboBoxStyle}"
+				  />
 
-		<TextBlock Text="Direction" Grid.Row="2" />
-		<ComboBox x:Name="directionsCB" ItemsSource="{Binding DirectionsValues}" Grid.Row="3" />
+		<TextBlock Text="Direction" Grid.Row="2" VerticalAlignment="Center" />
+		<ComboBox x:Name="directionsCB" 
+				  ItemsSource="{Binding DirectionsValues}" 
+				  Grid.Row="3" 
+				  Style="{StaticResource ComboBoxStyle}"
+				  />
 
 		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="4" Margin="0,5,5,5" >
 			<Button Content="OK"
-					Margin="0,0,10,0" >
+					Style="{StaticResource OkButtonStyle}"
+					>
 			
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="Click">
@@ -58,7 +69,10 @@
 			</Button>
 
 			<Button Content="Cancel" 
-					Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=this}" />
+					Command="{Binding CancelCommand}" 
+					CommandParameter="{Binding ElementName=this}" 
+					Style="{StaticResource CancelButtonStyle}"
+					/>
 		</StackPanel>
 	</Grid>
 </Window>

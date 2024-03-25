@@ -4,6 +4,7 @@ FD:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\Views\BlockDiagramWindow.xaml;;
 FD:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\Views\ControlTemplates\_LoopEdgeCT.xaml;;
 FD:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\Views\CountingLoopDialog.xaml;;
 FD:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\Views\EdgeTypeChoosingDialog.xaml;;
+FD:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\Views\InfiniteGridUC.xaml;;
 FD:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\Views\InkConditionDialog.xaml;;
 FD:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\Views\InkPenActionDialog.xaml;;
 FD:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\Views\MainWindow.xaml;;
@@ -11,5 +12,4 @@ FD:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\Views\NodeTypeChoosingDialog.xaml;
 FD:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\Views\_BlockDiagramUC.xaml;;
 FD:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\Views\_BlockPenContainerRemoveUC.xaml;;
 FD:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\Views\_TracebackTableUC.xaml;;
-FD:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\Views\InfiniteGridUC.xaml;;
 

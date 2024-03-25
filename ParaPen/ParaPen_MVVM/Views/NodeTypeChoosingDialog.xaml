@@ -7,23 +7,38 @@
 		
         xmlns:local="clr-namespace:ParaPen.Views"
         xmlns:vmd="clr-namespace:ParaPen.ModelViews.Dialogs"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 
-		WindowStyle="None"
         mc:Ignorable="d"
         Title="NodeChoosingDialog" Height="150" Width="250"
-		x:Name="this">
+		x:Name="this"
+
+		WindowStyle="None"
+		WindowStartupLocation="CenterScreen"
+		>
 
 	<Window.DataContext>
 		<vmd:NodeTypeChoosingDialogVM />
 	</Window.DataContext>
 
 	<Grid>
-		<ComboBox x:Name="nodeTypesCB" ItemsSource="{Binding NodeTypes}" VerticalAlignment="Center" />
+		<TextBlock Text="Node Type" 
+				   HorizontalAlignment="Center" 
+				   Margin="0,20,0,0"
+				   />
+		<ComboBox x:Name="nodeTypesCB" 
+				  ItemsSource="{Binding NodeTypes}" 
+				  VerticalAlignment="Center" 
+				  Style="{StaticResource ComboBoxStyle}"
+				  Margin="5,0,5,0"
+				  />
 		<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="2" Margin="0,5,5,5" >
 			<!-- <Button Content="OK" 
 					Command="{Binding OkCommand}"
 					CommandParameter="{Binding SelectedItem, ElementName=nodeTypesCB}" > -->
-			<Button Content="OK">
+			<Button Content="OK"
+					Style="{StaticResource OkButtonStyle}"
+					>
 				<!-- Вызов ОК и Cancel команд -->
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="Click">
@@ -33,7 +48,11 @@
 				</i:Interaction.Triggers>
 			</Button>
 
-			<Button Content="Cancel" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=this}" />
+			<Button Content="Cancel" 
+					Command="{Binding CancelCommand}" 
+					CommandParameter="{Binding ElementName=this}" 
+					Style="{StaticResource CancelButtonStyle}"
+					/>
 		</StackPanel>
 	</Grid>
 </Window>

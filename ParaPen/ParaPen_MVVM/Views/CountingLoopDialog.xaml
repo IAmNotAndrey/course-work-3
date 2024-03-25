@@ -8,11 +8,16 @@
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
 		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
 		xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 
         mc:Ignorable="d"
         Title="CountingLoopDialog"
 		Height="150" Width="250"
-		x:Name="this">
+		x:Name="this"
+		
+		WindowStyle="None"
+		WindowStartupLocation="CenterScreen"
+		>
 	<Window.DataContext>
 		<vmd:CountingLoopDialogVM />
 	</Window.DataContext>
@@ -38,17 +43,21 @@
 	</Window.Resources>
 
 	<Grid>
-		<xctk:IntegerUpDown x:Name="countField" 
-							Minimum="0" 
+		<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
+			<TextBlock Text="Count:  " VerticalAlignment="Center" />
+			<xctk:IntegerUpDown x:Name="countField" 
+							Minimum="1" 
 							Maximum="{x:Static sys:Int32.MaxValue}"
-							Value="0"
+							Value="1"
 							HorizontalAlignment="Center"
-							VerticalAlignment="Center" />
-
+							VerticalAlignment="Center" 
+							/>
+		</StackPanel>
 
 		<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="4" Margin="0,5,5,5" >
 			<Button Content="OK"
-					Margin="0,0,10,0" >
+					Style="{StaticResource OkButtonStyle}"
+					>
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="Click">
 						<i:InvokeCommandAction 
@@ -61,8 +70,11 @@
 				</i:Interaction.Triggers>
 			</Button>
 
-			<Button Content="Cancel" 
-					Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=this}" />
+			<Button Content="Cancel"
+					Command="{Binding CancelCommand}" 
+					CommandParameter="{Binding ElementName=this}" 
+					Style="{StaticResource CancelButtonStyle}"
+					/>
 		</StackPanel>
 	</Grid>
 </Window>

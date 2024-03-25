@@ -51,9 +51,9 @@ public class ExecuteAndGoToNextNodesCommand : CommandBase
 				continue;
 			}
 
-			bool branchValue = node.Execute();
-
 			_vm.Tracebacker.Log(new TracebackItem { Message = node.ToString(), Container = container });
+
+			bool branchValue = node.Execute();
 
 			BlockNode? target = node.ReturnNextNode(branchValue, _blockDiagram);
 			container.SelectedNode = target;  // Изменяем активный узел в BlockPenContainer

@@ -9,9 +9,12 @@
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
 
         mc:Ignorable="d"
+        Title="EdgeTypeChoosingDialog" Height="100" Width="150"
+		x:Name="this"
+		
 		WindowStyle="None"
-        Title="EdgeTypeChoosingDialog" Height="150" Width="250"
-		x:Name="this">
+		WindowStartupLocation="CenterScreen"
+		>
 	<Window.DataContext>
 		<vmd:EdgeTypeChoosingDialogVM />
 	</Window.DataContext>
@@ -20,39 +23,45 @@
 		<sys:Boolean x:Key="True">True</sys:Boolean>
 		<sys:Boolean x:Key="False">False</sys:Boolean>
 	</Window.Resources>
-	
-    <Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
-		</Grid.RowDefinitions>
 
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
-			<ColumnDefinition Width="*" />
-		</Grid.ColumnDefinitions>
+	<Grid>
+		<TextBlock Text="Edge Type" 
+				   HorizontalAlignment="Center" VerticalAlignment="Center" 
+				   Margin="0,-25,0,0"
+				   />
 
-		<TextBlock Grid.Row="0" Text="Edge Type:" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-		<Button Content="True" Grid.Row="1" Grid.Column="0">
-			<!-- Вызов ОК и Cancel команд -->
-			<i:Interaction.Triggers>
-				<i:EventTrigger EventName="Click">
-					<i:InvokeCommandAction Command="{Binding OkCommand}" CommandParameter="{StaticResource True}" />
-					<i:InvokeCommandAction Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=this}" />
-				</i:EventTrigger>
-			</i:Interaction.Triggers>
-		</Button>
+		<StackPanel Orientation="Horizontal" 
+					VerticalAlignment="Center" HorizontalAlignment="Center"
+					Margin="0,50,0,0"
+					>
+			<Button Content="True" 
+				Grid.Row="1" Grid.Column="0"
+				Style="{StaticResource OkButtonStyle}"
+				Margin="5,0,2.5,0"
+				>
+				<!-- Вызов ОК и Cancel команд -->
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+						<i:InvokeCommandAction Command="{Binding OkCommand}" CommandParameter="{StaticResource True}" />
+						<i:InvokeCommandAction Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=this}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Button>
 
-		<Button Content="False" Grid.Row="1" Grid.Column="1">
-			<!-- Вызов ОК и Cancel команд -->
-			<i:Interaction.Triggers>
-				<i:EventTrigger EventName="Click">
-					<i:InvokeCommandAction Command="{Binding OkCommand}" CommandParameter="{StaticResource False}" />
-					<i:InvokeCommandAction Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=this}" />
-				</i:EventTrigger>
-			</i:Interaction.Triggers>
-		</Button>
-
+			<Button Content="False" 
+				Grid.Row="1" Grid.Column="1"
+				Style="{StaticResource NoButtonStyle}"
+				Margin="2.5,0,5,0"
+				>
+				<!-- Вызов ОК и Cancel команд -->
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+						<i:InvokeCommandAction Command="{Binding OkCommand}" CommandParameter="{StaticResource False}" />
+						<i:InvokeCommandAction Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=this}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Button>
+		</StackPanel>
 	</Grid>
 </Window>

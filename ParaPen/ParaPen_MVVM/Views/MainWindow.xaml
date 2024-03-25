@@ -7,6 +7,8 @@
         xmlns:convs="clr-namespace:ParaPen.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
+
+		WindowStyle="None"
 		>
 	<Window.Resources>
 		<!--<DataTemplate x:Key="InkPenTemplate">

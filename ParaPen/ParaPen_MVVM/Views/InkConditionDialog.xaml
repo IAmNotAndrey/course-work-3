@@ -11,10 +11,13 @@
         xmlns:conv="clr-namespace:ParaPen.Converters"
 		xmlns:vmd="clr-namespace:ParaPen.ModelViews.Dialogs"
         mc:Ignorable="d"
-		WindowStyle="None"
         Title="InkConditionDialog" 
-		Height="150" Width="250"
-		x:Name="this">
+		Height="200" Width="250"
+		x:Name="this"
+		
+		WindowStyle="None"
+		WindowStartupLocation="CenterScreen"
+		>
 	<Window.DataContext>
 		<vmd:InkConditionDialogVM />
 	</Window.DataContext>
@@ -29,24 +32,33 @@
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
 			<RowDefinition Height="*" />
-			<RowDefinition Height="*" />
+			<RowDefinition Height="43" />
 		</Grid.RowDefinitions>
 
-		<TextBlock Text="Steps" Grid.Row="0" />
+		<TextBlock Text="Strokes on ?" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+		<TextBlock Text="Steps" Grid.Row="1" VerticalAlignment="Center" />
 		<xctk:IntegerUpDown x:Name="stepField" 
 							Grid.Row="1"
-							Minimum="0" 
+							Minimum="1"
 							Maximum="{x:Static sys:Int32.MaxValue}"
-							Value="0"
+							Value="1"
 							HorizontalAlignment="Center"
 							VerticalAlignment="Center" />
 
-		<TextBlock Text="Direction" Grid.Row="2" />
-		<ComboBox x:Name="directionsCB" ItemsSource="{Binding DirectionsValues}" Grid.Row="3" />
+		<TextBlock Text="Direction" Grid.Row="2" VerticalAlignment="Center" />
 
-		<StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="4" Margin="0,5,5,5" >
+		<ComboBox x:Name="directionsCB" 
+				  ItemsSource="{Binding DirectionsValues}" 
+				  Grid.Row="3" 
+				  Margin="5,0,5,0"
+				  Style="{StaticResource ComboBoxStyle}"
+				  />
+
+		<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="4" Margin="0,5,5,5" >
 			<Button Content="OK"
-					Margin="0,0,10,0" >
+					Style="{StaticResource OkButtonStyle}"
+					>
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="Click">
 						<i:InvokeCommandAction Command="{Binding OkCommand}">
@@ -63,7 +75,10 @@
 			</Button>
 
 			<Button Content="Cancel" 
-					Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=this}" />
+					Command="{Binding CancelCommand}" 
+					CommandParameter="{Binding ElementName=this}" 
+					Style="{StaticResource CancelButtonStyle}"
+					/>
 		</StackPanel>
 	</Grid>
 </Window>
