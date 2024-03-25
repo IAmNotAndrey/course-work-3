@@ -64,3 +64,5 @@ D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\_Blo
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\_BlockPenContainerRemoveUC.g.cs
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\_BlockDiagramUC.baml
 D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\_BlockPenContainerRemoveUC.baml
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\_TracebackTableUC.g.cs
+D:\GitHub\course-work-3\ParaPen\ParaPen_MVVM\obj\Debug\net6.0-windows\Views\_TracebackTableUC.baml

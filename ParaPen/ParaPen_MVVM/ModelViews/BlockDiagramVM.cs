@@ -3,6 +3,7 @@ using ParaPen.Commands.Nodes;
 using ParaPen.Commands.Serialization;
 using ParaPen.Models;
 using ParaPen.Models.CustomGraph;
+using ParaPen.Models.Interfaces;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,6 +16,8 @@ public class BlockDiagramVM : ViewModelBase
 	private readonly InkCanvasVM _inkCanvasVM;
 	private readonly InkCanvas _inkCanvas;
 	//private IUserViewMover UserViewMover => _inkCanvasVM.UserViewMover;
+
+	public ITracebacker Tracebacker { get; set; } = new Tracebacker();
 
 
 	private BlockDiagramGraph _blockDiagram = new();
@@ -44,10 +47,10 @@ public class BlockDiagramVM : ViewModelBase
 	//todo
 	//public ICommand ResetBlockPenContainers => ResetBlockPenContainersCommand();
 
-	public ICommand ExecuteAndGoToNextNodesCommand => new ExecuteAndGoToNextNodesCommand(BlockPenContainers, BlockDiagram);
-	public ICommand ExecuteAllNodesCommand => new ExecuteAllNodesCommand(ACTION_DELAY_TIME, BlockPenContainers, BlockDiagram);
+	public ICommand ExecuteAndGoToNextNodesCommand => new ExecuteAndGoToNextNodesCommand(BlockPenContainers, BlockDiagram, this);
+	public ICommand ExecuteAllNodesCommand => new ExecuteAllNodesCommand(ACTION_DELAY_TIME, BlockPenContainers, BlockDiagram, this);
 
-	public ICommand BreakExecutionCommand => new BreakExecutionCommand(BlockPenContainers, _inkCanvas);
+	public ICommand BreakExecutionCommand => new BreakExecutionCommand(BlockPenContainers, _inkCanvas, this);
 
 	#endregion
 

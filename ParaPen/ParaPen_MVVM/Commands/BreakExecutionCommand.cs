@@ -1,5 +1,6 @@
 ﻿using ParaPen.Models;
 using ParaPen.Models.CustomGraph;
+using ParaPen.ModelViews;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 
@@ -9,11 +10,13 @@ public class BreakExecutionCommand : CommandBase
 {
 	private ObservableCollection<BlockPenContainer> _blockPenContainers;
 	private InkCanvas _inkCanvas;
+	private readonly BlockDiagramVM _vm;
 
-	public BreakExecutionCommand(ObservableCollection<BlockPenContainer> blockPenContainers, InkCanvas inkCanvas)
+	public BreakExecutionCommand(ObservableCollection<BlockPenContainer> blockPenContainers, InkCanvas inkCanvas, BlockDiagramVM vm)
 	{
 		_blockPenContainers = blockPenContainers;
 		_inkCanvas = inkCanvas;
+		_vm = vm;
 	}
 
 	public override void Execute(object? parameter)
@@ -24,5 +27,6 @@ public class BreakExecutionCommand : CommandBase
 			//bpContainer.StartNode.IsHighlighted = true;
 		}
 		_inkCanvas.Strokes.Clear();
+		_vm.Tracebacker.Reset();
 	}
 }

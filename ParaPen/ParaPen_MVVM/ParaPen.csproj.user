@@ -10,6 +10,9 @@
     <Compile Update="Views\BlockDiagramWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\_TracebackTableUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\_BlockDiagramUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -33,6 +36,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\_TracebackTableUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\_BlockDiagramUC.xaml">
       <SubType>Designer</SubType>
     </Page>

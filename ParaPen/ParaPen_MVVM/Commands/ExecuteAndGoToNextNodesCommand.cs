@@ -2,6 +2,7 @@
 using ParaPen.Models;
 using ParaPen.Models.CustomGraph;
 using ParaPen.Models.CustomGraph.BlockNodes;
+using ParaPen.ModelViews;
 using System.Collections.Generic;
 using System.Linq;
 using static ParaPen.Helpers.NodeHelper;
@@ -14,6 +15,7 @@ public class ExecuteAndGoToNextNodesCommand : CommandBase
 	private IEnumerable<BlockPenContainer> _blockPenContainers;
 
 	private readonly BlockDiagramGraph _blockDiagram;
+	private readonly BlockDiagramVM _vm;
 
 	//public ExecuteAndGoToNextNodesCommand(IEnumerable<BlockNode?> activeNodes, BlockDiagramGraph blockDiagram)
 	//{
@@ -21,10 +23,11 @@ public class ExecuteAndGoToNextNodesCommand : CommandBase
 	//	_blockDiagram = blockDiagram;
 	//}
 
-	public ExecuteAndGoToNextNodesCommand(IEnumerable<BlockPenContainer> blockPenContainers, BlockDiagramGraph blockDiagram)
+	public ExecuteAndGoToNextNodesCommand(IEnumerable<BlockPenContainer> blockPenContainers, BlockDiagramGraph blockDiagram, BlockDiagramVM vm)
 	{
 		_blockPenContainers = blockPenContainers;
 		_blockDiagram = blockDiagram;
+		_vm = vm;
 	}
 
 	public override void Execute(object? parameter)
@@ -49,6 +52,8 @@ public class ExecuteAndGoToNextNodesCommand : CommandBase
 			}
 
 			bool branchValue = node.Execute();
+
+			_vm.Tracebacker.Log(new TracebackItem { Message = node.ToString(), Container = container });
 
 			BlockNode? target = node.ReturnNextNode(branchValue, _blockDiagram);
 			container.SelectedNode = target;  // Изменяем активный узел в BlockPenContainer

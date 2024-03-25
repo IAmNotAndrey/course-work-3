@@ -148,6 +148,11 @@
 				</DataTrigger>-->
 			</Style.Triggers>
 		</Style>
+
+		<Style TargetType="DataGrid">
+			<Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+		</Style>
+
 	</Window.Resources>
 
 	<Grid>
@@ -200,5 +205,12 @@
 		<Button Content="LaunchStep" HorizontalAlignment="Left" Margin="540,364,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAndGoToNextNodesCommand}" />
 		<Button Content="LaunchAll" HorizontalAlignment="Left" Margin="635,364,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAllNodesCommand}" />
 		<Button Content="Break" HorizontalAlignment="Left" Margin="717,379,0,0" VerticalAlignment="Top" Command="{Binding BreakExecutionCommand}" />
+
+		<!-- FIXME : отображение в несколько столбцов -->
+		<DataGrid x:Name="tracebackTable" 
+              ItemsSource="{Binding Tracebacker.Items}" 
+              Margin="0,324,400,10">
+			<!-- Здесь не требуется определение столбцов -->
+		</DataGrid>
 	</Grid>
 </Window>
