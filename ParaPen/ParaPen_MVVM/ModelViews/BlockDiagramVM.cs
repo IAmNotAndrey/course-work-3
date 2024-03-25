@@ -50,6 +50,8 @@ public class BlockDiagramVM : ViewModelBase
 	public ICommand ExecuteAndGoToNextNodesCommand => new ExecuteAndGoToNextNodesCommand(BlockPenContainers, BlockDiagram, this);
 	public ICommand ExecuteAllNodesCommand => new ExecuteAllNodesCommand(ACTION_DELAY_TIME, BlockPenContainers, BlockDiagram, this);
 
+	public ICommand DeleteNodeCommand => new DeleteNodeCommand(this);
+
 	public ICommand BreakExecutionCommand => new BreakExecutionCommand(BlockPenContainers, _inkCanvas, this);
 
 	#endregion

@@ -162,6 +162,7 @@
 						LayoutAlgorithmType="EfficientSugiyama"
 						OverlapRemovalAlgorithmType="TwoLayerFSA"
 					    PreviewMouseLeftButtonDown="graphLayout_PreviewMouseLeftButtonDown"
+						PreviewMouseRightButtonDown="graphLayout_PreviewMouseRightButtonDown"
 						HighlightAlgorithmType="Simple"
 						/>
 
@@ -179,17 +180,17 @@
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-		<Button Content="Сериализовать"
+		<Button Content="Serialize"
 				Command="{Binding SerializeEdges}"
 				CommandParameter="{Binding SelectedItem, ElementName=blockPenContainersLB}"
 				IsEnabled="{Binding SelectedItem, ElementName=blockPenContainersLB, Converter={StaticResource IsItemBlockPenContainerConverter}}"
-				Height="20" VerticalAlignment="Top" Margin="683,274,10,0" 
+				Height="20" VerticalAlignment="Top" Margin="683,314,10,0" 
 				/>
-		<Button Content="Удалить" 
+		<Button Content="Delete" 
 				CommandParameter="{Binding SelectedItem, ElementName=blockPenContainersLB}" 
 				Command="{Binding DeleteBlockPenContainer}"
 				IsEnabled="{Binding SelectedItem, ElementName=blockPenContainersLB, Converter={StaticResource IsItemBlockPenContainerConverter}}"
-				Height="20" VerticalAlignment="Bottom" Margin="720,0,20,95" 
+				Height="20" VerticalAlignment="Top" Margin="683,339,10,0" 
 				/>
 		<!-- -->
 
@@ -197,20 +198,19 @@
 		<Button Content="Add" 
 				Command="{Binding AddBlockPenContainer}"
 				IsEnabled="{Binding BlockPenContainers, Converter={StaticResource IsBlockPenContainersInLimitConverter}}"
-				Width="51" Height="30" 
-				HorizontalAlignment="Left" VerticalAlignment="Top" Margin="444,364,0,0" 
+				Width="52" Height="20" 
+				HorizontalAlignment="Left" VerticalAlignment="Top" Margin="720,279,0,0" 
 				/>
 
 
-		<Button Content="LaunchStep" HorizontalAlignment="Left" Margin="540,364,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAndGoToNextNodesCommand}" />
-		<Button Content="LaunchAll" HorizontalAlignment="Left" Margin="635,364,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAllNodesCommand}" />
-		<Button Content="Break" HorizontalAlignment="Left" Margin="717,379,0,0" VerticalAlignment="Top" Command="{Binding BreakExecutionCommand}" />
+		<Button Content="LaunchStep" HorizontalAlignment="Left" Margin="585,329,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAndGoToNextNodesCommand}" />
+		<Button Content="LaunchAll" HorizontalAlignment="Left" Margin="595,354,0,0" VerticalAlignment="Top" Command="{Binding ExecuteAllNodesCommand}" />
+		<Button Content="Break" HorizontalAlignment="Left" Margin="618,379,0,0" VerticalAlignment="Top" Command="{Binding BreakExecutionCommand}" />
 
 		<!-- FIXME : отображение в несколько столбцов -->
 		<DataGrid x:Name="tracebackTable" 
-              ItemsSource="{Binding Tracebacker.Items}" 
-              Margin="0,324,400,10">
-			<!-- Здесь не требуется определение столбцов -->
-		</DataGrid>
+				  ItemsSource="{Binding Tracebacker.Items}" 
+				  Margin="0,324,400,10" 
+				  />
 	</Grid>
 </Window>

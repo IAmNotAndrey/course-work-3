@@ -97,4 +97,72 @@ public static class NodeHelper
 				&& graph.OutEdges(v).Count() == 1
 			);
 	}
+
+	/// <summary>
+	/// Удаляет все вершины, у которых нет входящих рёбер и при этом не являющимися TerminalNode
+	/// </summary>
+	/// <returns>Количество удалённых вершин</returns>
+	[Obsolete]
+	private static int RemoveAllNotTerminalNodesWithoutInEdges(BlockDiagramGraph graph)
+	{
+		int count = 0;
+		foreach (var v in graph.Vertices.Where(v =>
+			!graph.InEdges(v).Any()
+			&& v is not TerminalNode)
+		)
+		{
+			graph.RemoveVertex(v);
+			count++;
+		}
+		return count;
+	}
+
+
+	/// <summary>
+	/// Удаляет все вершины, у которых нет входящих рёбер и при этом не являющимися TerminalNode до тех пор, пока в графе таких не останется
+	/// </summary>
+	/// <returns>Количество удалённых вершин</returns>
+	[Obsolete]
+	public static int RemoveAllNotTerminalNodesWithoutInEdgesUntilNone(BlockDiagramGraph graph)
+	{
+		int count = 0;
+		int res;
+		do
+		{
+			res = RemoveAllNotTerminalNodesWithoutInEdges(graph);
+			count += res;
+		} while (res > 0);
+		return count;
+	}
+
+	/// <summary>
+	/// Удаляет входящую вершину и рекурсивно все из неё выходящие
+	/// </summary>
+	public static void RecursivelyRemoveAllNextNodes(BlockNode node, BlockDiagramGraph graph)
+	{
+		BlockNode? nextNodeOnTrue;
+		BlockNode? nextNodeOnFalse;
+		// FIXME : лучше обходиться без обработки исключения
+		try
+		{
+			nextNodeOnTrue = ReturnNextNode(node, true, graph);
+			nextNodeOnFalse = ReturnNextNode(node, false, graph);
+		}
+		catch (Exception ex) 
+		{
+			return;
+		}
+
+		// Удаляем текущую вершину
+		graph.RemoveVertex(node);
+
+		if (nextNodeOnTrue != null)
+		{
+			RecursivelyRemoveAllNextNodes(nextNodeOnTrue, graph);
+		}
+		if (nextNodeOnFalse != null)
+		{
+			RecursivelyRemoveAllNextNodes(nextNodeOnFalse, graph);
+		}
+	}
 }
